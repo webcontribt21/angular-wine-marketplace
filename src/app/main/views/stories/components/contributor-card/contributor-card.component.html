@@ -1,0 +1,18 @@
+<div class="contributor-card-wrapper gray-dark-color" fxLayout="row wrap" fxLayoutAlign="space-between">
+  <div class="image-container">
+    <app-image-wrapper [desktopImageUrl]="author.imageUrl"
+          [mobileImageUrl]="author.imageUrl"
+          bgColor="background-gray-light"
+          heightPercent="h-100p"
+    ></app-image-wrapper>
+  </div>
+
+  <div class="description-container" fxFlex="1 1 auto" fxLayout="row" fxLayoutAlign="space-between">
+    <div fxLayout="column" fxLayoutAlign="center" class="description-area" fxFlex="1 1 auto">
+      <div class="name">{{ author?.name }}</div>
+      <div class="description" [innerHtml]="author.about | ellipsis: 50 : true" *ngIf="author.about"></div>
+    </div>
+    <!-- {{ author | json }} -->
+    <a routerLink="/stories/contributor/{{author._id}}" class="action uppercase gray-dark-color" fxLayout="column" fxLayoutAlign="end">All Work</a>
+  </div>
+</div>

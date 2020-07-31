@@ -1,0 +1,40 @@
+<div class="author-cart-wrapper"
+     fxLayout="column"
+     fxLayoutAlign="space-between"
+>
+  <a [routerLink]="['/stories/contributor/' + author._id]">
+      <app-image-wrapper [desktopImageUrl]="author.imageUrl"
+                      [mobileImageUrl]="author.imageUrl"
+                        bgColor="background-gray-light"
+                        heightPercent="h-100p"></app-image-wrapper>
+  </a>
+
+
+  <div class="details-wrapper" fxLayout="column" fxLayoutAlign="space-between">
+    <div class="author-name" *ngIf="author.name">{{ author?.name }}</div>
+
+    <div class="author-about" [innerHTML]="author.about" *ngIf="author.about"></div>
+
+    <div class="social-links gray-light-color">
+      <div *ngIf="author.facebook"><a class="gray-dark-color" href="https://facebook.com/{{ author.facebook }}" target="_blank">@{{ author.facebook }}</a></div>
+      <div *ngIf="author.instagram"><a class="gray-dark-color" href="https://instagram.com/{{ author.instagram }}" target="_blank">@{{ author.instagram }}</a></div>
+      <div *ngIf="author.twitter"><a class="gray-dark-color" href="https://instagram.com/{{ author.twitter }}" target="_blank">@{{ author.twitter }}</a></div>
+    </div>
+  </div>
+
+  <hr class="disabled-border-color" />
+
+  <div class="stories-list" fxFlex="1 1 auto">
+    <h5>Latest Stories</h5>
+
+    <div class="latest-stories" *ngIf="author.articles.length > 0">
+      <div *ngFor="let article of author.articles" class="article-item">
+        <a [routerLink]="['/stories/article/' + article._id]" class="brown-color">
+          <app-title-wrapper [title]="article.title" [titleShort]="article.titleShort"></app-title-wrapper>
+        </a>
+      </div>
+    </div>
+
+    <a [routerLink]="['/stories/contributor/' + author._id]" class="all uppercase brown-color">All Work</a>
+  </div>
+</div>

@@ -1,0 +1,63 @@
+.author-cart-wrapper {
+  font-size: 14px;
+  height: 100%;
+
+  .details-wrapper {
+    margin-top: 27px;
+    min-height: 122px;
+  }
+
+  .author-name {
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .author-about {
+    margin-top: 15px;
+    margin-bottom: 13px;
+    font-size: 14px;
+    padding-top: 5px;
+    max-height: 90px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* number of lines to show */
+    -webkit-box-orient: vertical;
+  }
+
+  .social-links {
+    font-size: 12px;
+  }
+
+  hr {
+    width: 100%;
+    border: 0.5px solid;
+    margin-top: 13.5px;
+    margin-bottom: 16.5px;
+  }
+
+  .stories-list {
+    > h5 {
+      margin: 0 0 15px;
+    }
+
+    .latest-stories {
+      display: block;
+      padding-bottom: 6px;
+    }
+
+    .article-item {
+      margin-bottom: 11px;
+    }
+  }
+
+  .title-wrapper {
+    > span {
+      display: block;
+      width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}

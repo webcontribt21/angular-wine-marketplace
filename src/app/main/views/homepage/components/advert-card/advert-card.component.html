@@ -1,0 +1,12 @@
+<a [routerLink]="[advert.linkUrl]" class="advert-card-wrapper text-center">
+  <app-image-wrapper [desktopImageUrl]="advert.imageUrl"
+                     [mobileImageUrl]="advert.imageUrl"
+                     bgColor="background-gray-dark"
+                     heightPercent="h-article"
+  >
+    <div class="description-area white-color full-height" fxLayout="column" fxLayoutAlign="center center">
+      <h1 class="title" [innerHTML]="advert.title | crossBoldString" *ngIf="advert.title"></h1>
+      <h2 class="text good-news-font">{{ advert?.text }}</h2>
+    </div>
+  </app-image-wrapper>
+</a>

@@ -1,0 +1,134 @@
+<app-checkout-order-summary-mobile [cartSummary]="cartSummary$ | async"
+  [deliveryAddress]="checkoutDeliveryAddress$ | async"></app-checkout-order-summary-mobile>
+<div class="wrapper" fxLayout="row" fxLayout.lt-md="column">
+  <div class="list">
+    <ng-container *ngIf="cartSummary$ | async as cartSummary">
+      <ng-template ngFor let-shipmentNo="index" let-shipment [ngForOf]="cartSummary.shipments">
+        <div class="card" [ngClass]="{'alert': shipment.amountToFreeDisplay}">
+          <div class="spend-target" *ngIf="shipment.amountToFreeDisplay">Spend another
+            <span>{{ shipment.amountToFree || 0 | formatCurrency }}</span> on total order for free shipping</div>
+          <div class="header">
+            <div class="ticket-hole"></div>
+            <div class="item">
+              <div class="left">
+                <div class="heading">Shipment {{ shipmentNo + 1 }}</div>
+                <div class="sub-heading">
+                  <span class="good-regular-font">Shipping from: </span>
+                  <span class="highlight">{{ shipment.shippingFrom }}</span>
+                </div>
+                <div class="sub-heading">
+                  <span class="good-regular-font">Estimated delivery date: </span>
+                  <span>{{ shipment.estimatedDeliveryDate | formatDate }}</span>
+                </div>
+              </div>
+              <div class="right">
+                <div class="total">
+                  <span>Shipment Total:</span>
+                  <span class="good-regular-font">{{ shipment.shipmentTotalAmount | formatCurrency }}</span>
+                </div>
+                <div class="sub-heading">
+                  <span class="good-regular-font">Delivery:</span>
+                  <span *ngIf="shipment.deliveryFee === 0">Free</span>
+                  <span *ngIf="shipment.deliveryFee > 0">{{ shipment.deliveryFee | formatCurrency }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="body">
+            <div class="item-row" *ngFor="let cartItem of shipment.cartItems">
+              <div class="close" (click)="onRemoveCartItemClick({ _id: cartItem._id, quantity: cartItem.quantity })">
+                <img src="/assets/img/icons/Cancel-1.svg" alt="" />
+              </div>
+
+              <div class="item" fxLayout="row wrap" fxLayoutAlign="stretch center" *ngFor="let item of cartItem.item">
+                <div class="img">
+                  <img [src]="getItemImage(item)" />
+                </div>
+                <div class="detail-row">
+                  <div class="detail">
+                    <div class="heading">{{ item?.brand?.name }}, {{ item?.name }},
+                      {{ getItemDetailTypeValue(item?.itemDetails, itemDetailTypes.Vintage) }}</div>
+                    <div class="sub-heading">
+                      <span>{{ getItemDetailTypeValue(item?.itemDetails, itemDetailTypes.Type) }}</span> from
+                      <span>{{ getItemDetailTypeValue(item?.itemDetails, itemDetailTypes.Appellation) }},
+                        {{ getItemDetailTypeValue(item?.itemDetails, itemDetailTypes.Region) }},
+                        {{ getItemDetailTypeValue(item?.itemDetails, itemDetailTypes.Country) }}</span></div>
+                    <div class="info"
+                      *ngIf="(cartItem?.cartItemSoldInQuantitiesOf ? cartItem?.cartItemSoldInQuantitiesOf : 0) > 1">Sold
+                      <span>only</span> in multiples of {{ cartItem.cartItemSoldInQuantitiesOf }}
+                      bottles</div>
+                    <div class="info"><span>Sold by:</span> {{ shipment.name }}</div>
+                  </div>
+                  <div class="qty-price">
+                    <div class="qty">
+                      <div class="label">
+                        Quantity
+                      </div>
+                      <div class="dropdown">
+                        <app-checkout-summary-qty-selector [cartItem]="cartItem"
+                          (qtySelected)="onSetCartItemQuantity(cartItem, $event)"></app-checkout-summary-qty-selector>
+                      </div>
+                    </div>
+                    <div class="price">
+                      <div class="detail">
+                        <div class="label">Unit Price:</div>
+                        <div class="value">{{ cartItem.cartItemPrice || 0 | formatCurrency }}</div>
+                      </div>
+                      <div class="detail">
+                        <div class="label"><span>Total:</span></div>
+                        <div class="value"><span>{{ cartItem.cartItemPriceTotal | formatCurrency }}</span></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ng-container>
+    <!--
+    <div class="card-gift">
+      <div class="selector">
+        <div class="item-toggle">
+          <input #isGiftCheckbox type="checkbox" (change)="setIsGift(isGiftCheckbox.checked)"
+            [checked]="isGift$ | async">
+        </div>
+        <div class="item-row">
+          <div class="heading">This is a gift. Please consolidate my shipments.</div>
+          <div class="info">
+            <span>You will be charged R25 per shipment</span>
+          </div>
+        </div>
+      </div>
+      <div class="gift-row" *ngIf="isGift$ | async">
+        <div class="heading"><span>Add a gift message.&nbsp;</span> <span>Your gift message will be printed on the
+            package
+            label:</span></div>
+        <div class="info">
+          <span>Gift Message:</span>
+          <div class="detail">
+            <input type="text" placeholder="Type something ...">
+            <span class="helper" style="display: none;">0/60</span>
+            <span class="helper edit">Edit</span>
+          </div>
+          <div class="action">
+            <button>Save Message</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    -->
+  </div>
+
+  <div class="checkout-order-summary-desktop-container">
+    <app-checkout-order-summary-desktop [cartSummary]="cartSummary$ | async"
+                                        [deliveryAddress]="checkoutDeliveryAddress$ | async"
+                                        [canContinue]="true"
+                                        [isLoading]="(isLoadingApplyVoucher$ | async) || (isLoadingCartSummary$ | async)"
+                                        [error]="voucherError$ | async"
+                                        (continue)="onContinueClick()"
+                                        (applyVoucher)="onApplyVoucher($event)"
+    ></app-checkout-order-summary-desktop>
+  </div>
+</div>

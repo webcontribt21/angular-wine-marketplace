@@ -1,0 +1,36 @@
+export interface Shop {
+    _id: string;
+    name: string;
+    shopToken: string;
+    shopNo: number;
+    description?: any;
+    activeStatus: boolean;
+    dateCreated: Date;
+    dateLastUpdated: Date;
+    imageName?: any;
+    imageUrl?: any;
+    imageEtag?: any;
+    imageKey?: any;
+    emailAddress?: any;
+    liquorLicence?: any;
+    commissionPercentage?: any;
+    telNumber?: any;
+    seoDescription?: any;
+    campaignMonitorCode?: any;
+    googleAnlyticsCode?: any;
+    wineClubRuleDuration?: any;
+    wineClubRuleBottles?: any;
+    wineClubRuleOrderMinTotal?: any;
+    wineClubRuleFreeShippingAmount?: any;
+    wineClubRuleDiscountPercentage?: any;
+    wineClubRuleBottlesRetainer?: any;
+    wineClubRuleOrderMinTotalRetainer?: any;
+    wineClubRuleTelNumber?: any;
+    wineClubRuleEmailAddress?: any;
+    wineClubRuleDescription?: any;
+    prestashop_id?: any;
+    freeShipping: number;
+    freeShippingPerShipment: number;
+    deliveryFeePerShipment: number;
+    estimatedDeliveryDays: number;
+}

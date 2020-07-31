@@ -1,0 +1,35 @@
+<div class="item-list-wrapper"
+  *ngIf="(items) as itemsData">
+  <div class="sort-wrapper">
+
+    <app-switcher-unavailable-wines [itemsCount]="totalResults" 
+      [showUnavailableWines]="showUnavailableWines"
+      (showUnavailableWines$)="toggleViewUnavailableWines($event)" class="switcher">
+    </app-switcher-unavailable-wines>
+
+    <div class="controls-wrapper">
+      <button class="btn filter" [class.brown-color]="currentFilters.length > 0" (click)="showFiltersSidebar()">
+        <span class="check-mark" *ngIf="currentFilters.length > 0">&#x2714;</span>Filter
+      </button>
+
+      <div class="sortable-wrapper">
+        <app-sorts-item-control (selectSortRule$)="selectSortRule($event)"></app-sorts-item-control>
+      </div>
+
+      <app-style-items-control [isSquareStyle]="isSquareStyle" (isSquareStyle$)="toggleStyle()">
+      </app-style-items-control>
+    </div>
+
+
+  </div>
+
+  <div class="items" [ngClass]="{'list' : !isSquareStyle }">
+
+    <app-item class="item-wrapper" *ngFor="let item of itemsData; trackBy: trackFilterItemByFn" [item]="item" [isSquareStyle]="isSquareStyle"
+      [isOpenRatingModal]="isOpenRatingModal" (addItemToCart$)="addItemToCart($event)"
+      (openRatingModal$)="toggleOpenRating($event)" (showAvailableVintages$)="showAvailableVintages()">
+    </app-item>
+
+  </div>
+
+</div>

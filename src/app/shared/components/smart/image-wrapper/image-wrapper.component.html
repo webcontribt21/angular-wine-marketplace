@@ -1,0 +1,10 @@
+<div class="img-wrapper" [ngClass]="heightPercent ? heightPercent : 'h-40p'">
+  <div class="img"
+       [ngStyle.gt-sm]="{'background-image': 'url(' + desktopImageUrl + ')'}"
+       [ngStyle.lt-md]="{'background-image': 'url(' + mobileImageUrl + ')'}"
+       [ngClass]="bgColor ? bgColor : 'background-gray-light'"
+       [style.background-size]="bgSize"
+  >
+    <ng-content></ng-content>
+  </div>
+</div>

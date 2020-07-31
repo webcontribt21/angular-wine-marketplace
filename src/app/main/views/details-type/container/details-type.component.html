@@ -1,0 +1,24 @@
+<!-- <div *ngIf="itemDetailTypeValues$ | async as itemDetailTypeValues"> -->
+<div class="details-type-container">
+  <div class="second-nav-wrapper">
+    <app-second-nav></app-second-nav>
+  </div>
+
+  <div class="breadcrumbs-wrapper">
+    <app-breadcrumbs [filters]="currentFilters$ | async" [firstSectionName]="firstSectionName"></app-breadcrumbs>
+  </div>
+
+  <div class="items-wrapper">
+    <router-outlet></router-outlet>
+  </div>
+
+  <app-jw-modal id="add-to-cart-error-modal">
+    <div class="error-modal-wrapper" fxLayout="column" fxLayoutAlign="center center">
+      <h2>Whoops, we've run out!</h2>
+      <div class="gray-dark1-color alert">Unfortunately, you've either added the maximum amount of stock or are exceeding the maximum available stock.</div>
+      <button class="btn background-brown white-color" (click)="closeModal('add-to-cart-error-modal')">
+        GOT IT
+      </button>
+    </div>
+  </app-jw-modal>
+</div>

@@ -1,0 +1,250 @@
+@import 'variables';
+
+$black: black;
+$brown: #3f3a39;
+
+.item {
+  display: flex;
+  flex-direction: column;
+  opacity: 1;
+  border: 0.5px solid rgba(37, 33, 32, 0.11);
+  height: 400px;
+  justify-content: space-evenly;
+  position: relative;
+  width: 162px;
+
+  @media all and (max-width: $mobile) {
+    width: 42vw;
+  }
+
+  &.isOnlyPopup {
+    border: none;
+  }
+
+  &.showPriceWrapper {
+    background: #f5f5f5;
+  }
+
+  .info {
+    display: flex;
+    flex-direction: column;
+
+    .country-name {
+      font-weight: bold;
+      font-size: 12px;
+    }
+
+    .info-to-price {
+      padding-top: 8px;
+      font-size: 12px;
+      // color: $brown;
+      color: #b98754;
+      font-weight: bold;
+
+      &.unavailable {
+        color: $gray;
+      }
+    }
+  }
+
+  h3,
+  h4 {
+
+    text-align: center;
+    color: $brown;
+    margin: 0;
+
+    &.description,
+    &.title {
+      padding: 2px 0;
+      opacity: 0.9;
+      text-decoration: none;
+      outline: 0;
+      font-weight: normal;
+      font-size: 14px;
+      color: $brown;
+      vertical-align: top;
+      height: 21px;
+    }
+
+    &.title {
+      font-weight: bold;
+
+      // @media all and (max-width: $mobile) {
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      padding: 2px 8px;
+      // }
+    }
+
+  }
+
+  span {
+    text-align: center;
+    color: $brown;
+
+    &.item-type {
+      font-size: 14px;
+      color: $brown;
+      font-weight: bold;
+      opacity: 0.9;
+    }
+
+    &.year {
+      padding: 2px 0;
+      opacity: 0.9;
+    }
+
+    &.year {
+      font-size: 12px;
+      height: 18px;
+    }
+
+    &.price {
+      // color: $brown;
+      font-weight: bold;
+      color: #b98754;
+
+      &.unavailable {
+        color: $gray;
+      }
+    }
+  }
+
+  .image {
+    padding: 0 1px;
+    height: 190px;
+    cursor: pointer;
+
+    &.unavailable {
+      opacity: 0.6;
+    }
+
+    img {
+      display: block;
+      margin: auto;
+      max-height: 190px;
+      max-width: 160px;
+
+      &.noImage {
+        height: 100%;
+      }
+    }
+  }
+
+  .cardPrice {
+
+    img {
+      float: left;
+      margin-top: -3px;
+    }
+
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    background: #43484bdb;
+
+    &.showPriceWrapper {
+      position: absolute;
+      top: 0;
+      display: flex;
+      max-width: 100%;
+      width: 100%;
+      text-align: center;
+      // height: 250px;
+
+      .wrapper {
+        cursor: pointer;
+        padding: 51px 0 35px;
+        width: 100%;
+        min-height: 191px;
+      }
+
+      .price-info {
+        font-size: 10px;
+      }
+
+      .from,
+      .price {
+        display: none;
+      }
+
+      .control {
+        display: flex;
+        margin: 0 auto;
+        flex-direction: column;
+        align-items: center;
+        width: 169px;
+
+        .inStock,
+        .unavailableWrapper {
+          font-size: 12px;
+          font-weight: bold;
+          margin-bottom: 0;
+
+          span {
+            color: white;
+          }
+
+          img {
+            height: auto;
+            width: 5px;
+            margin-right: 8px;
+          }
+        }
+
+        .unavailableWrapper {
+          height: 21.5px;
+
+          span {
+            color: white;
+          }
+        }
+
+        a.add-to-my-wine {
+          color: #989898;
+          font-size: 12px;
+          text-decoration: underline;
+          cursor: pointer;
+        }
+      }
+
+      .price-wrapper {
+        display: block;
+        margin: 0 auto;
+        margin-bottom: 16px;
+        font-size: 14px;
+        padding: 13px 0 0;
+        max-width: 120px;
+
+        .price-info {
+          margin-bottom: 3px;
+        }
+
+        .price-info,
+        span {
+          font-size: 12px;
+          color: white;
+        }
+
+        span {
+          font-weight: bold;
+        }
+      }
+
+      a.add-to-my-wine {
+        color: white;
+        font-size: 10px;
+        font-weight: bold;
+        text-decoration: underline;
+        cursor: pointer;
+        margin-bottom: 50px;
+      }
+
+      .pay-item-control {
+        min-width: 100%;
+      }
+    }
+  }
+}

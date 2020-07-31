@@ -1,0 +1,28 @@
+<ul class="nav navbar-nav help-menu-container brown-light-border-color" fxShow.gt-sm="true" fxHide>
+  <li class="nav-item" *ngFor="let menu of menus">
+    <a [routerLink]="['/help/' + menu.link]" routerLinkActive="active">
+      {{ menu.name }}
+    </a>
+  </li>
+</ul>
+
+<div fxShow
+     fxHide.gt-sm="true"
+     fxLayout="row wrap"
+     class="help-menu-container mobile-second-nav brown-light-border-color"
+>
+  <div class="item"
+       fxFlex="50%"
+       *ngFor="let menu of mobileMenus"
+  >
+    <a [routerLink]="['/help/' + menu.link]"
+       routerLinkActive="active"
+       fxLayout
+       fxLayoutAlign="center"
+       class="dark3-color gray-light-border-color"
+       [ngClass]="{'uppercase': menu.link !== 'legal/use' && menu.link !== 'legal/sale'}"
+    >
+      {{ menu.name }}
+    </a>
+  </div>
+</div>

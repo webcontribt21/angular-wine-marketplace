@@ -1,0 +1,29 @@
+.searchbox-wrapper {
+  position: relative;
+
+  input {
+    height: 60px;
+    width: 100%;
+    padding: 20px 60px 20px 30px;
+    border: 1px solid;
+
+    &::-webkit-input-placeholder { /* Edge */
+      font-size: 14px;
+    }
+    
+    &:-ms-input-placeholder { /* Internet Explorer 10-11 */
+      font-size: 14px;
+    }
+    
+    &::placeholder {
+      font-size: 14px;
+    }
+  }
+
+  i {
+    font-size: 14px;
+    position: absolute;
+    right: 25px;
+    top: calc( 50% - 7px );
+  }
+}

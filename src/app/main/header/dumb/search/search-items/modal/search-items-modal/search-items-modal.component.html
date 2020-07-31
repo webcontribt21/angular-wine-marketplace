@@ -1,0 +1,63 @@
+<div class="search-items-modal">
+
+  <div class="search-items-wrapper">
+
+      <div class="spinner"
+          *ngIf="(loadingPopular || loadingQuery) else quickSearchResults"
+          fxLayout="row"
+          fxLayoutAlign="center"
+      >
+        <app-spinner [width]="50" [height]="50"></app-spinner>
+      </div>
+
+      <ng-template #quickSearchResults>
+
+        <div class="section" *ngIf="searchText.length === 0 && resultsPopular.Items?.length">
+          <div class="title">WINES</div>
+          <div class="items">
+            <ng-container *ngFor="let result of resultsPopular.Items">
+              <a class="item" [routerLink]="'/wines/item/' + result._id + '/' + (result.name | urlfriendly)"><span>{{result.brand?.name}}</span> {{result.name}}</a>
+            </ng-container>
+          </div>
+        </div>
+        <div class="section" *ngIf="searchText.length > 0 && resultsQuery.SearchItems?.items?.length">
+          <div class="title">WINES</div>
+          <div class="items">
+            <ng-container *ngFor="let result of resultsQuery.SearchItems.items">
+              <a class="item" [routerLink]="'/wines/item/' + result._id + '/' + (result.name | urlfriendly)"><span>{{result.brand?.name}}</span> {{result.name}}</a>
+            </ng-container>
+          </div>
+        </div>
+        <div class="section" *ngIf="searchText.length === 0 && resultsPopular.Articles?.length">
+          <div class="title">ARTICLES</div>
+          <div class="items">
+              <ng-container *ngFor="let result of resultsPopular.Articles">
+                <a class="item" [routerLink]="'/stories/article/' + result._id"><span>{{result.title}}</span> by {{result.author?.name}}</a>
+              </ng-container>
+          </div>
+        </div>
+        <div class="section" *ngIf="searchText.length > 0 && resultsQuery.Articles?.length !== 0">
+          <div class="title">ARTICLES</div>
+          <div class="items">
+              <ng-container *ngFor="let result of resultsQuery.Articles">
+                <a class="item" [routerLink]="'/stories/article/' + result._id"><span>{{result.title}}</span> by {{result.author?.name}}</a>
+              </ng-container>
+          </div>
+        </div>
+        <div class="section" *ngIf="searchText.length > 0 && resultsQuery.Brands?.length !== 0">
+          <div class="title">BRANDS</div>
+          <div class="items">
+              <ng-container *ngFor="let result of resultsQuery.Brands">
+                <a class="item" [routerLink]="'/wines/' + (result.name | urlfriendly)"><span>{{result.name}}</span></a>
+              </ng-container>
+          </div>
+        </div>
+        <div class="section-footer" *ngIf="searchText.length > 0 && resultsQuery.SearchItems?.items?.length !== 0">
+          <a class="title" [routerLink]="'/wines/query-' + (searchText | urlfriendly)">See All Results</a>
+        </div>
+      
+      </ng-template>
+
+  </div>
+
+</div>

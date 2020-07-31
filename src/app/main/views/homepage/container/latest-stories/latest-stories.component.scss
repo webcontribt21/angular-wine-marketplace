@@ -1,0 +1,23 @@
+.latest-stories-wrapper {
+  > .row {
+    margin: 0 -0.75em;
+  }
+
+  .latest-story {
+    padding: 0 0.75em;
+  }
+
+  .slide.slick-slide {
+    &.slick-active {
+      .article-card-wrapper {
+        opacity: 1;
+      }
+    }
+
+    .article-card-wrapper {
+      opacity: 0.33;
+      transition: all 1s ease;
+      -webkit-transform: all 1s ease;
+    }
+  }
+}

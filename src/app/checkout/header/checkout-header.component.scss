@@ -1,0 +1,200 @@
+@import "variables";
+
+
+
+
+.header {
+  // border: solid 1px #EEE;
+  min-height: 141px;
+  display: flex;
+  align-items: center;
+
+  @media all and (max-width: $mobile) {
+    min-height: 90px;
+    background: $black;
+    align-items: flex-start;
+  }
+
+
+  .logo-wrapper {
+    width: 180px;
+    height: 100%;
+    display: flex;
+    background: $grayDark 0% 0% no-repeat padding-box;
+    justify-content: center;
+    align-items: center;
+    padding: 13px 0;
+
+    @media all and (max-width: $mobile) {
+      width: 122px;
+      background: none;
+      margin: 0 auto;
+      padding: 14px 0 14px 0;
+    }
+
+  }
+
+  .logo-wrapper img {
+    max-width: 122px;
+  }
+
+}
+
+
+
+.desktop {
+  display: flex;
+  flex-wrap: wrap;
+  flex-grow: 1;
+  padding-left: 63px;
+  padding-right: 63px;
+
+  .left {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+
+
+    .progress {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      margin-left: 40px;
+
+      .bar {
+        background: #FFFFFF;
+        width: 100%;
+        height: 10px;
+        border-radius: 10px;
+      }
+
+      .steps {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-top: -12px;
+
+        .step {
+          cursor: pointer;
+          align-items: center;
+          justify-content: space-between;
+          display: flex;
+          flex-direction: column;
+          height: 40px;
+
+          &:first-child {
+            align-items: flex-start;
+          }
+
+          &:last-child {
+            align-items: flex-end;
+
+            .marker {
+              margin-right: 2px;
+            }
+          }
+
+          .marker {
+            background: $brown;
+            width: 4px;
+            height: 4px;
+            margin-top: 5px;
+          }
+
+          .label {
+            font-size: 12px;
+            // margin-top: 15px;
+          }
+
+
+
+          &.active {
+            .marker {
+              width: 15px;
+              height: 15px;
+              border-radius: 7px;
+              border: solid 2px #FFF;
+              margin-right: 0;
+              margin-top: 0px;
+            }
+
+            .label {}
+          }
+        }
+      }
+    }
+
+  }
+
+  .right {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-left: 20px;
+    width: 300px;
+
+    .help-info {
+      font-size: 14px;
+      color: #919191;
+    }
+  }
+
+
+
+
+  .first-wrapper {
+    display: flex;
+    margin: 0;
+    background: #ffffff;
+
+    .search-wrapper {
+      flex: 3 0px;
+    }
+  }
+
+  li.cart-auth-wrapper {
+    display: flex;
+
+    .modal-wrapper {
+      position: absolute;
+      top: 60px;
+      margin-left: -1px;
+    }
+  }
+
+  @media all and (max-width: $mobile) {
+    display: none;
+  }
+}
+
+.mobile {
+  display: none;
+
+  @media all and (max-width: $mobile) {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+
+    ul {
+      margin: 0;
+      padding-bottom: 60px;
+    }
+  }
+
+  .nav-wrapper {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-evenly;
+    color: #919191;
+
+    .nav-item {
+      font-size: 12px;
+
+      &.active {
+        color: #FFFFFF;
+      }
+    }
+  }
+}

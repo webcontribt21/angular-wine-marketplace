@@ -1,0 +1,113 @@
+<div class="wrapper" *ngIf="!(isLoadData$ | async)">
+
+  <div class="filters" [ngClass]="{'show': isShowFiltersSidebar}">
+
+    <app-current-filters
+      [currentFilters]="currentFilters$ | async"
+      [priceRangeValues]="priceRangeValues$ | async"
+      [ratingRangeValues]="ratingRangeValues$ |async"
+      [icons]="icons"
+      (clearCurrentFilters$)="clearCurrentFilters()"
+      (removeCurrentFilters$)="removeCurrentFilter($event)"
+      (removePriceRangeFilter$)="removePriceRangeFilter()"
+      (removeRatingRangeFilter$)="removeRatingRangeFilter()"
+      class="desktop-current-filters"></app-current-filters>
+
+    <app-filters [filters]="filters$ | async"
+      [priceRangeValues]="priceRangeValues$ | async"
+      [ratingRangeValues]="ratingRangeValues$ | async"
+      [icons]="icons"
+      (toggleFilter$)="toggleFilter($event)"
+      (toggleFilterPanel$)="toggleFilterPanel($event)"
+      (priceRangeValues$)="priceRangeFilterValues($event)" (ratingRangeValues$)="ratingRangeFilterValues($event)" (hideFiltersSidebar$)="hideFiltersSidebar()" class="app-filters">
+
+      <app-current-filters [currentFilters]="currentFilters$ | async"
+        [priceRangeValues]="priceRangeValues$ | async"
+        [ratingRangeValues]="ratingRangeValues$ |async"
+        [icons]="icons"
+        (clearCurrentFilters$)="clearCurrentFilters()"
+        (removeCurrentFilters$)="removeCurrentFilter($event)"
+        (removePriceRangeFilter$)="removePriceRangeFilter()"
+        (removeRatingRangeFilter$)="removeRatingRangeFilter()"
+        (hideFiltersSidebar$)="hideFiltersSidebar()" class="mobile-current-filters"></app-current-filters>
+
+    </app-filters>
+
+  </div>
+
+  <div class="product-list">
+
+    <div class="info-wrapper">
+      <h1 class="title hasSubtitle">{{ productDescription?.title }}</h1>
+      <h2 class="subtitle" *ngIf="productDescription.subtitle">{{ productDescription?.subtitle }}</h2>
+      <p class="description">
+
+        {{ productDescription?.description }}
+
+        <!--
+        <span [hidden]="isHide">now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum'
+          will uncover many web sites still in their infancy. Various versions have evolved over
+          the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+        </span>
+        -->
+
+        <!--<span (click)="toggleText()" class="toggleText">{{ isHide ? 'Read More' : 'Read less'}}</span>-->
+
+      </p>
+
+    </div>
+
+    <hr>
+
+    <!-- <div class="popular-searches-this-week">
+
+      <span class="title">Popular searches this week</span>
+
+      <ul class="popular-list">
+
+        <li>
+          <span class="custom-filter">Red wine from France</span>
+        </li>
+
+        <li>
+          <span class="custom-filter">Uva Mira Chardonnay</span>
+        </li>
+
+        <li>
+          <span class="custom-filter">White wine that pairs with fish</span>
+        </li>
+
+        <li>
+          <span class="custom-filter">Price range R200-R300</span>
+        </li>
+
+      </ul>
+
+    </div>
+     -->
+
+    <app-items-list [items]="items$ | async"
+                    [rangeValues]="priceRangeValues$ | async"
+                    [totalResults]="(pagination$ | async).total_results"
+                    [showUnavailableWines]="showUnavailableWines$ | async"
+                    [currentFilters]="currentFilters$ | async"
+                    (addItemToCart$)="addItemToCart($event)"
+                    (showFiltersSidebar$)="showFiltersSidebar()"
+                    (showUnavailableWines$)="toggleViewUnavailableWines()"
+                    (selectSortRule$)="selectSortRule($event)"
+    ></app-items-list>
+
+    <div *ngIf="pagination$ | async as pagination">
+
+      <div *ngIf="pagination.total_results > pagination.size">
+
+        <p-paginator [rows]="pagination.size" [totalRecords]="pagination.total_results" (onPageChange)="onPageChange($event)"
+          [styleClass]="'pagination'" pageLinkSize="3">
+        </p-paginator>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>

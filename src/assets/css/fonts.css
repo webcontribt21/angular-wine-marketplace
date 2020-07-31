@@ -1,0 +1,103 @@
+@font-face {
+  font-family: goodProBlack;
+  src: url("../fonts/GoodPro-Black.otf") format("opentype");
+}
+
+@font-face {
+  font-family: goodProBook;
+  src: url("../fonts/GoodPro-Book.otf") format("opentype");
+}
+
+@font-face {
+  font-family: goodProLight;
+  src: url("../fonts/GoodPro-Light.otf") format("opentype");
+}
+
+@font-face {
+  font-family: regularGeorgia;
+  font-style: normal;
+  font-weight: normal;
+  src: url("../fonts/Georgia-Regular.woff") format('woff');
+}
+
+@font-face {
+  font-family: italicGeorgia;
+  font-style: normal;
+  font-weight: normal;
+  src: url("../fonts/Georgia-Italic.woff") format('woff');
+}
+
+@font-face {
+  font-family: boldGeorgia;
+  font-style: normal;
+  font-weight: normal;
+  src: url("../fonts/Georgia-Bold.woff") format('woff');
+}
+
+@font-face {
+  font-family: italicBoldGeorgia;
+  font-style: normal;
+  font-weight: normal;
+  src: url("../fonts/Georgia-Bold.woff") format('woff');
+}
+
+@font-face {
+  font-family: 'goodRegular';
+  src: url('../fonts/Good-Regular/Good-Regular.eot?#iefix');
+  src: url('../fonts/Good-Regular/Good-Regular.eot?#iefix') format('eot'),
+    url('../fonts/Good-Regular/Good-Regular.woff2') format('woff2'),
+    url('../fonts/Good-Regular/Good-Regular.woff') format('woff'),
+    url('../fonts/Good-Regular/Good-Regular.ttf') format('truetype');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'goodRegular1';
+  src: url('../fonts/Good-Regular/Good-Regular.eot?#iefix');
+  src: url('../fonts/Good-Regular/Good-Regular.eot?#iefix') format('eot'),
+    url('../fonts/Good-Regular/Good-Regular.woff2') format('woff2'),
+    url('../fonts/Good-Regular/Good-Regular.woff') format('woff'),
+    url('../fonts/Good-Regular/Good-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: goodMedium;
+  font-weight: 600;
+  src: url("../fonts/Good-Regular/Good-Regular.eot?#iefix");
+  src: url("../fonts/Good-Regular/Good-Regular.eot?#iefix") format("eot"),
+    url("../fonts/Good-Regular/Good-Regular.woff2") format("woff2"),
+    url("../fonts/Good-Regular/Good-Regular.woff") format("woff"),
+    url("../fonts/Good-Regular/Good-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: goodNewsItalic;
+  src: url("../fonts/Good-News-Italic/Good-News-Italic.eot?#iefix");
+  src: url("../fonts/Good-News-Italic/Good-News-Italic.eot?#iefix") format("eot"),
+    url("../fonts/Good-News-Italic/Good-News-Italic.woff2") format("woff2"),
+    url("../fonts/Good-News-Italic/Good-News-Italic.woff") format("woff"),
+    url("../fonts/Good-News-Italic/Good-News-Italic.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: goodBold;
+  src: url("../fonts/Good-Bold/Good-Bold.eot?#iefix");
+  src: url("../fonts/Good-Bold/Good-Bold.eot?#iefix") format("eot"),
+    url("../fonts/Good-Bold/Good-Bold.woff2") format("woff2"),
+    url("../fonts/Good-Bold/Good-Bold.woff") format("woff"),
+    url("../fonts/Good-Bold/Good-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: goodNews;
+  src: url("../fonts/Good-News/Good-News.eot?#iefix");
+  src: url("../fonts/Good-News/Good-News.eot?#iefix") format("eot"),
+    url("../fonts/Good-News/Good-News.woff2") format("woff2"),
+    url("../fonts/Good-News/Good-News.woff") format("woff"),
+    url("../fonts/Good-News/Good-News.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: helveticaBold;
+  src: url("../fonts/Helvetica-Bold-Font.ttf") format("truetype");
+}

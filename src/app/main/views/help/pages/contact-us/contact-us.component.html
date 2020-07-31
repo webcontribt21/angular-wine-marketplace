@@ -1,0 +1,81 @@
+<div class="contact-us-wrapper page-wrapper">
+  <div class="description" fxShow fxHide.gt-sm="true">
+    <div class="title uppercase black-color">Contact Us</div>
+  </div>
+
+  <form [formGroup]="contactForm" (ngSubmit)="submit()" validate>
+    <div fxLayout="row wrap" class="container">
+      <div class="input-item" fxFlex="50%" fxFlex.lt-md="100%">
+        <label class="label">Name</label>
+
+        <div class="ui-inputgroup">
+          <input class="placeholder-brown-lighter brown-lighter-border-color"
+                 type="text"
+                 pInputText
+                 placeholder="Name"
+                 formControlName="name"
+          >
+        </div>
+      </div>
+
+      <div class="input-item" fxFlex="50%" fxFlex.lt-md="100%">
+        <label class="label">Surname</label>
+
+        <div class="ui-inputgroup">
+          <input class="placeholder-brown-lighter brown-lighter-border-color"
+                 type="text"
+                 pInputText
+                 placeholder="Surname"
+                 formControlName="surname"
+          >
+        </div>
+      </div>
+    </div>
+
+    <div fxLayout="row wrap" class="container">
+      <div class="input-item" fxFlex="50%" fxFlex.lt-md="100%">
+        <label class="label mobile_margin">Email address</label>
+
+        <div class="ui-inputgroup">
+          <input class="placeholder-brown-lighter brown-lighter-border-color"
+                 type="email"
+                 pInputText
+                 placeholder="Email"
+                 formControlName="email"
+          >
+        </div>
+      </div>
+
+      <div class="input-item" fxFlex="50%" fxFlex.lt-md="100%">
+        <label class="label">Telephone</label>
+
+        <div class="ui-inputgroup">
+          <span class="ui-inputgroup-addon brown-lighter-border-color">+27</span>
+          <p-inputMask formControlName="phone"
+                       placeholder="00 000 00 00"
+                       mask="99 999 99 99"
+                       class="mask-input"
+                       styleClass="placeholder-brown-lighter brown-lighter-border-color full-height full-width no-border-radius"
+          ></p-inputMask>
+        </div>
+      </div>
+    </div>
+
+    <div fxLayout="column" class="container">
+      <div class="input-item">
+        <label class="label mobile_margin">How can we help?</label>
+
+        <textarea class="placeholder-brown-lighter brown-lighter-border-color"
+                  [rows]="4"
+                  pInputTextarea
+                  placeholder="Start typing"
+                  formControlName="text"
+        ></textarea>
+      </div>
+
+      <div class="input-item">
+        <button class="btn uppercase background-black white-color" [disabled]="contactForm.invalid">Submit</button>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,8 @@
+<div class="featured-stories-wrapper full-height"
+     fxLayout="column"
+     fxLayoutAlign="start"
+>
+  <div *ngFor="let article of featuredStories" class="story-item featured">
+    <app-article-card class="featured" [article]="article" [styles]="articleStyles"></app-article-card>
+  </div>
+</div>

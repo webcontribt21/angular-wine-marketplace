@@ -1,0 +1,11 @@
+User-Agent: *
+Disallow: /
+
+User-Agent: AhrefsSiteAudit bot
+Allow: /
+
+User-Agent: Screaming Frog SEO Spider 
+Allow: /
+
+User-Agent: Sitebulb 
+Allow: /

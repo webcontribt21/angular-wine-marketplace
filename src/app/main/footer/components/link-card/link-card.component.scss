@@ -1,0 +1,70 @@
+@import "variables";
+
+.flex-item {
+  a:hover {
+    color: $brown;
+  }
+}
+
+ul.data {
+  display: flex;
+
+  .link {
+    flex: 1;
+
+    @media all and (max-width: $mobile) {
+      padding: 21px 20px 20px;
+    }
+  }
+
+  @media all and (max-width: 1024px) {
+    & {
+      flex-direction: column;
+    }
+  }
+
+}
+
+
+ul {
+  margin-top: 10px;
+
+  @media all and (max-width: $mobile) {
+    margin-top: 0;
+
+    li {
+      padding: 20px 0 0;
+    }
+  }
+}
+
+a,
+p {
+  text-align: left;
+  color: #FFFFFF;
+  letter-spacing: 0;
+  opacity: 0.55;
+  font-size: 13px;
+  text-decoration: none;
+  outline: 0;
+  line-height: 20px;
+}
+
+
+ul {
+  margin-top: 10px;
+
+  @media all and (max-width: $mobile) {
+    margin-top: 0;
+
+    li {
+      padding: 20px 0 0;
+    }
+  }
+}
+
+@media all and (max-width: $mobile) {
+  li {
+    padding: 20px 0 0;
+  }
+}

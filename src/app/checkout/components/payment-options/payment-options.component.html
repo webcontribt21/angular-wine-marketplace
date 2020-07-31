@@ -1,0 +1,28 @@
+<div>
+
+  <div class="payment-option-selector-row">
+    <div class="payment-option-selector" *ngFor="let method of paymentMethods" [class.active]="paymentMethod===method.value">
+      <input type="radio" name="payment-option" [value]="method.value" [id]="'card-' + method.value"
+        [checked]="method.value == paymentMethod"
+        (change)="onPaymentMethodChanged(method.value)">
+      <!--  -->
+      <label [for]="'card-' + method.value">{{ method.label }}</label>
+    </div>
+  </div>
+  <div>
+    <div *ngIf="paymentMethod == PaymentMethodNumbers.CreditCard">
+      <app-checkout-payment-option-card *ngIf="!newCard" (newCard$)="onNewCard($event)"></app-checkout-payment-option-card>
+      <app-checkout-payment-option-card-add *ngIf="newCard" (newCard$)="onNewCard($event)" [showNewCardCancelButton]="showNewCardCancelButton"></app-checkout-payment-option-card-add>
+    </div>
+    <div *ngIf="paymentMethod == PaymentMethodNumbers.InstantEFT">
+      <app-checkout-payment-option-instanteft></app-checkout-payment-option-instanteft>
+    </div>
+    <div *ngIf="paymentMethod == PaymentMethodNumbers.SnapScan">
+      <app-checkout-payment-option-snapscan></app-checkout-payment-option-snapscan>
+    </div>
+    <div *ngIf="paymentMethod == PaymentMethodNumbers.ManualEFT">
+      <app-checkout-payment-option-manualeft [cartSummary]="cartSummary"></app-checkout-payment-option-manualeft>
+    </div>
+  </div>
+
+</div>

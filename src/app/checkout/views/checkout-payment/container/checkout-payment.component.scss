@@ -1,0 +1,147 @@
+@import "variables";
+
+
+
+.wrapper {
+  .checkout-order-summary-desktop-container {
+    padding: 0 10px;
+  }
+
+  .list {
+    flex-grow: 1;
+    padding: 0 10px 20px;
+
+    .card {
+      background: #FFFFFF 0% 0% no-repeat padding-box;
+      margin-bottom: 25px;
+
+
+      .header {
+
+
+        .item {
+          display: flex;
+          justify-content: space-between;
+          padding: 24px 27px 24px 57px;
+
+          @media all and (max-width: $mobile) {
+            flex-direction: column;
+            padding: 19px 20px;
+          }
+
+          .left {
+            text-align: left;
+          }
+
+
+
+          .heading {
+            font-size: 22px;
+            margin-bottom: 3px;
+
+            @media all and (max-width: $mobile) {
+              font-size: 16px;
+              margin-bottom: 10px;
+            }
+          }
+
+          .sub-heading {
+            font-size: 14px;
+            margin-top: 7px;
+
+            @media all and (max-width: $mobile) {
+              font-size: 12px;
+              margin-top: 4px;
+            }
+          }
+
+        }
+      }
+
+      .body {
+
+        padding: 0 27px 24px 57px;
+
+        .spinnerProcessing {
+          min-height: 600px;
+          text-align: center;
+          padding-top: 50px;
+        }
+
+        @media all and (max-width: $mobile) {
+          padding: 0 20px 19px 20px;
+        }
+
+      }
+
+      .body-iframe-parent {
+        height: 600px;
+        min-height: 600px;
+      }
+
+
+      .additional {
+
+        padding: 0 27px 24px 57px;
+
+        @media all and (max-width: $mobile) {
+          padding: 0 20px 19px 20px;
+        }
+
+        .heading {
+          font-size: 13px;
+          margin-bottom: 3px;
+          border-top: 1px solid $brownLight;
+          padding-top: 30px;
+
+          @media all and (max-width: $mobile) {
+            font-size: 12px;
+            margin-bottom: 5px;
+          }
+        }
+
+        .sub-heading {
+          font-size: 11px;
+          margin-top: 5px;
+
+          @media all and (max-width: $mobile) {
+            font-size: 11px;
+            margin-top: 4px;
+          }
+        }
+
+        .message {
+
+          margin-top: 20px;
+
+          .ui-g-12 {
+            padding: 0;
+          }
+
+
+
+          @include placeholder {
+            font-family: $goodRegularFont;
+            color: $grayLight;
+          }
+
+          input {
+            border: solid 1px $brownBackgroundLighter;
+            width: 100%;
+            padding: 15px;
+            height: 43px;
+            font-size: 13px;
+            color: $gray;
+          }
+
+        }
+      }
+    }
+  }
+
+
+
+
+
+
+}

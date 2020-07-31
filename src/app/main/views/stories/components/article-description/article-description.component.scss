@@ -1,0 +1,24 @@
+.article-description-wrapper {
+  font-size: 14px;
+
+  .title {
+    font-size: 50px;
+    font-weight: bold;
+    margin: 0 0 30px 0;
+  }
+
+  .description {
+    margin-bottom: 1em;
+    line-height: 22px;
+  }
+
+  .name {
+    margin-right: 20px;
+    font-weight: bold;
+    margin-bottom: 1px;
+  }
+
+  .date {
+    font-size: 12px;
+  }
+}

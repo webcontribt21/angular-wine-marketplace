@@ -1,0 +1,32 @@
+<div class="favourites-modal" *ngIf="!isAuth; else favouritesModal">
+
+  <div class="favourites-items">
+    <div class="item">
+      <div class="image">
+        <img src="https://via.placeholder.com/25x92/A3AAAD/A3AAAD" />
+      </div>
+      <div class="detail">
+        Favourite Item 1
+      </div>
+    </div>
+    <div class="item">
+      <div class="image">
+        <img src="https://via.placeholder.com/25x92/A3AAAD/A3AAAD" />
+      </div>
+      <div class="detail">
+        Favourite Item 2
+      </div>
+    </div>
+  </div>
+  <div class="favourites-actions">
+    <div class="button-view-favourites">
+      <button>View Favourites</button>
+    </div>
+  </div>
+</div>
+
+<ng-template #favouritesModal>
+  <div class="auth-modal">
+    not logged in
+  </div>
+</ng-template>

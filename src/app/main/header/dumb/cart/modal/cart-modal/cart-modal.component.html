@@ -1,0 +1,69 @@
+<div class="cart-modal">
+  <div class="spinner" *ngIf="isLoading" fxLayout="row" fxLayoutAlign="center">
+    <app-spinner [width]="50" [height]="100"></app-spinner>
+  </div>
+  <ng-container *ngIf="!isLoading">
+    <ng-container *ngIf="cartSummary?.shipments && cartSummary?.shipments.length > 0">
+      <div class="cart-items">
+        <ng-container *ngFor="let shipment of cartSummary?.shipments; let shipmentNo = index">
+          <ng-container *ngFor="let cartItem of shipment.cartItems">
+            <ng-container *ngIf="cartItem.quantity">
+              <div class="item" *ngFor="let item of cartItem.item">
+                <div class="image">
+                  <img [src]="getItemImage(item)" />
+                </div>
+                <div class="detail">
+                  <div class="year-remove">
+                    <div class="year">{{ getItemDetailTypeValue(item?.itemDetails, itemDetailTypes.Vintage) }}</div>
+                    <div class="remove" appDebounceClick (debounceClick)="removeItemFromCartClick(cartItem)">
+                      <i class="pi pi-times"></i>
+                    </div>
+                  </div>
+                  <div [ngClass]=" iosDevice ? 'faux_letterspacing': ''" class="title faux_bold">{{ item?.name }}</div>
+                  <div class="qty">Qty: {{ cartItem.quantity }} bottles</div>
+                  <div class="from-price">
+                    <div class="from"><div [ngClass]=" iosDevice ? 'faux_letterspacing': ''" style="display:inline-block;" class="faux_bold">Shipping from: </div> <span> {{ shipment.shippingFrom }}</span></div>
+                    <div class="price">{{ cartItem.cartItemPriceTotal | formatCurrency }}</div>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+          </ng-container>
+        </ng-container>
+      </div>
+      <div class="delivery">
+        <div class="line-1 d-flex justify-content-between align-items-center">
+          <div class="heading">Delivery</div>
+          <div class="delivery-amount" *ngIf="cartSummary.deliveryTotalAmount > 0">
+            {{ cartSummary?.deliveryTotalAmount | formatCurrency }}</div>
+          <div class="delivery-amount" *ngIf="cartSummary.deliveryTotalAmount <= 0">FREE</div>
+        </div>
+        <div class="line-2 d-flex justify-content-between align-items-center">
+          <div class="sub-heading">Amount outstanding</div>
+          <div class="outstanding-amount">{{ cartSummary?.orderTotalAmount | formatCurrency }}</div>
+        </div>
+      </div>
+      <div class="cart-actions">
+        <div class="button-view-cart">
+          <button [routerLink]="['/checkout']">View Cart</button>
+        </div>
+        <div class="button-checkout">
+          <button [routerLink]="['/checkout']">Checkout</button>
+        </div>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="cartSummary === null || cartSummary?.shipments && cartSummary?.shipments.length === 0">
+      <div class="cart-empty">
+        <div class="title">Your cart is empty.</div>
+        <div class="info">
+          Looks like you haven't added any wines to your cart yet.
+          <br>
+          Let's fix that!
+        </div>
+        <div class="action">
+          <button [routerLink]="['/wines/top-rated']">Shop Popular Wines</button>
+        </div>
+      </div>
+    </ng-container>
+  </ng-container>
+</div>

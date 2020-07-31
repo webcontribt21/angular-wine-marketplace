@@ -1,0 +1,9 @@
+export const ITEM__LOAD_SUCCESS = '[ITEM/API] Load ITEM Success';
+export const ITEM__LOAD = '[ITEM/API] Load ITEM';
+export const ITEM__LOAD_FAILURE = '[ITEM/API] Load ITEM failure';
+export const ITEM__LOAD_OTHER_BRAND_ITEMS_SUCCESS = '[ITEM/API] Load ITEM Other Brand Items Success';
+export const ITEM__LOAD_OTHER_BRAND_ITEMS = '[ITEM/API] Load ITEM Other Brand Items';
+export const ITEM__LOAD_OTHER_BRAND_ITEMS_FAILURE = '[ITEM/API] Load ITEM Other Brand Items failure';
+export const ITEM__LOAD_RELATED_ARTICLES_SUCCESS = '[ITEM/API] Load ITEM Related Articles Success';
+export const ITEM__LOAD_RELATED_ARTICLES = '[ITEM/API] Load ITEM Related Articles';
+export const ITEM__LOAD_RELATED_ARTICLES_FAILURE = '[ITEM/API] Load ITEM Related Articles failure';

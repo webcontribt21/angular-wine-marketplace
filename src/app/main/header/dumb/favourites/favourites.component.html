@@ -1,0 +1,24 @@
+<div class="favourites full-height"
+     (click)="toggleFavouritesMenu()"
+     [ngClass]="{open: isOpenFavouriteModal}"
+     fxLayout="row"
+     fxLayoutAlign="center center"
+>
+  <div class="favorites-wrapper">
+    <div class="counter-area">
+      <div class="wrapper">
+        <div class="counter-wrapper" fxLayout="row" fxLayoutAlign="center center">
+          <span class="counter green-dark-color">{{ favouriteItems.length }}</span>
+        </div>
+
+        <img [src]="isAuth ? images.CIRCLE : images.CIRCLE_UN_AUTH" alt="circle">
+      </div>
+    </div>
+  
+    <div class="heart-icon-wrapper" >
+      <img [src]="images.HEART" alt="favourites">
+    </div>
+  </div>
+</div>
+
+<app-favourites-modal *ngIf="isOpenFavouriteModal" [isAuth]="isAuth"></app-favourites-modal>

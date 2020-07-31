@@ -1,0 +1,64 @@
+@import "variables";
+
+.container {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  margin: 0 auto;
+  max-width: 1920px;
+
+  background: $brownLight 0% 0% no-repeat padding-box;
+
+  &>* {
+    flex: 1 100%;
+  }
+
+  main {
+    min-height: 884px;
+    // padding-top: 141px;
+
+    // margin-left: 63px;
+    // margin-right: 63px;
+    // margin-bottom: 14px;
+    // border: solid 1px #EEE;
+
+    @media all and (max-width: $mobile) {
+      min-height: 500px;
+      // padding-top: 90px;
+      // margin-top: 14px;
+      // margin-left: 14px;
+      // margin-right: 14px;
+    }
+  }
+
+  .header {
+    position: relative; //fixed;
+    top: 0;
+    z-index: 900;
+    width: 100%;
+    max-width: 1920px;
+
+    @media all and (max-width: $mobile) {
+      position: fixed; // relative;
+    }
+  }
+
+  .footer {
+
+    background: #43484B 0% 0% no-repeat padding-box;
+
+    @media all and (max-width: $mobile) {
+      padding-bottom: 50px;
+    }
+
+    ::ng-deep li:last-child {
+      padding-left: 10px !important;
+      padding-right: 10px !important;
+      padding-top: 0px !important;
+    }
+
+  }
+
+
+
+}

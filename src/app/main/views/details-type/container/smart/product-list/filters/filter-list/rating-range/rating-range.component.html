@@ -1,0 +1,9 @@
+<ul class="wrapper-types">
+  <li class="type-value">
+    <span>{{ ratingRangeFilterDescription((rangeValuesInternal && rangeValuesInternal[0]) || min, (rangeValuesInternal && rangeValuesInternal[1]) || max, min, max) }}</span>
+  </li>
+  <li>
+    <p-slider [min]="min" [max]="max" [(ngModel)]="rangeValuesInternal" [step]="step" [styleClass]="'slider'" [range]="true"
+      (onChange)="rangeChanged($event)" (onSlideEnd)="rangeChanged($event)"></p-slider>
+  </li>
+</ul>

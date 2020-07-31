@@ -1,0 +1,5 @@
+<div class="most-popular-wrapper">
+  <div *ngFor="let article of videos" class="video-item">
+    <app-article-card type='videos' [article]="article" [styles]="articleStyles" imgHeightPercent="h-50p"></app-article-card>
+  </div>
+</div>

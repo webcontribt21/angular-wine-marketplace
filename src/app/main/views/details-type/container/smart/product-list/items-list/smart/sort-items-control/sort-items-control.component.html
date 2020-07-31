@@ -1,0 +1,8 @@
+<p-dropdown [styleClass]="'sortable'"
+            [showClear]="true"
+            [options]="rulesList"
+            [(ngModel)]="selectRule.label"
+            (onChange)="selected($event)"
+            placeholder="SORT BY"
+            optionLabel="label"
+></p-dropdown>

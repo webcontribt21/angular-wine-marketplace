@@ -1,0 +1,12 @@
+<div class="authors-wrapper" fxLayout="row wrapper">
+  <div class="author-item"
+       *ngFor="let author of updatedAuthors"
+       fxFlex="25%"
+       fxFlex.lt-xl="33.33%"
+       fxFlex.lt-lg="50%"
+       fxFlex.lt-md="100%"
+  >
+    
+    <app-author-card [author]="author"></app-author-card>
+  </div>
+</div>

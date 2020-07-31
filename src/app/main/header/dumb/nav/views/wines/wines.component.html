@@ -1,0 +1,30 @@
+<ul class="types-wrapper">
+  <app-category
+    class="category"
+    *ngFor="let item of itemDetailTypes; trackBy: trackByFn; index as i"
+    [itemDetailType]="item"
+  >
+    <app-sub-categories
+      [itemDetailTypeValues]="item.itemDetailTypeValues"
+      [parentDescription]="item.description"
+      [parentIdx]="i"
+      (closeNavMenu$)="closeNavMenu()"
+    >
+    </app-sub-categories>
+  </app-category>
+
+  <li
+    class="types"
+    *ngFor="let item of items | sortBy : selectRule.orderBy |  slice : 0 : 2 trackBy: trackByFn;"
+  >
+    <span class="item-type">{{ "new release" | uppercase }}</span>
+
+    <app-item
+      [item]="item"
+      [isOnlyPopup]="true"
+      [isSquareStyle]="true"
+    >
+    </app-item>
+  </li>
+
+</ul>

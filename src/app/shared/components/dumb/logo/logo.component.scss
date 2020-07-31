@@ -1,0 +1,35 @@
+@import "variables";
+
+.logo-wrapper {
+  width: 180px;
+  // width: 100%;
+  height: 100%;
+  display: flex;
+  background: #30363A 0% 0% no-repeat padding-box;
+  justify-content: center;
+  align-items: center;
+  padding: 13px 0;
+
+  @media all and (max-width: $mobile) {
+
+    width: 100%;
+    margin: 0 auto 0 20px;
+    justify-content: flex-start;
+  }
+}
+
+.navbar-item {
+  touch-action: manipulation;
+  text-decoration: none;
+  outline: none;
+  cursor: pointer;
+  transition: color 0.3s;
+  opacity: 1;
+  height: 100%;
+
+  img {
+    vertical-align: middle;
+    border-style: none;
+    width: 122px;
+  }
+}

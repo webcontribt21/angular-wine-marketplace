@@ -1,0 +1,23 @@
+<div class="search-wrapper">
+  <div class="input">
+    <input type="text" [(ngModel)]="searchText" (focus)="searchInputFocus()" (blur)="searchInputLostFocus()" (keyup)="searchInputChange()" placeholder="Search for wines, cultivars, vintages, etc.">
+  </div>
+  <!-- <span class="info">Search for wines, cultivars, vintages, etc.</span>
+  <span class="info small">Search...</span> -->
+  <div class="icon-block">
+    <i class="search-icon">
+      <img src="{{search}}" alt="search">
+    </i>
+  </div>
+
+</div>
+
+
+<app-search-items-modal 
+  *ngIf="isOpenSearchItemsModal"
+  [searchText]="searchText"
+  [loadingPopular]="isPopularResults$ | async"
+  [resultsPopular]="popularResults$ | async"
+  [loadingQuery]="isQueryResults$ | async"
+  [resultsQuery]="queryResults$ | async">
+</app-search-items-modal>

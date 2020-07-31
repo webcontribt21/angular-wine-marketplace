@@ -1,0 +1,42 @@
+.subscribe-form-wrapper {
+  input {
+    padding: 17px 18px;
+    width: 302px;
+    height: 52px;
+    font-size: 12px;
+    margin-right: 9px;
+    border: 1px solid;
+    float: left;
+
+    &::placeholder {
+      text-align: left;
+      font-size: 12px;
+    }
+  }
+
+  .btn {
+    width: 132px;
+    height: 52px;
+    text-align: center;
+    letter-spacing: 0.39px;
+    font-size: 14px;
+    border: none;
+    padding: 11px 33px;
+    width: auto;
+
+
+  }
+
+  @media all and (max-width: 640px) {
+    text-align: center;
+    .btn, input {
+      width: 100%;
+      max-width: 100%;
+      border: 0px;
+      max-width: 358px;
+      margin: 0 auto;
+      margin-bottom: 10px;
+    }
+  }
+
+}

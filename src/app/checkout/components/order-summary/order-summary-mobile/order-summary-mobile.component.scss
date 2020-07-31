@@ -1,0 +1,327 @@
+@import "variables";
+
+
+
+.highlight {
+  color: $brown;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.justify-content-between {
+  justify-content: space-between;
+}
+
+::ng-deep p-sidebar {
+
+  .summary-mobile {
+
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+    min-height: 400px;
+    max-height: 500px;
+    // overflow: hidden;
+    background: #FFFFFF;
+    padding: 0;
+    border-bottom: 0 !important;
+    border-image: none;
+    border-width: 0.5px;
+    border-color: #0000001A;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+
+    &.alert {
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      // overflow: hidden;
+
+      .content {
+        padding-top: 25px !important;
+      }
+    }
+
+    .summary {
+
+      // min-height: 500px;
+      // max-height: 500px;
+      overflow: auto;
+      // padding-bottom: 185px;
+      margin-top: 25px;
+
+      &.alert {
+        margin-top: 44px;
+      }
+    }
+
+    .spend-target {
+      font-size: 12px;
+      background: $blueDark;
+      color: #FFF;
+      text-align: center;
+      padding: 15px;
+      font-family: $goodRegularFont;
+      position: absolute;
+      // width: 100%;
+      left: -1px;
+      right: 0px;
+      margin-top: -45px;
+
+
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+
+      &.success {
+        background: $greenDark;
+      }
+    }
+
+    .content {
+      flex-grow: 1;
+      padding: 0 25px 25px 25px;
+
+      .header {
+        font-size: 22px;
+        margin-bottom: 23px;
+      }
+
+      .body {
+
+        .divider {
+          border-bottom: solid 0.5px $brownLight;
+          margin-bottom: 16px;
+        }
+
+        .sub-total {
+          margin-bottom: 12px;
+
+          >div {
+            align-items: center;
+          }
+
+          .label {
+            font-size: 12px;
+            color: $grayLight;
+          }
+
+          .value {
+            font-size: 14px;
+          }
+        }
+
+        .items {
+          >div {
+            margin-top: 8px;
+            align-items: center;
+
+            &:last-child {
+              padding-bottom: 16px;
+            }
+          }
+
+          .label {
+            font-size: 12px;
+            color: $grayLight;
+          }
+
+          .value {
+            font-size: 14px;
+          }
+        }
+
+        .delivery-total-gift {
+          >div {
+            margin-top: 8px;
+            align-items: center;
+
+            &:last-child {
+              padding-bottom: 16px;
+            }
+          }
+
+          .label {
+            font-size: 12px;
+            color: $grayLight;
+
+            &.discount {
+              color: $discountValue;
+            }
+          }
+
+          .value {
+            font-size: 14px;
+            color: $grayLight;
+
+            &.discount {
+              color: $discountValue;
+            }
+          }
+        }
+
+        .order-total {
+          >div {
+            align-items: center;
+
+            &:last-child {
+              padding-bottom: 16px;
+            }
+          }
+
+          .label {
+            font-size: 12px;
+            color: $grayLight
+          }
+
+          .value {
+            font-size: 14px;
+            color: $grayLight
+          }
+        }
+
+        .outstanding {
+          >div {
+            align-items: center;
+          }
+
+          .label {
+            font-size: 12px;
+          }
+
+          .value {
+            font-size: 18px;
+          }
+        }
+
+      }
+    }
+
+    .voucher {
+      border-top: solid 0.5px $brownLight;
+      padding: 24px 25px;
+
+      .header {
+        font-size: 14px;
+        margin-bottom: 20px;
+
+        .info {
+          font-size: 12px;
+          color: $grayLight;
+          margin-top: 7px;
+        }
+
+      }
+
+      .body {
+        .voucher-button {
+
+          margin-top: 18px;
+
+          input {
+            border: solid 0.5px $brownLight;
+            width: 100%;
+            padding: 15px;
+            height: 48px;
+            font-size: 13px;
+            color: $brown;
+            text-align: center;
+            text-transform: uppercase;
+          }
+
+          button,
+          button:focus,
+          button:hover {
+            display: block;
+            width: 100%;
+            background: $black;
+            border-color: $black;
+            height: 48px;
+            color: #FFF;
+            font-size: 13px;
+            letter-spacing: 0.39px;
+            text-transform: uppercase;
+            cursor: pointer;
+
+            &:disabled {
+              background: $buttonDisabled;
+              border-color: $buttonDisabled;
+              pointer-events: auto !important;
+              cursor: not-allowed;
+            }
+          }
+        }
+      }
+
+    }
+
+  }
+
+}
+
+
+::ng-deep {
+  .ui-sidebar-bottom {
+    background-color: #FFF !important;
+    bottom: 50px !important;
+    min-height: 300px;
+  }
+}
+
+.action-bar-wrapper-mobile {
+
+  display: none;
+
+  @media all and (max-width: $mobile) {
+    display: block;
+
+
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    height: 50px;
+    background: white;
+    z-index: 999999;
+  }
+
+  .action-bar-mobile {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-grow: 1;
+    height: 100%;
+
+    .view-summary {
+      width: 100%;
+      height: 100%;
+      opacity: 1;
+      background-color: #FFF;
+      border-image: none;
+      border-width: 0.5px;
+      border-color: #0000001A;
+      font-size: 13px;
+      font-family: $goodRegularFont;
+    }
+
+    .continue {
+      background-color: $brown;
+      width: 100%;
+      height: 100%;
+      color: #FFFFFF;
+      text-transform: uppercase;
+      border-image: none;
+      border-width: 0.5px;
+      border-color: #0000001A;
+    }
+  }
+
+}

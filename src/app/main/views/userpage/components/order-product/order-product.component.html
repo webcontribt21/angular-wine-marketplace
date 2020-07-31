@@ -1,0 +1,41 @@
+<div class="order-product-wrapper" fxLayout="row" fxLayoutAlign="space-between">
+  <div class="img-wrapper">
+    <img [src]="shipmentItem?.item[0]?.itemImages[0]?.imageUrl_x240" />
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="space-between" fxFlex="1 1 auto">
+    <div class="content-wrapper gray-light-color" fxFlex="1 1 auto" fxLayout="column" fxLayoutAlign="space-between">
+      <div>
+        <div class="type gray-dark-alt-color">{{ shipmentItem?.item[0]?.country?.name }}</div>
+
+        <div class="brand gray-dark-alt-color">
+          {{ shipmentItem?.item[0]?.brand?.name }}, {{ shipmentItem?.item[0]?.name }}, 
+        </div>
+      </div>
+
+      <div>
+        <div class="sold-by" fxLayout="row">
+          <div class="label">Sold by:</div>
+          <div class="value">{{ shipmentItem?.item[0]?.suppliers[0]?.supplier?.name }}</div>
+        </div>
+    
+        <div class="quantity" fxLayout="row">
+          <div class="label">Quantity:</div>
+          <div class="value">{{ shipmentItem?.quantity }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="price-wrapper gray-light-color" fxLayout="column" fxLayoutAlign="end end" fxFlex="100px">
+      <div class="unit-price" fxLayout="row">
+        <div class="label" fxFlex="1 1 50px" fxLayout fxLayoutAlign="end">Unit Price:</div>
+        <div class="value" fxFlex="1 1 50px">R{{ shipmentItem?.price }}</div>
+      </div>
+  
+      <div class="total" fxLayout="row">
+        <div class="label" fxFlex="1 1 50px" fxLayout fxLayoutAlign="end"><strong>Total:</strong></div>
+        <div class="value black-color" fxFlex="1 1 50px"><strong>R{{ shipmentItem.price * shipmentItem.quantity }}</strong></div>
+      </div>
+    </div>
+  </div>
+</div>

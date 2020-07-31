@@ -1,0 +1,31 @@
+@import "variables";
+
+ul.flex-container.images {
+  display: flex;
+
+  li {
+
+    &:first-child {
+      margin-right: 12px;
+    }
+
+    img {
+      //margin-left: -8px;
+      max-width: 190px;
+    }
+  }
+
+  @media all and (max-width: $mobile) {
+    li {
+      &:first-child {
+        margin: 0;
+      }
+    }
+
+    img {
+      margin: 0;
+      width: 100%;
+    }
+  }
+
+}

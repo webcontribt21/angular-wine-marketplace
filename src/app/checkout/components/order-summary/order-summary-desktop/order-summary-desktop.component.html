@@ -1,0 +1,152 @@
+<div class="summary-desktop"  [ngClass]="{'alert': cartSummary?.amountToFreeDisplay}">
+  <div class="spend-target success" *ngIf="cartSummary?.amountToFreeDisplay">Spend another <span>{{ cartSummary.amountToFree | formatCurrency }}</span> on total order for free shipping</div>
+  <div class="content" fxShow.gt-sm="true" fxHide>
+    <div class="header">
+      Your Order
+    </div>
+    <div class="body">
+      <div class="sub-total">
+        <div class="d-flex flex-row justify-content-between">
+          <div class="label">Sub Total</div>
+          <div class="value">{{ cartSummary?.subTotalAmount | formatCurrency }}</div>
+        </div>
+      </div>
+      <div class="items divider">
+        <div class="d-flex flex-row justify-content-between" *ngFor="let shipment of cartSummary?.shipments; let shipmentNo = index">
+          <div class="label">Delivery: Shipment {{ shipmentNo + 1 }}</div>
+          <div class="value" *ngIf="shipment.courierDeliveryCharge === 0">Free</div>
+          <div class="value" *ngIf="shipment.courierDeliveryCharge > 0">{{ shipment.courierDeliveryCharge | formatCurrency }}</div>
+        </div>
+      </div>
+      <div class="delivery-total-gift divider">
+        <div class="d-flex flex-row justify-content-between">
+          <div class="label">Delivery Total</div>
+          <div class="value">{{ cartSummary?.deliveryTotalAmount | formatCurrency }}</div>
+        </div>
+        <!--
+        <div class="d-flex flex-row justify-content-between">
+          <div class="label">Consolidated Gift</div>
+          <div class="value">R100</div>
+        </div>
+        -->
+        <div class="d-flex flex-row justify-content-between" *ngIf="(cartSummary?.voucher?.orderDiscountAmount || 0) != 0">
+          <div class="label discount">Discount</div>
+          <div class="value discount">{{ cartSummary?.voucher?.orderDiscountAmount || 0 | formatCurrency }}</div>
+        </div>
+      </div>
+      <div class="order-total divider">
+        <div class="d-flex flex-row justify-content-between">
+          <div class="label">Order Total</div>
+          <div class="value">{{ cartSummary?.orderTotalAmount | formatCurrency }}</div>
+        </div>
+      </div>
+      <div class="outstanding">
+        <div class="d-flex flex-row justify-content-between">
+          <div class="label">Amount outstanding</div>
+          <div class="value">{{ cartSummary?.outstandingAmount | formatCurrency }}</div>
+        </div>
+      </div>
+      <div class="checkout-button">
+        <button (click)="onContinueClick()" [disabled]="!canContinue || isProcessingOrder">{{ continueLabel || 'Continue' }}</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="voucher" *ngIf="!isProcessingOrder">
+    <div class="header">
+      <span *ngIf="!cartSummary.voucher.code; else appliedLabelEle">
+        Apply Voucher
+      </span>
+      <ng-template #appliedLabelEle>
+        Voucher Applied
+      </ng-template>
+
+      <div class="info">Lorem ipsum dolor sit amet</div>
+    </div>
+    <div class="body">
+      <div>
+        <div class="voucher-button">
+          <input type="text" [(ngModel)]="voucherCode" *ngIf="!cartSummary.voucher.code" />
+          <div class="error" *ngIf="error">{{ error }}</div>
+          <button type="button" [disabled]="isLoading || (!voucherCode && !cartSummary.voucher.code) || isProcessingOrder" (click)="onApplyVoucher()">
+            <span *ngIf="!cartSummary.voucher.code; else removeActionEle">Apply</span>
+            <ng-template #removeActionEle>
+              <span>Remove</span>
+            </ng-template>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="summary-detail-desktop" *ngIf="isComplete">
+  <div class="content">
+    <div class="header">
+      Summary Review
+    </div>
+    <div class="body">
+      <div class="address divider" *ngIf="deliveryAddress">
+        <div class="sub-heading d-flex flex-row justify-content-between align-items-center">
+          <div class="">Delivery Address</div>
+          <div class="action pointer">
+            <a [routerLink]="['/checkout/shipping']"><i class="pi pi-pencil edit"></i></a>
+          </div>
+        </div>
+        <div class="info">
+          <div class="name">{{ deliveryAddress | formatAddressRecipient }}</div>
+          <div class="detail">{{ deliveryAddress | formatAddress }}</div>
+          <div class="type" *ngIf="deliveryAddress.isBusiness"><span>Business</span></div>
+          <div class="type" *ngIf="deliveryAddress.isResidential"><span>Residential</span></div>
+        </div>
+      </div>
+      <div class="items divider">
+        <div class="sub-heading">Items for delivery</div>
+        <div class="item-row" *ngFor="let shipment of cartSummary?.shipments; let shipmentNo = index">
+          <div class="title d-flex flex-row justify-content-between align-items-center">
+            <div class="name">Shipment {{ shipmentNo + 1 }}</div>
+            <div class="action pointer">
+              <a [routerLink]="['/checkout/summary']"><i class="pi pi-pencil edit"></i></a>
+            </div>
+          </div>
+          <div class="shipping-from">
+            Shipping from:
+            <span class="highlight">{{ shipment.shippingFrom }}</span>
+          </div>
+          <div class="delivery-date">
+            Estimated delivery date:
+            <span>{{ shipment.estimatedDeliveryDate | formatDate }}</span>
+          </div>
+          <ng-container *ngFor="let cartItem of shipment.cartItems">
+            <div class="item d-flex flex-row justify-content-start align-items-start" *ngFor="let item of cartItem.item">
+              <div class="image">
+                <img src="https://via.placeholder.com/25x92/A3AAAD/A3AAAD" />
+              </div>
+              <div class="detail">
+                <div class="name">
+                  {{ item?.brand?.name }}, {{ item?.name }}, {{ getItemDetailTypeValue(item?.itemDetails, itemDetailTypes.Vintage) }}
+                </div>
+                <div class="qty">
+                  Qty: {{ cartItem.quantity }} bottles
+                </div>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+      <!--
+      <div class="gifting">
+        <div class="sub-heading d-flex flex-row justify-content-between align-items-center">
+          <div class="title">Gifting</div>
+          <div class="action pointer">
+            <a [routerLink]="['/checkout/summary']"><i class="pi pi-pencil edit"></i></a>
+          </div>
+        </div>
+        <div class="info">
+          This is a gift.
+        </div>
+      </div>
+      -->
+    </div>
+  </div>
+</div>

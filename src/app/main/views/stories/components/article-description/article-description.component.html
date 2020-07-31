@@ -1,0 +1,21 @@
+<div class="article-description-wrapper">
+  <div class="title text-center">
+    <app-title-wrapper [title]="title" [titleShort]="titleShort"></app-title-wrapper>
+  </div>
+
+  <div class="description georgia-regular-font text-center"
+    itemprop="abstract">
+    {{ tagline }}
+  </div>
+
+  <div class="actor-data" fxLayout="row" fxLayoutAlign="center center">
+    <div class="name">
+      By <span itemprop="author">{{ authorName }}</span>
+    </div>
+
+    <div class="date uppercase gray-light-color"
+      itemprop="datePublished">
+      {{ date | date: 'dd MMMM y' }}
+    </div>
+  </div>
+</div>

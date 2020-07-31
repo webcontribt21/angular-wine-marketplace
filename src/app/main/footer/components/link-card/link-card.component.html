@@ -1,0 +1,16 @@
+<!-- <div class="advert-card-wrapper text-center white-color"
+   [ngStyle]="{'background-image': type === 'single' ? null : 'url(' + advert.imageUrl + ')'}"
+   [ngClass]="{'background-gray-dark': !advert.imageUrl, 'single': type === 'single'}"
+   fxLayout="row"
+   fxLayoutAlign="center center"
+>
+  <a [routerLink]="[advert.linkUrl]">
+    <img [src]="advert.imageUrl" alt="advert image" />
+    <div class="text">
+      {{ advert?.text }}
+    </div>
+  </a>
+</div> -->
+<li class="flex-item">
+  <a routerLink="{{link.linkUrl}}">{{link.linkText}}</a>
+</li>

@@ -1,0 +1,83 @@
+<div class="card">
+  <div class="header">
+    <div class="item">
+      <div class="left">
+        <ng-container *ngIf="showNewCardCancelButton">
+            <div class="heading">New Card</div>
+        </ng-container>
+        <div class="sub-heading">
+          <span>Please enter your details below.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="body">
+    <form action="">
+
+      <div class="ui-g capture-name-number">
+        <div class="ui-g-12 ui-lg-6">
+          <div class="heading">Name on card</div>
+          <input id="input" type="text" size="30" name="cardName" [(ngModel)]="cardName"
+            (keyup)="onCardDetailsChanged()"
+            (changed)="onCardDetailsChanged()"
+            pInputText>
+        </div>
+        <div class="ui-g-12 ui-lg-6">
+          <div class="heading">Card number</div>
+          <input id="input" type="text" size="30" name="cardNumber" [(ngModel)]="cardNumber"
+          (keyup)="onCardDetailsChanged()"
+          (changed)="onCardDetailsChanged()"
+          pInputText>
+        </div>
+      </div>
+
+      <div class="ui-g capture-expiry-date">
+        <div class="ui-g-6 ui-lg-3">
+          <div class="heading">Expiry Date</div>
+          <p-dropdown [styleClass]="'ui-dropdown'" [options]="months" [(ngModel)]="expiryDateMonth"
+          (changed)="onCardDetailsChanged()"
+          name="expiryDateMonth" [appendTo]="'body'">
+          </p-dropdown>
+        </div>
+        <div class="ui-g-6 ui-lg-3">
+          <div class="heading">&nbsp;</div>
+          <p-dropdown [styleClass]="'ui-dropdown'" [options]="years" [(ngModel)]="expiryDateYear"
+          (changed)="onCardDetailsChanged()"
+          name="expiryDateYear" [appendTo]="'body'">
+          </p-dropdown>
+        </div>
+        <div class="ui-g-12 ui-lg-6">
+          <div class="heading">CVV</div>
+          <input id="input" type="text" size="30" name="cvv" [(ngModel)]="cvv"
+          (keyup)="onCardDetailsChanged()"
+          (changed)="onCardDetailsChanged()"
+          pInputText>
+        </div>
+      </div>
+
+
+      <div class="default-action-buttons">
+        <div>
+          <div class="selector-default">
+            <input type="checkbox" name="remember" id="default" [(ngModel)]="remember"
+            (changed)="onCardDetailsChanged()"
+            >
+            <label for="default">Save card for future use</label>
+          </div>
+        </div>
+        <div *ngIf="showNewCardCancelButton">
+          <div class="action-buttons-desktop">
+            <button type="button" class="cancel" (click)="onNewCardCancelClick()">Cancel</button>
+          </div>
+          <div class="action-buttons-mobile">
+            <button type="button" class="cancel" (click)="onNewCardCancelClick()">Cancel</button>
+          </div>
+        </div>
+      </div>
+
+
+
+
+    </form>
+  </div>
+</div>

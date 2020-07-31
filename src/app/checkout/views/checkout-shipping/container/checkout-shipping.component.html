@@ -1,0 +1,63 @@
+<app-checkout-order-summary-mobile [cartSummary]="cartSummary$ | async"
+  [deliveryAddress]="checkoutDeliveryAddress$ | async" [canContinue]="checkoutHasAddressesSelected$ | async"
+  (continue)="onContinueClick()"></app-checkout-order-summary-mobile>
+
+<div class="wrapper" fxLayout="row" fxLayout.lt-md="column">
+  <div class="list">
+    <ng-container *ngIf="userAddresses$ | async as userAddresses">
+      <div class="card address-list" *ngIf="userAddresses && userAddresses.length">
+        <div class="header">
+          <div class="item">
+            <div class="left">
+              <div class="heading">Shipping</div>
+              <div class="sub-heading">
+                <span>Please select your address so we can give you available delivery options </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="body">
+          <div class="address-list-desktop">
+            <app-checkout-address-list-desktop [userAddresses]="userAddresses"
+              [checkoutDeliveryAddressId]="checkoutDeliveryAddressId$ | async"
+              [checkoutBillingAddressId]="checkoutBillingAddressId$ | async" (addAddress)="onAddUserAddress()"
+              (editAddress)="onEditUserAddress($event)" (deleteAddress)="onDeleteUserAddress($event)"
+              (selectCheckoutDeliveryAddress)="onSelectCheckoutDeliveryAddress($event)"
+              (selectCheckoutBillingAddress)="onSelectCheckoutBillingAddress($event)">
+            </app-checkout-address-list-desktop>
+          </div>
+          <div class="address-list-mobile">
+            <app-checkout-address-list-mobile [userAddresses]="userAddresses"
+              [checkoutDeliveryAddressId]="checkoutDeliveryAddressId$ | async"
+              [checkoutBillingAddressId]="checkoutBillingAddressId$ | async" (addAddress)="onAddUserAddress()"
+              (editAddress)="onEditUserAddress($event)" (deleteAddress)="onDeleteUserAddress($event)"
+              (selectCheckoutDeliveryAddress)="onSelectCheckoutDeliveryAddress($event)"
+              (selectCheckoutBillingAddress)="onSelectCheckoutBillingAddress($event)">
+            </app-checkout-address-list-mobile>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <div class="card address-add-edit" *ngIf="uiAddressInAddModeSelector$ | async">
+      <app-checkout-address-add-edit [isAddMode]="true" [isFirstAddress]="((userAddresses$ | async)?.length) === 0"
+        [address]="addressAddEdit$| async" [countries]="countries$ | async" (save)="onAddUserAddressSave($event)"
+        (cancel)="onAddUserAddressCancel()" [address]="addressAddEdit$| async"></app-checkout-address-add-edit>
+    </div>
+
+    <div class="card address-add-edit" *ngIf="uiAddressInEditModeSelector$ | async">
+      <app-checkout-address-add-edit [address]="addressAddEdit$| async" [countries]="countries$ | async"
+        (save)="onEditUserAddressSave($event)" (cancel)="onEditUserAddressCancel()"></app-checkout-address-add-edit>
+    </div>
+  </div>
+
+  <div class="checkout-order-summary-desktop-container">
+    <app-checkout-order-summary-desktop [cartSummary]="cartSummary$ | async"
+                                        [deliveryAddress]="checkoutDeliveryAddress$ | async"
+                                        [canContinue]="checkoutHasAddressesSelected$ | async"
+                                        (continue)="onContinueClick()"
+                                        [isLoading]="(isLoadingApplyVoucher$ | async) || (isLoadingCartSummary$ | async)"
+                                        [error]="voucherError$ | async"
+                                        (applyVoucher)="onApplyVoucher($event)"
+    ></app-checkout-order-summary-desktop>
+  </div>
+</div>

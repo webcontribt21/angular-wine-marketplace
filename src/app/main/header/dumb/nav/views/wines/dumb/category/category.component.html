@@ -1,0 +1,14 @@
+<li class="types">
+  <div class="description-wrapper" (click)="toggle()">
+    <span class="description">{{ itemDetailType.description }}</span>
+
+    <div class="icon-block">
+      <img src="{{ isHidden ?  downArrow : upArrow }}" alt="arrow">
+    </div>
+  </div>
+
+  <div [hidden]="isHidden">
+    <ng-content></ng-content>
+  </div>
+
+</li>

@@ -1,0 +1,28 @@
+.story-menu-carousel-wrapper {
+  padding: 20px 30px 20px;
+  overflow-x: auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  .slider-wrapper {
+    padding-right: 56px;
+  }
+
+  a {
+    color: inherit;
+    white-space: nowrap;
+
+    @media all and (max-width: 640px) {
+      // letter-spacing: -1px;
+    }
+
+    &.active {
+      // font-weight: bold;
+      // font-family: goodMedium;
+      font-family: goodBold;
+
+    }
+  }
+}

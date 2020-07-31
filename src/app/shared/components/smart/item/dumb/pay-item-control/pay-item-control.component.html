@@ -1,0 +1,28 @@
+<div class="buy-control" [ngClass]="{
+    'showPriceWrapper': isShowPriceWrapper,
+    'squareStyle': !isSquareStyle,
+    'unavailable': !item.supplier.stockQty
+  }">
+  <ng-container *ngTemplateOutlet="item.supplier.stockQty ? availableControl : unavailableControl">
+  </ng-container>
+
+</div>
+
+<ng-template #unavailableControl>
+  <button class="btn show-available"
+    (click)="showAvailableVintages()">{{'show available vintages' | uppercase}}</button>
+</ng-template>
+
+<ng-template #availableControl>
+  <p-dropdown optionLabel="name" [options]="counts" [(ngModel)]="selectedCount"
+    [styleClass]="'counter ' + (isSquareStyle ? '' : 'squareStyle')" [hidden]="isAdded">
+  </p-dropdown>
+
+  <button class="btn add" (click)="addToCart(item)" [hidden]="isAdded">
+    {{'add to cart' | uppercase}}
+  </button>
+
+  <button class="checkout" [hidden]="!isAdded" [routerLink]="['/checkout/summary']">
+    {{(isShowPriceWrapper ? 'checkout now' : 'checkout') | uppercase}}
+  </button>
+</ng-template>

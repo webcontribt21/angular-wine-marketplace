@@ -1,0 +1,18 @@
+.help-menu-container {
+  border-bottom: 1px solid;
+
+  &.mobile-second-nav {
+    padding: 25px 22px 25px;
+
+    .item {
+      font-size: 14px;
+      padding: 0 5px 10px;
+
+      a {
+        padding: 17px 0 17px;
+        border: 1px solid;
+        text-align: center;
+      }
+    }
+  }
+}

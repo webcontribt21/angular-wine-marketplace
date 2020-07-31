@@ -1,0 +1,67 @@
+<nav class="nav good-news-font">
+  <ul class="nav navbar-nav" [ngClass]="{
+        active: links.indexOf(selectedCategory) > -1,
+        extend: links.indexOf(clickedCategory) > -1 && clickedCategory === firstNavUrl.WINES && selectedCategory === firstNavUrl.WINES
+      }">
+    <li class="desktop_only" *ngFor="let link of links" (click)="toggle(link)"
+      [ngClass]="{active: isActive(link), hidden: !isActive(link), extend: isExtend(link)}" fxLayout="row">
+      <img class="back-arrow" src="assets/img/icons/header/mobile/backward_arrow.svg" alt="back" />
+      <span class="nav-item">{{link | titlecase}}</span>
+    </li>
+    <!-- MOBILE ONLY MENU - TO BE MOVED TO SCB -->
+    <li class="mobile_only" (click)="toggleMenu()" [routerLink]="['/wines/all-wines']" fxLayout="row">
+      <img class="back-arrow" src="assets/img/icons/header/mobile/backward_arrow.svg" alt="back" />
+      <span class="nav-item">All Wines</span>
+    </li>
+    <li class="mobile_only" (click)="toggleMenu()" [routerLink]="['/wines/red-wine']" fxLayout="row">
+      <img class="back-arrow" src="assets/img/icons/header/mobile/backward_arrow.svg" alt="back" />
+      <span class="nav-item">Red</span>
+    </li>
+    <li class="mobile_only" (click)="toggleMenu()" [routerLink]="['/wines/white-wine']" fxLayout="row">
+      <img class="back-arrow" src="assets/img/icons/header/mobile/backward_arrow.svg" alt="back" />
+      <span class="nav-item">White</span>
+    </li>
+    <li class="mobile_only" (click)="toggleMenu()" [routerLink]="['/wines/sparkling-wine']" fxLayout="row">
+      <img class="back-arrow" src="assets/img/icons/header/mobile/backward_arrow.svg" alt="back" />
+      <span class="nav-item">Sparkling</span>
+    </li>
+    <li class="mobile_only" (click)="toggleMenu()" [routerLink]="['/wines/top-rated']" fxLayout="row">
+      <img class="back-arrow" src="assets/img/icons/header/mobile/backward_arrow.svg" alt="back" />
+      <span class="nav-item">Top Rated</span>
+    </li>
+    <li class="mobile_only" (click)="toggleMenu()" [routerLink]="['/wines/large-formats']" fxLayout="row">
+      <img class="back-arrow" src="assets/img/icons/header/mobile/backward_arrow.svg" alt="back" />
+      <span class="nav-item">Large Formats</span>
+    </li>
+    <li class="mobile_only" (click)="toggleMenu()" [routerLink]="['/wines/recently-released']" fxLayout="row">
+      <img class="back-arrow" src="assets/img/icons/header/mobile/backward_arrow.svg" alt="back" />
+      <span class="nav-item">Recently Released</span>
+    </li>
+    <li class="mobile_only" (click)="toggleMenu()" [routerLink]="['/stories']" fxLayout="row">
+      <img class="back-arrow" src="assets/img/icons/header/mobile/backward_arrow.svg" alt="back" />
+      <span class="nav-item">Stories</span>
+    </li>
+    <!-- MOBILE ONLY MENU - TO BE MOVED TO SCB -->
+  </ul>
+
+  <div class="help-block" (click)="help()" *ngIf="selectedCategory !== firstHelpNavUrl.HELP">
+    <i class="help"><img [src]="questionIcon" alt="question"></i>
+    <span class="good-regular-font">Help</span>
+  </div>
+</nav>
+
+<ng-container [ngSwitch]="clickedCategory" *ngIf="isSelectNavSection">
+  <app-wines *ngSwitchCase="firstNavUrl.WINES" [itemDetailTypes]="itemDetailTypes" [items]="items"
+    [selectRule]="selectRule" (closeNavMenu$)="closeNavMenu()"></app-wines>
+
+  <app-story-second-nav *ngSwitchCase="firstNavUrl.STORIES" [categories]="allCategories$ | async"
+    (closeNavMenu$)="closeNavMenu()"></app-story-second-nav>
+
+  <app-spirits *ngSwitchCase="firstNavUrl.SPIRITS"></app-spirits>
+
+  <app-experiences *ngSwitchCase="firstNavUrl.EXPERIENCES"></app-experiences>
+
+  <app-gifts-accessories *ngSwitchCase="firstNavUrl.GIFTS_ACCESSORIES"></app-gifts-accessories>
+
+  <app-subscriptions *ngSwitchCase="firstNavUrl.SUBSCRIPTIONS"></app-subscriptions>
+</ng-container>

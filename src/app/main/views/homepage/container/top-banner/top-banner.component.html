@@ -1,0 +1,40 @@
+<div class="top-banner-wrapper white-color">
+  <app-image-wrapper [desktopImageUrl]="detail.imageUrl"
+                     [mobileImageUrl]="mobileDetail.imageUrl"
+                     bgColor="background-black"
+                     heightPercent="h-100p"
+  >
+    <div class="description-wrapper">
+      <div class="full-height information" fxLayout="column" fxLayoutAlign="center" fxShow.gt-sm="true" fxHide>
+        <h2 class="title helvetica-boldFont-font">{{ detail.title }}</h2>
+
+        <div class="tagline">
+          {{ detail.text }}
+        </div>
+
+        <div class="action-link" *ngIf="detail.linkUrl && detail.linkUrl.indexOf('http') !== -1">
+          <a class="uppercase white-color" [href]="detail.linkUrl">{{ detail.linkText }}</a>
+        </div>
+        <div class="action-link" *ngIf="detail.linkUrl && detail.linkUrl.indexOf('http') === -1">
+          <a class="uppercase white-color" [routerLink]="detail.linkUrl">{{ detail.linkText }}</a>
+        </div>
+      </div>
+
+      <div class="full-height information" fxLayout="column" fxLayoutAlign="center" fxShow fxHide.gt-sm="true">
+        <h2 class="title helvetica-boldFont-font">{{ mobileDetail.title }}</h2>
+
+        <div class="tagline">
+          {{ mobileDetail.text }}
+        </div>
+
+        <div class="action-link" *ngIf="mobileDetail.linkUrl && mobileDetail.linkUrl.indexOf('http') !== -1">
+          <a class="uppercase white-color" [href]="mobileDetail.linkUrl">{{ mobileDetail.linkText }}</a>
+        </div>
+        <div class="action-link" *ngIf="mobileDetail.linkUrl && mobileDetail.linkUrl.indexOf('http') === -1">
+          <a class="uppercase white-color" [routerLink]="mobileDetail.linkUrl">{{ mobileDetail.linkText }}</a>
+        </div>
+
+      </div>
+    </div>
+  </app-image-wrapper>
+</div>

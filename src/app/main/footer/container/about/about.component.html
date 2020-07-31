@@ -1,0 +1,15 @@
+<ul class="about flex-container">
+  <li>
+    <h5 class="title">About</h5>
+    <!-- {{footerAboutCopy | json}}
+    {{copy | json}} 123 -->
+    <ul class="about flex-container description">
+      <li class="flex-item">
+        <p [innerHTML]="footerAboutCopy.text | beautifyApiText" *ngIf="footerAboutCopy.text"></p>
+      </li>
+      <li class="flex-item">
+        <!-- <p>{{info.bottom}}</p> -->
+      </li>
+    </ul>
+  </li>
+</ul>

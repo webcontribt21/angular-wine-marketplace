@@ -1,0 +1,27 @@
+
+<ng-content></ng-content>
+<ng-container *ngIf="getFilterRequiresSearch()">
+  <div class="filter-search-wrapper">
+    <input type="text" #filterInputElement placeholder="Search for {{title | lowercase}}"
+      [(ngModel)]="searchString"
+      (input)="onFilterSearchChange()"
+      (focus)="onFilterSearchFocus()" />
+      <div class="icon-block">
+        <i class="search-icon">
+          <img src="/assets/img/icons/header/search.svg" alt="search">
+        </i>
+      </div>
+  </div>
+</ng-container>
+<ul class="wrapper-types" [ngClass]="(bFilterRequiresSearch && getDataWithCountLength() > resultCountThreshold) ? 'fixed-height' : ''">
+  <ng-container *ngFor="let filter of data; let i = index; trackBy: trackFilterDataByFn">
+  <li
+    *ngIf="filter.count !== 0"
+    class="type-value"
+    (click)="toggleFilter(filter)"
+  >
+    <span>{{filter.description}}</span>
+    <span class="count">{{filter.count}}</span>
+  </li>
+  </ng-container>
+</ul>

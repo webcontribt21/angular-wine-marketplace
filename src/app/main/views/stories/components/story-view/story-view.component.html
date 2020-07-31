@@ -1,0 +1,18 @@
+<div class="story-view-wrapper"
+     fxLayout="row {{ type === 'single' ? 'row wrap' : '' }}"
+     appHorizontalMove
+     [visible]="type !== 'single'"
+     [throttleTime]="throttleTime"
+     [ngClass]="{'single': type === 'single', 'no-link': noLink}"
+     (move)="onMove($event)"
+>
+  <div class="story-item"
+       fxFlex="25%"
+       fxFlex.lt-xl="33.33%"
+       fxFlex.lt-lg="50%"
+       fxFlex.lt-md="100%"
+       *ngFor="let article of articles"
+  >
+    <app-article-card [article]="article" type="category"></app-article-card>
+  </div>
+</div>

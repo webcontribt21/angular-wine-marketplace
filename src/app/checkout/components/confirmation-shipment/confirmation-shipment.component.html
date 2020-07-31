@@ -1,0 +1,52 @@
+<div class="shipment">
+  <div class="header">
+    <div class="title">Shipment {{ shipmentNumber }}</div>
+    <div class="track">
+      <a [routerLink]="['/user/order-history']">Track order</a>
+    </div>
+  </div>
+  <div class="info d-flex justify-content-between">
+    <div>
+      <div>Shipping from: <span>{{ shipment.shippingFrom }}</span></div>
+      <div>Esimated delivery: <span>{{ shipment.estimatedDeliveryDate | formatDate }}</span></div>
+    </div>
+    <div class="shipment-total-desktop">
+      <div>Shipment Total: <span>{{ shipment.value | formatCurrency }}</span></div>
+      <div>Delivery: <span>{{ shipment.courierDeliveryCharge | formatCurrency }}</span></div>
+    </div>
+  </div>
+  <div class="items">
+    <div class="item" *ngFor="let shipmentItem of shipment.shipmentItems">
+      <div class="image">
+        <img [src]="getItemImage(shipmentItem.item[0])" />
+      </div>
+      <div class="detail d-flex flex-column">
+        <div class="title">
+          {{ shipmentItem.item[0].brand.name }}, {{ shipmentItem.item[0].name }}, Vintage
+          <div class="type">
+            <span>{{ getItemDetailValueFromType(shipmentItem.item[0], itemDetailTypes.Type) }}</span> from
+            <span>{{ getItemDetailValueFromType(shipmentItem.item[0], itemDetailTypes.Appellation) }},
+              {{ getItemDetailValueFromType(shipmentItem.item[0], itemDetailTypes.Origin) }},
+              {{ shipmentItem.item[0].country.name }}</span>
+          </div>
+        </div>
+        <div class="d-flex justify-content-between align-items-end">
+          <div class="sold-by-qty">
+            <div class="sold-by">Sold by: {{ getSupplierName(shipmentItem.item[0]) }}</div>
+            <div class="qty">Qty:
+              {{ shipmentItem.quantity > 1 ? (shipmentItem.quantity + ' bottles') : shipmentItem.quantity + ' bottle'  }}
+            </div>
+          </div>
+          <div class="unit-price d-flex flex-column align-items-end">
+            <div>Unit Price: {{ shipmentItem.price | formatCurrency }}</div>
+            <div>Total: {{ (shipmentItem.quantity * shipmentItem.price) | formatCurrency }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="shipment-total-mobile">
+    <div>Shipment Total: <span>{{ shipment.value | formatCurrency }}</span></div>
+    <div>Delivery: <span>{{ shipment.courierDeliveryCharge | formatCurrency }}</span></div>
+  </div>
+</div> <!-- // shipment -->

@@ -1,0 +1,29 @@
+li {
+  margin-right: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border: 1px solid #c3c3c3;
+
+  div {
+    padding: 5px 10px;
+
+    &.shortName {
+      color: #b98754;
+      border-right: 1px solid #c3c3c3;
+    }
+
+    &.count {
+      color: #3e3e3e;
+      background-color: #e5e3de;
+    }
+
+    @media all and (max-width: 550px) {
+      font-size: 10px;
+      width: 30px;
+      text-align: center;
+      padding: 3px 0;
+    }
+
+  }
+}

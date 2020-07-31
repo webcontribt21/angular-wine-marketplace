@@ -1,0 +1,32 @@
+$black: #30363A;
+$orange: #B98754;
+
+ul {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0 25px 0 28px;
+  list-style-type: none;
+  flex-wrap: wrap;
+  margin: 0;
+
+  li {
+    padding-bottom: 15px;
+    padding-right: 20px;
+
+    a {
+      text-decoration: none;
+      outline: 0;
+      font-weight: normal;
+      font-size: 15px;
+      color: $black;
+      vertical-align: top;
+      opacity: 0.9;
+
+      &.active {
+        color: $orange;
+        font-weight: bold;
+      }
+    }
+  }
+}

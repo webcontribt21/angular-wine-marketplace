@@ -1,0 +1,76 @@
+<footer class="footer">
+  <ul class="flex-container top">
+    <li class="wrapper-left">
+      <ul class="flex-container data">
+        <li style="flex:1;" class="flex-item link">
+          <div class="wrapper_title" (click)="toggle0()">
+            <h5 class="title">
+              help
+            </h5>
+            <div class="icon-block">
+              <i class="arrow-icon">
+                <img src="{{ isHidden0 ?  icons.WHITE_DOWN_ARROW : icons.WHITE_UP_ARROW }}" alt="arrow">
+              </i>
+            </div>
+          </div>
+          <div name="zero" [hidden]="isHidden0">
+            <app-link-list [links]="footerCol1LinksContents$ | async"></app-link-list>
+          </div>
+        </li>
+        <li style="flex:1;" class="flex-item link">
+          <div class="wrapper_title" (click)="toggle1()">
+            <h5 class="title">
+              buy wines
+            </h5>
+            <div class="icon-block">
+              <i class="arrow-icon">
+                <img src="{{ isHidden1 ?  icons.WHITE_DOWN_ARROW : icons.WHITE_UP_ARROW }}" alt="arrow">
+              </i>
+            </div>
+          </div>
+          <div [hidden]="isHidden1">
+            <app-link-list [links]="footerCol2LinksContents$ | async"></app-link-list>
+          </div>
+        </li>
+        <li style="flex:1;" class="flex-item link">
+          <div class="wrapper_title" (click)="toggle2()">
+            <h5 class="title">
+              wine stories
+            </h5>
+            <div class="icon-block">
+              <i class="arrow-icon">
+                <img src="{{ isHidden2 ?  icons.WHITE_DOWN_ARROW : icons.WHITE_UP_ARROW }}" alt="arrow">
+              </i>
+            </div>
+          </div>
+          <div [hidden]="isHidden2">
+            <app-link-list [links]="footerCol3LinksContents$ | async"></app-link-list>
+          </div>
+        </li>
+      </ul>
+      <app-medal class="medals"></app-medal>
+      <!-- </li> -->
+      <!-- <li class="wrapper-right">
+    <app-about></app-about> -->
+      <!-- <app-social></app-social> -->
+    </li>
+    <!-- </ul> -->
+    <!-- <ul class="flex-container top">
+      <li class="wrapper-left">
+        <app-link-list></app-link-list>
+        <app-medal class="medals"></app-medal>
+      </li> -->
+
+    <li class="wrapper-right">
+      <div>
+        <app-about [footerAboutCopy]="footerAboutCopy$ | async"></app-about>
+      </div>
+      <!-- <app-about></app-about> -->
+      <app-social></app-social>
+    </li>
+  </ul>
+  <app-bottom>
+    <app-medal class="mobile-medals"></app-medal>
+  </app-bottom>
+
+</footer>

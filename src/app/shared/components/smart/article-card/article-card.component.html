@@ -1,0 +1,86 @@
+<a class="article-card-wrapper"
+   fxLayout="column"
+   (click)="onGoToArticle()"
+>
+  <app-image-wrapper *ngIf="!noImage && (type == 'feature')"
+                     [desktopImageUrl]="article.desktopImageUrl"
+                     [mobileImageUrl]="article.mobileImageUrl"
+                     [heightPercent]="imgHeightPercent"
+  ></app-image-wrapper>
+
+  <app-image-wrapper *ngIf="!noImage && (type == 'featured_stories')"
+                      [desktopImageUrl]="article.desktopImageUrl"
+                      [mobileImageUrl]="article.mobileImageUrl"
+                      bgColor="background-gray-light featured_stories"
+                      [heightPercent]="imgHeightPercent"
+></app-image-wrapper>
+
+<app-image-wrapper *ngIf="!noImage && (type !== 'feature') && (type !== 'featured_stories')"
+                      [desktopImageUrl]="article.desktopImageUrl"
+                      [mobileImageUrl]="article.mobileImageUrl"
+                      bgColor="background-gray-light featured_stories"
+                      [heightPercent]="imgHeightPercent"
+></app-image-wrapper>
+
+  <div class="content-wrapper gray-dark-color"
+       fxFlex="1 1 auto"
+       fxLayout="column"
+       fxLayoutAlign="space-between"
+       [style.padding]="styles.padding"
+  >
+    <div *ngIf="type !== 'category'"
+         class="category uppercase"
+         fxLayout="row wrap"
+         fxLayoutAlign="start"
+         [style.fontSize]="styles.categoryFont"
+    >
+      <div class="label brown-color">{{ article?.articleCategory?.description }}</div>
+      <div class="brown-lighter-color">
+        {{ article?.brand?.name }}
+      </div>
+    </div>
+
+    <div fxFlex="1 1 auto" fxLayout="column">
+      <div [class.featured]="type == 'mobile_feature'" class="title" [style.fontSize]="styles.titleFont">
+        <app-title-wrapper [title]="article.title" [titleShort]="article.titleShort"></app-title-wrapper>
+      </div>
+      <!-- {{ article | json }} -->
+      <!-- {{(article?.body.length>70)? (article?.body | slice:0:70)+'...':(article?.body)}} -->
+      <div *ngIf="type == 'feature'" class="tagline feature" fxFlex="1 1 auto" fxLayout fxLayoutAlign="left center">
+        <div [innerHTML]="article?.body | ellipsis: 1115 : true"></div>
+
+      </div>
+      <div *ngIf="type == 'mobile_feature'" class="tagline feature" fxFlex="1 1 auto" fxLayout fxLayoutAlign="left center">
+        <!-- <div [innerHTML]="article?.body | slice:0:1000"></div> -->
+        <div [innerHTML]="article?.body | ellipsis: 500 : true"></div>
+      </div>
+      <div *ngIf="(type !== 'feature') && (type !== 'home_right') && (type !== 'mobile_feature')" class="tagline" fxFlex="1 1 auto" fxLayout fxLayoutAlign="left center">{{ article?.tagline | ellipsis: 105 : true  }}
+      </div>
+      <div *ngIf="type == 'home_right'" class="tagline" fxFlex="1 1 auto" fxLayout fxLayoutAlign="left center">
+        {{ article?.tagline | ellipsis: 110 : true  }}
+      </div>
+    </div>
+
+    <div class="authorizor" fxLayout="row wrap" fxLayoutAlign="space-between">
+      <div>
+        <div *ngIf="type !== 'video' && article.author && article.author.name"
+             class="name"
+        >
+          By {{ article.author.name }}
+        </div>
+
+        <div class="date uppercase gray-light-color">
+          {{ article.dateCreated | date: 'dd MMMM y' }}
+        </div>
+      </div>
+
+      <div *ngIf="type !== 'video'"
+           class="time uppercase"
+           fxLayout="row"
+           fxLayoutAlign="start end"
+      >
+        {{ article.timeToRead ? article.timeToRead : 0 }} Min Read
+      </div>
+    </div>
+  </div>
+</a>

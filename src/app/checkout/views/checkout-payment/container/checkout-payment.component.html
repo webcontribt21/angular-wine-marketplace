@@ -1,0 +1,114 @@
+<app-checkout-order-summary-mobile [cartSummary]="cartSummary$ | async"
+  [deliveryAddress]="checkoutDeliveryAddress$ | async" (continue)="onCheckoutClick()"
+  [isProcessingOrder]="(orderIsProcessingSelector$ | async) || otpCheckoutMode?.otpRequired"
+  [continueLabel]="continueCaption()" [canContinue]="true"></app-checkout-order-summary-mobile>
+
+
+  <div class="wrapper" fxLayout="row" fxLayout.lt-md="column">
+
+    <ng-container *ngIf="(orderIsProcessingSelector$ | async)" >
+        <div class="list">
+            <div class="card">
+              <div class="header">
+                <div class="item">
+                  <div class="left">
+                    <div class="heading">Payment</div>
+                    <div class="sub-heading">
+                      <span>Processing... please wait...</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="body">
+                <div class="spinnerProcessing">
+                  <app-spinner [width]="100" [height]="100"></app-spinner>
+                </div>
+              </div>
+            </div>
+          </div>
+    </ng-container>
+
+    <ng-container *ngIf="!otpCheckoutMode?.otpRequired && !(orderIsProcessingSelector$ | async)" >
+
+      <div class="list">
+        <div class="card">
+          <div class="header">
+            <div class="item">
+              <div class="left">
+                <div class="heading">Payment</div>
+                <div class="sub-heading">
+                  <span>Please select your payment option. </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="body">
+            <app-checkout-payment-options
+              [paymentMethod]="paymentMethodNumber$ | async"
+              [newCard]="newCard$ | async"
+              [cartSummary]="cartSummary$ | async"
+              (paymentMethod$)="onPaymentMethodChanged($event)"
+              (newCard$)="onNewCard($event)"></app-checkout-payment-options>
+          </div>
+          <div class="additional">
+            <div class="heading">Additional Information</div>
+            <div class="sub-heading">Please let us know if there is anything we should know about your order</div>
+            <div class="message">
+              <div class="ui-g capture-search-address">
+                <div class="ui-g-12">
+                  <input id="input" type="text" size="30" pInputText placeholder="Type something...">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </ng-container>
+
+
+    <ng-container *ngIf="otpCheckoutMode?.otpRequired && !(orderIsProcessingSelector$ | async)" >
+
+      <div class="list">
+        <div class="card">
+          <div class="header">
+            <div class="item">
+              <div class="left">
+                <div class="heading">Payment</div>
+                <div class="sub-heading">
+                  <span>You will be redirected to your bank or card provider to complete your payment. Please follow the instructions provided by them. </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="body body-iframe-parent">
+            <form name="otpFrom" id="otpForm" target="otpFrame" [action]="otpCheckoutMode.url | urlsafe" method="POST" style="display: none;">
+              <input type="text" name="PaReq" [value]="otpCheckoutMode.PaReq" />
+              <input type="text" name="TermUrl" [value]="otpCheckoutMode.TermUrl" />
+              <input type="text" name="MD" [value]="otpCheckoutMode.MD" />
+              <input type="text" name="connector" [value]="otpCheckoutMode.connector" />
+            </form>
+            <iframe id="otpFrame" name="otpFrame" width="100%" height="100%" (load)="onOtpIframeLoadEvent()"></iframe> <!-- [srcdoc]="otpHtml | urlsafe" -->
+          </div>
+        </div>
+      </div>
+
+    </ng-container>
+
+    <div class="checkout-order-summary-desktop-container">
+      <app-checkout-order-summary-desktop [cartSummary]="cartSummary$ | async"
+                                          [deliveryAddress]="checkoutDeliveryAddress$ | async"
+                                          (continue)="onCheckoutClick()"
+                                          [continueLabel]="'Pay with ' + (paymentMethodDescr$ | async)"
+                                          [canContinue]="(paymentMethodNumber$ | async) > 0"
+                                          [isLoading]="(isLoadingApplyVoucher$ | async) || (isLoadingCartSummary$ | async)"
+                                          [isProcessingOrder]="(orderIsProcessingSelector$ | async) || otpCheckoutMode?.otpRequired"
+                                          [error]="voucherError$ | async"
+                                          (applyVoucher)="onApplyVoucher($event)"
+      ></app-checkout-order-summary-desktop>
+    </div>
+
+  </div>
+
+
+

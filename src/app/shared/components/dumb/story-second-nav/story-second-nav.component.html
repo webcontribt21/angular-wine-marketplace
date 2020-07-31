@@ -1,0 +1,11 @@
+<ul class="nav navbar-nav stories-menu-container brown-light-border-color">
+  <li class="nav-item" *ngFor="let menu of storiesMenus">
+    <a
+      [routerLink]="['/stories/' + menu.link]"
+      routerLinkActive="active"
+      (click)="onClose()"
+    >
+      {{ menu.name }}
+    </a>
+  </li>
+</ul>

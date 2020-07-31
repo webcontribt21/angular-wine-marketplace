@@ -1,0 +1,142 @@
+@import "variables";
+
+.footer {
+  background: #43484B 0% 0% no-repeat padding-box;
+  display: flex;
+  flex-direction: column;
+
+  ul.flex-container {
+    display: flex;
+
+    &.top {
+      padding: 33px 60px 0;
+      margin-bottom: 0;
+
+      .wrapper-left {
+        // display: flex;
+        // flex-direction: column;
+        // justify-content: space-between;
+        flex: 1;
+        padding-bottom: 19px;
+      }
+
+      .wrapper-right {
+        flex: 0.65;
+      }
+
+      @media all and (max-width: 950px) {
+        & {
+          padding: 33px 20px 0;
+        }
+      }
+
+      @media all and (max-width: 860px) {
+        & {
+          flex-direction: column;
+        }
+      }
+
+      @media all and (max-width: $mobile) {
+        padding: 0;
+        margin: 0;
+
+        .wrapper-left {
+          padding-bottom: 0;
+
+          .medals {
+            display: none;
+          }
+        }
+
+        .wrapper-right {
+          background: #30363A;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          padding: 20px 27px 0;
+        }
+      }
+    }
+
+  }
+
+  h5.title {
+    font-family: goodBold;
+    text-align: left;
+    // font-weight: bold;
+    font-size: 14px;
+    letter-spacing: 0;
+    color: #FFFFFF;
+    opacity: 1;
+    text-transform: uppercase;
+    margin: 0;
+    // letter-spacing: -1px;
+  }
+
+  ul.data {
+    display: flex;
+    margin-bottom: 15px;
+
+    .link {
+      flex: 1;
+
+      @media all and (max-width: $mobile) {
+        padding: 21px 20px 20px;
+      }
+    }
+
+    @media all and (max-width: 1024px) {
+      & {
+        flex-direction: column;
+      }
+    }
+
+  }
+
+  @media (max-width: 550px) {
+
+    div.wrapper_title,
+    span.title {
+      font-weight: normal;
+      text-transform: capitalize;
+    }
+  }
+
+  div.wrapper_title {
+    display: flex;
+    cursor: pointer;
+
+    span.title {
+      text-align: left;
+      font-weight: bold;
+      font-size: 14px;
+      letter-spacing: 0;
+      color: #FFFFFF;
+      opacity: 1;
+      text-transform: uppercase;
+
+      @media all and (max-width: $mobile) {
+        font-weight: normal;
+        text-transform: capitalize;
+      }
+    }
+
+    .icon-block {
+      display: none;
+
+      @media all and (max-width: $mobile) {
+        display: block;
+        margin-left: auto;
+      }
+    }
+  }
+
+  div[hidden] {
+    display: block !important;
+
+    @media all and (max-width: $mobile) {
+      display: none !important;
+    }
+  }
+
+}

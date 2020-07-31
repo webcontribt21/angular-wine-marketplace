@@ -1,0 +1,38 @@
+<div class="filters-wrapper">
+  <div class="filters">
+    <ng-content></ng-content>
+
+    <div class="price-range">
+      <app-price-range [rangeValues]="priceRangeValues" (rangeValues$)="priceRangeValuesChange($event)"></app-price-range>
+    </div>
+  
+    <app-filter-list
+      *ngFor="let filter of filters; trackBy: trackFilterByFn"
+      [title]="filter.title"
+      class="{{filter.title | trim | lowercase}} filter-list"
+      [icons]="icons"
+      [data]="filter.data"
+      [isPanelOpen]="filter.isPanelOpen"
+      (toggle$)="toggleFilterPanel(filter)"
+    >
+      <app-filter
+        class="desktop-filter"
+        *ngIf="filter.data.length"
+        [title]="filter.title"
+        [data]="filter.data"
+        (toggleFilter$)="toggleFilter($event)"
+      >
+        <div class="rating-range" *ngIf="filter.typeNo === 2">
+          <app-rating-range [rangeValues]="ratingRangeValues" (rangeValues$)="ratingRangeValuesChange($event)"></app-rating-range>
+        </div>
+      </app-filter>
+
+      <app-mobile-filters-select
+        class="mobile-filter"
+        [data]="filter.data"
+        (toggleFilter$)="toggleFilter($event)"
+      >
+      </app-mobile-filters-select>
+    </app-filter-list>
+  </div>
+</div>

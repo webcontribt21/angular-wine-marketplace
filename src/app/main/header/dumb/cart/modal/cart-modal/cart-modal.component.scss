@@ -1,0 +1,453 @@
+@import "variables";
+
+$button-text-color: #fff;
+$font-size: 14px;
+$link-color: #30363A;
+$button-background: #43484B;
+$border-color: #E5E3DE;
+
+.cart-modal {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  padding: 0; // 21px;
+  background-color: white;
+  border: 0.5px solid $border-color;
+  z-index: 2;
+  text-align: left;
+  right: 0;
+  min-width: 414px;
+
+
+
+  .cart-empty {
+
+    text-align: center;
+    padding: 20px;
+
+    .title {
+      font-size: 14px;
+      color: $grayLight;
+      margin: 10px 0 0 0;
+    }
+
+    .info {
+      font-size: 14px;
+      font-family: $goodRegularFont;
+      color: $grayLight;
+      margin: 20px 0;
+      line-height: 23px;
+    }
+
+    .action {
+
+      button,
+      button:focus,
+      button:hover {
+        // display: block;
+        width: 100%;
+        background: #fff;
+        border: 2px solid $brown;
+        // padding-left: 50px;
+        // padding-right: 50px;
+        margin-right: 5px;
+        height: 48px;
+        color: $brown;
+        font-size: 13px;
+        letter-spacing: 0.39px;
+        text-transform: uppercase;
+        cursor: pointer;
+
+        &:disabled {
+          background: $buttonDisabled;
+          border-color: $buttonDisabled;
+          pointer-events: auto !important;
+          cursor: not-allowed;
+        }
+      }
+
+    }
+  }
+
+
+
+
+
+  .cart-items {
+    display: flex;
+    flex-direction: column;
+    padding-top: 21px;
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+
+
+    .item {
+      display: flex;
+      flex-direction: row;
+      min-height: 105px;
+      padding-left: 20px;
+      padding-right: 20px;
+      padding-bottom: 20px;
+      border-bottom: 0.5px solid $border-color;
+
+      &:not(:last-child) {
+
+        margin-bottom: 20px;
+      }
+
+      .image {
+        margin-right: 25px;
+
+        img {
+          height: 81px;
+          // width: 22px;
+        }
+      }
+
+      .detail {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
+        .year-remove {
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-start;
+
+          .year {
+            font-size: 11px;
+          }
+
+          .remove {
+
+            // position: absolute;
+            // right: 16px;
+            cursor: pointer;
+
+            i {
+              font-size: 18px;
+            }
+          }
+        }
+
+        .title {
+          // font-family: goodBold;
+          font-size: 17px;
+          margin-top: 0;
+        }
+
+        .qty {
+          margin-top: 8px;
+          font-size: 12px;
+        }
+
+        .from-price {
+          display: flex;
+          justify-content: space-between;
+          margin-top: 5px;
+
+          .from {
+            font-size: 12px;
+            // font-family: goodBold;
+            // font-family: 'goodRegular';
+            // font-weight: 800;
+
+            span {
+              font-family: 'goodRegular';
+              color: #B98754;
+            }
+          }
+
+          .price {
+            font-size: 14px;
+          }
+        }
+      }
+    }
+
+  }
+
+  .delivery {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: 20px;
+
+    .line-1 {
+
+      .heading {
+        font-size: 14px;
+        color: $gray;
+      }
+
+      .delivery-amount {
+        font-size: 14px;
+        color: $gray;
+        text-align: right;
+        ;
+      }
+    }
+
+    .line-2 {
+
+      margin-top: 8px;
+
+      .sub-heading {
+        font-size: 14px;
+      }
+
+
+      .outstanding-amount {
+        font-size: 18px;
+        text-align: right;
+        ;
+      }
+    }
+  }
+
+  .cart-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+
+    .button-view-cart {
+
+      width: 100%;
+
+      button,
+      button:focus,
+      button:hover {
+        // display: block;
+        width: 100%;
+        background: #fff;
+        border: 2px solid $brown;
+        // padding-left: 50px;
+        // padding-right: 50px;
+        margin-right: 5px;
+        height: 48px;
+        color: $brown;
+        font-size: 13px;
+        letter-spacing: 0.39px;
+        text-transform: uppercase;
+        cursor: pointer;
+
+        &:disabled {
+          background: $buttonDisabled;
+          border-color: $buttonDisabled;
+          pointer-events: auto !important;
+          cursor: not-allowed;
+        }
+      }
+
+    }
+
+    .button-checkout {
+
+      width: 100%;
+
+      button,
+      button:focus,
+      button:hover {
+        // display: block;
+        width: 100%;
+        background: $brown;
+        border: 2px solid $brown;
+        // padding-left: 50px;
+        // padding-right: 50px;
+        margin-left: 5px;
+        height: 48px;
+        color: #fff;
+        font-size: 13px;
+        letter-spacing: 0.39px;
+        text-transform: uppercase;
+        cursor: pointer;
+
+        &:disabled {
+          background: $buttonDisabled;
+          border-color: $buttonDisabled;
+          pointer-events: auto !important;
+          cursor: not-allowed;
+        }
+      }
+    }
+  }
+
+
+
+
+
+  @media all and (max-width: $mobile) {
+    // position: relative;
+    padding: 0px;
+    width: 100%;
+    border: none;
+    border-bottom: 0.5px solid #E0E0E0;
+    min-width: 100%;
+    margin-top: -1px;
+
+    // .title {
+    // font-weight: normal;
+    // }
+
+    .info {
+      text-align: left;
+      padding-left: 0;
+
+      span {
+        color: #919191;
+      }
+
+      a {
+        color: #000000;
+        text-decoration: none;
+      }
+    }
+  }
+
+  // /* ----------- iPhone 4 and 4S ----------- */
+  // /* Portrait and Landscape */
+  // @media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
+  //   .faux_bold {
+  //     letter-spacing: -1px;
+  //   }
+  // }
+
+  // /* Portrait */
+  // @media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
+  //   .faux_bold {
+  //     letter-spacing: -1px;
+  //   }
+  // }
+
+  // /* Landscape */
+  // @media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
+  //   .faux_bold {
+  //     letter-spacing: -1px;
+  //   }
+  // }
+
+  // /* ----------- iPhone 5, 5S, 5C and 5SE ----------- */
+
+  // /* Portrait and Landscape */
+  // @media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) {
+  //   .faux_bold {
+  //     letter-spacing: -1px;
+  //   }
+  // }
+
+  // /* Portrait */
+  // @media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
+  //   .faux_bold {
+  //     letter-spacing: -1px;
+  //   }
+  // }
+
+  // /* Landscape */
+  // @media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
+  //   .faux_bold {
+  //     letter-spacing: -1px;
+  //   }
+  // }
+
+  // /* ----------- iPhone 6, 6S, 7 and 8 ----------- */
+
+  // /* Portrait and Landscape */
+  // @media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) {
+  //   .faux_bold {
+  //     letter-spacing: -1px;
+  //   }
+  // }
+
+  // /* Portrait */
+  // @media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
+  //   .faux_bold {
+  //     letter-spacing: -1px;
+  //   }
+  // }
+
+  // /* Landscape */
+  // @media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
+  //   .faux_bold {
+  //     letter-spacing: -1px;
+  //   }
+  // }
+
+  // /* ----------- iPhone 6+, 7+ and 8+ ----------- */
+
+  // /* Portrait and Landscape */
+  // @media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) {
+  //   .faux_bold {
+  //     letter-spacing: -1px;
+  //   }
+  // }
+
+  // /* Portrait */
+  // @media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait) {
+  //   .faux_bold {
+  //     letter-spacing: -1px;
+  //   }
+  // }
+
+  // /* Landscape */
+  // @media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: landscape) {
+  //   .faux_bold {
+  //     letter-spacing: -1px;
+  //   }
+  // }
+
+  // /* ----------- iPhone X ----------- */
+
+  // /* Portrait and Landscape */
+  // @media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) {
+  //   .faux_bold {
+  //     letter-spacing: -1px;
+  //   }
+  // }
+
+  // /* Portrait */
+  // @media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait) {
+  //   .faux_bold {
+  //     letter-spacing: -1px;
+  //   }
+  // }
+
+  // /* Landscape */
+  // @media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: landscape) {
+  //   .faux_bold {
+  //     letter-spacing: -1px;
+  //   }
+  // }
+
+  // /* 1792x828px at 326ppi - 11 */
+  // @media only screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) {
+  //   .faux_bold {
+  //     letter-spacing: -1px;
+  //   }
+  // }
+
+  // @media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 2) {
+  //   .faux_bold {
+  //     letter-spacing: -1px;
+  //   }
+  // }
+
+  // /* 2436x1125px at 458ppi - 11 pro */
+  // @media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
+  //   .faux_bold {
+  //     letter-spacing: -1px;
+  //   }
+  // }
+
+  // /* 2688x1242px at 458ppi - 11 pro max */
+  // @media only screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) {
+  //   .faux_bold {
+  //     letter-spacing: -1px;
+  //   }
+  // }
+
+}

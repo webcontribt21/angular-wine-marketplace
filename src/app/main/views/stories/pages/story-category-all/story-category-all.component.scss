@@ -1,0 +1,36 @@
+.stories-categories-all-container {
+  padding: 30px 60px 60px;
+
+  .header-wrapper {
+    margin-bottom: 20px;
+  }
+
+  .category-block {
+    border-top: 1px solid;
+
+    .category-name {
+      font-size: 18px;
+    }
+
+    .category-action {
+      a {
+        font-size: 12px;
+        border: 0;
+        padding: 0;
+      }
+    }
+
+    .category-block-header-area {
+      margin: 40px 0 40px;
+    }
+
+  }
+
+  .no-data-wrapper {
+    margin-bottom: 63px;
+  }
+
+  .spinner {
+    margin: 25px 0 25px;
+  }
+}

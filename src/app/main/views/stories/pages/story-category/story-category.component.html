@@ -1,0 +1,57 @@
+<div class="stories-categories-container">
+  <div class="spinner"
+       *ngIf="(isCategory$ | async); else categoryEle"
+       fxLayout="row"
+       fxLayoutAlign="center"
+  >
+    <app-spinner [width]="50" [height]="50"></app-spinner>
+  </div>
+
+  <ng-template #categoryEle>
+    <div class="header-wrapper">
+      <app-story-category-header [title]="(category$ | async)?.description"
+                                 [subTitle]="'Every Port2Port post.'"
+                                 [sortValue]="sort$ | async"
+                                 (sort)="onSort($event)"
+      ></app-story-category-header>
+    </div>
+
+    <div class="body-wrapper"
+         *ngIf="(category$ | async)?.articles.length > 0; else noDataEle"
+    >
+      <div>
+        <app-story-view [type]="'single'"
+                        [articles]="(category$ | async)?.articles"
+        ></app-story-view>
+      </div>
+
+      <div class="view-more-action-wrapper"
+           fxLayout="row"
+           fxLayoutAlign="center center"
+      >
+        <button class="btn uppercase dark-border-color"
+                (click)="onViewMore()"
+                [disabled]="isLoadingMore$ | async"
+                fxLayout="row"
+                fxLayoutAlign="center center"
+        >
+          <app-spinner *ngIf="isLoadingMore$ | async; else viewMoreLabelEle"
+                       [width]="20"
+                       [height]="20"
+          ></app-spinner>
+          <ng-template #viewMoreLabelEle>
+            View More
+          </ng-template>
+        </button>
+      </div>
+    </div>
+
+    <ng-template #noDataEle>
+      <div fxLayout="row"
+           fxLayoutAlign="center center"
+      >
+        No Article
+      </div>
+    </ng-template>
+  </ng-template>
+</div>

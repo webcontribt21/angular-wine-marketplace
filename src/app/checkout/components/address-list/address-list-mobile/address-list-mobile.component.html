@@ -1,0 +1,42 @@
+<div>
+  <div class="heading">
+    Your Addresses
+  </div>
+  <div class="list">
+
+    <div class="detail" *ngFor="let userAddress of userAddresses">
+      <div class="info">
+        <div class="title">{{ userAddress | formatAddressRecipient }}</div>
+        <div class="address-line">
+          <span class="label">Street Address:</span>
+          <span>{{ userAddress | formatAddress }}</span>
+        </div>
+        <div class="contact-line">
+          <span class="label">Contact:</span>
+          <span>{{ userAddress.cellNumber }}</span>
+        </div>
+        <div class="address-type-actions-line">
+          <div class="address-type">
+            <span *ngIf="userAddress.isBusiness">Business</span>
+            <span *ngIf="userAddress.isResidential">Residential</span>
+          </div>
+          <div class="actions">
+            <div class="action pointer"><i class="pi pi-pencil edit" (click)="onEditUserAddress(userAddress)"></i></div>
+            <div class="action pointer"><i class="pi pi-trash" (click)="onDeleteUserAddress(userAddress)"></i></div>
+          </div>
+        </div>
+      </div>
+      <div class="type">
+        <div class="selector">
+          <input type="radio" name="delivery-m" id="" [checked]="checkoutDeliveryAddressId == userAddress._id" (click)="onSelectCheckoutDeliveryAddress(userAddress)">
+          <span>Delivery</span>
+        </div>
+        <div class="selector">
+          <input type="radio" name="billing-m" id="" [checked]="checkoutBillingAddressId == userAddress._id" (click)="onSelectCheckoutBillingAddress(userAddress)">
+          <span>Billing</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

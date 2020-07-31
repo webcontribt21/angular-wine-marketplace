@@ -1,0 +1,47 @@
+@import "variables";
+
+ul.about {
+  flex-flow: column wrap;
+  display: flex;
+
+  ul.description {
+    margin-top: 10px;
+  }
+
+  h5.title {
+    text-align: left;
+    font-weight: bold;
+    font-size: 14px;
+    letter-spacing: 0;
+    color: #FFFFFF;
+    opacity: 1;
+    text-transform: uppercase;
+    margin: 0;
+  }
+
+  p {
+    text-align: left;
+    color: #FFFFFF;
+    letter-spacing: 0;
+    opacity: 0.55;
+    font-size: 13px;
+    text-decoration: none;
+    outline: 0;
+    line-height: 20px;
+    margin-top: 0;
+  }
+
+  @media all and (max-width: $mobile) {
+    h5.title {
+      display: none;
+    }
+
+    span.title {
+      display: none;
+    }
+
+    p {
+      text-align: center;
+    }
+  }
+}

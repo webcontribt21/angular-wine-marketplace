@@ -1,0 +1,67 @@
+$border-color-desktop: #E5E3DE;
+$brown: #3F3A39;
+
+.wrapper-description {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  padding: 20px 25px;
+  width: 100%;
+  font-size: 13px;
+  border-bottom: none;
+  font-weight: 600;
+  opacity: 0.8;
+
+  &.active {
+    background: #f9f9f9;
+  }
+
+  .icon-block {
+    display: block;
+    margin-left: auto;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    opacity: 0.6;
+
+    img {
+      width: 12px;
+    }
+  }
+}
+
+ul.wrapper-types {
+  margin: 0;
+  padding: 20px 25px;
+  border-bottom: none;
+
+
+  li.type-value {
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 18px;
+
+    span, .count {
+      text-decoration: none;
+      outline: 0;
+      font-weight: 500;
+      font-size: 16px;
+      color: black;
+      vertical-align: top;
+      opacity: 0.9;
+    }
+
+    .count {
+      font-size: 12px;
+    }
+  }
+
+}
+
+
+

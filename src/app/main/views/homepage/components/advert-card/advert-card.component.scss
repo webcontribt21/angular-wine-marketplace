@@ -1,0 +1,38 @@
+.advert-card-wrapper {
+  display: block;
+  // height: 160px;
+
+  .description-area {
+    padding: 1em;
+    z-index: 100;
+
+    .title {
+      font-size: 22px;
+      margin-bottom: 15px;
+
+      @media all and (max-width: 640px) {
+        letter-spacing: -1px;
+      }
+
+      .item {
+        &:last-child {
+          margin-right: 0;
+        }
+
+        margin-right: 0.25em;
+        font-weight: 400;
+
+      }
+
+      .item.good-bold-font {font-weight: 600; font-family: 'goodRegular';
+        //  font-family: goodBold;
+        }
+    }
+
+    .text {
+      font-weight: normal;
+      font-size: 14px;
+      margin: 0;
+    }
+  }
+}

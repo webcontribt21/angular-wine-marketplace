@@ -1,0 +1,22 @@
+<div class="story-block-wrapper"
+     fxLayout="row wrap"
+     fxLayoutAlign="space-between"
+>
+  <div fxFlex="50%" fxFlex.lt-md="100%" class="block">
+    <app-image-wrapper [desktopImageUrl]="advertLeft.imageUrl"
+                       [mobileImageUrl]="advertLeft.imageUrl"
+                       bgColor="background-black"
+                       heightPercent="h-70p"
+    >
+      <a class="full-height" [routerLink]="[advertLeft.linkUrl]" fxLayout="row" fxLayoutAlign="center center">
+        <div class="text white-color">
+          {{ advertLeft?.text }}
+        </div>
+      </a>
+    </app-image-wrapper>
+  </div>
+
+  <div fxFlex="50%" fxFlex.lt-md="100%" class="block">
+    <app-article-card [article]="storyRight" [styles]="articleStyles" imgHeightPercent="h-article"></app-article-card>
+  </div>
+</div>

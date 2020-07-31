@@ -1,0 +1,60 @@
+<a class="wine-details-wrapper border-color-gray-lighter"
+  [routerLink]="['/wines/item/' + wine._id + '/' + wine.name]"
+  itemscope
+  itemtype="http://schema.org/Product"
+  [attr.itemprop]="[asRelatedItem ? 'isRelatedTo' : '']">
+  <div class="content-wrapper" fxLayout="column" fxLayoutAlign="center">
+    <div class="img-wrapper"
+         fxLayout="row"
+         fxLayoutAlign="center"
+    >
+      <img [src]="wine.itemImages[0].imageUrl"
+          [title]="[(wine.itemDetails | valueDescription: '9') + ' ' + wine?.brand?.name + ' ' + wine?.name]"
+          *ngIf="wine.itemImages && wine.itemImages[0] && wine.itemImages[0].imageUrl; else emptyImgEle"
+          itemprop="image"
+      />
+
+      <ng-template #emptyImgEle>
+        <img src="/assets/img/icons/wines/bottle.svg"
+          itemprop="image" />
+      </ng-template>
+    </div>
+
+    <div class="text-center description">
+      <div class="year item dark2-color font-weight-medium">
+        {{ wine.itemDetails | valueDescription: '9' }}
+      </div>
+
+      <h3 class="title item gray-dark-alt-color"
+        itemprop="name">
+        {{ wine?.name }}
+      </h3>
+
+      <h4 class="brand item dark2-color good-medium-font"
+        itemprop="brand">
+        {{ wine?.brand?.name }}
+      </h4>
+
+      <div class="country item gray-dark-alt-color">
+        {{ wine?.country.name }}
+      </div>
+
+      <div class="cost-wrapper brown-color"
+        itemprop="offers"
+        itemscope
+        itemtype="http://schema.org/Offer">
+        <div *ngIf="wine.suppliers && wine.suppliers[0] && wine.suppliers[0].price">
+          <!--<span class="item">From</span>-->
+          <div class="cost item">
+            <meta itemprop="url" content="https://port2port.wine/wines/item/{{wine._id}}/{{wine.name}}" />
+            <meta itemprop="priceCurrency" content="ZAR" />
+            <meta itemprop="price" content="{{ wine.suppliers[0].price }}" />
+            <strong>
+              R {{ wine.suppliers[0].price | number }}
+            </strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</a>

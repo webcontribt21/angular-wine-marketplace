@@ -1,0 +1,14 @@
+<div class="wines-carousel-wrapper carousel-wrapper">
+  <ngx-slick-carousel class="carousel" 
+    #slickModal="slick-carousel" 
+    [config]="slideConfig"
+    (beforeChange)="beforeChange($event)"
+    (afterChange)="afterChange($event)"
+  >
+    <div ngxSlickItem *ngFor="let wine of wines" class="slide">
+      <div class="slider-wrapper">
+        <app-wine-details [wine]="wine" [stopLink]="isDraggingCarousel" [asRelatedItem]="asRelatedItems"></app-wine-details>
+      </div>
+    </div>
+  </ngx-slick-carousel>
+</div>

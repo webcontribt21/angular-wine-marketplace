@@ -1,0 +1,9 @@
+.most-popular-wrapper {
+  .video-item {
+    margin-bottom: 30px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}

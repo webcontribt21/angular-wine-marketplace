@@ -1,0 +1,36 @@
+<div class="user-oder-history gray-dark-color">
+  <div class="search-container">
+    <div class="uppercase title black-color">Orders</div>
+    <app-searchbox [placeholder]="'Order number, Vineyard name, date'"></app-searchbox>
+  </div>
+
+  <div class="order-items-container">
+    <div class="body-container">
+      <div class="spinner"
+           *ngIf="(isOrders$ | async); else orderListEle"
+           fxLayout="row"
+           fxLayoutAlign="center"
+      >
+        <app-spinner [width]="50" [height]="50"></app-spinner>
+      </div>
+
+      <ng-template #orderListEle>
+        <app-user-order-list [orders]="orders$ | async"></app-user-order-list>
+      </ng-template>
+    </div>
+
+    <div class="pagination-container"
+         fxLayout="row"
+         fxLayoutAlign="end"
+         fxLayoutAlign.lt-md="center"
+    >
+      <app-paginator [countRowsPerPage]="2"
+                     [totalRecords]="20"
+                     [pageLinkSize]="5"
+                     [first]="first"
+                     [styleClass]="'pagination'"
+                     (paginate)="onPaginate($event)"
+      ></app-paginator>
+    </div>
+  </div>
+</div>

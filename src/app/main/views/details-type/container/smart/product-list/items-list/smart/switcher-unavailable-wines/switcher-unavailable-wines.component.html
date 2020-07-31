@@ -1,0 +1,21 @@
+<div class="switcher-unavailable-wines desktop">
+  <span class="count">{{itemsCount}} <span class="text">items</span></span>
+  <span class="info">Show unavailable wines</span>
+  <span>
+    <p-inputSwitch [(ngModel)]="showUnavailableWinesInternal"
+      [styleClass]="'switcher-wines'"
+      (onChange)="handleChange($event)"></p-inputSwitch>
+  </span>
+</div>
+
+<div class="switcher-unavailable-wines mobile">
+  <button class="btn" [ngClass]="{'active': !showUnavailableWines}"
+    (click)="toggle()">
+    Show available wines
+  </button>
+
+  <button class="btn" [ngClass]="{'active': showUnavailableWines}"
+    (click)="toggle()">
+    Show unavailable wines
+  </button>
+</div>

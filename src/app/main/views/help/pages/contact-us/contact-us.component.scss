@@ -1,0 +1,60 @@
+.contact-us-wrapper {
+  font-size: 12px;
+  max-width: 660px;
+  margin: 0 auto;
+
+  @media all and (max-width: 640px) {
+    .label.mobile_margin {
+      margin-top: 12px;
+    }
+  }
+
+  .label {
+    display: block;
+    margin-bottom: 12px;
+    color: #000000;
+  }
+
+  input,
+  textarea {
+    padding: 17px 20px 17px;
+    border: 1px solid;
+    width: 100%;
+    -webkit-appearance: none;
+    border-radius: 0;
+  }
+
+  textarea {
+    resize: none;
+  }
+
+  .ui-inputgroup-addon {
+    background: transparent;
+    padding: 17px;
+    border-radius: unset !important;
+    padding-left: 12px;
+    padding-top: 18px;
+  }
+
+  .input-item {
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    margin-bottom: 17px;
+    padding: 0 10px 0;
+  }
+
+  .btn {
+    width: 100%;
+    max-width: unset;
+  }
+
+  .description {
+    margin: 30px 0 20px;
+  }
+
+  .mask-input {
+    width: 100%;
+  }
+}

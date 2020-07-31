@@ -1,0 +1,45 @@
+@import "variables";
+
+$border-color-desktop: #E5E3DE;
+.bottlesize .wrapper-description { background-color: $gray;}
+.wrapper-description {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  border: 1px solid $border-color-desktop;
+  padding: 20px 25px;
+  width: 100%;
+  font-size: 13px;
+  border-bottom: none;
+  font-weight: 600;
+  opacity: 0.8;
+
+  &.active {
+    background: #f9f9f9;
+  }
+
+  .icon-block {
+    display: block;
+    margin-left: auto;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    opacity: 0.6;
+
+    img {
+      width: 12px;
+    }
+  }
+}
+@media all and (max-width: $listWidthTransform) {
+  .content-wrapper {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    display: block !important;
+  }
+}
+

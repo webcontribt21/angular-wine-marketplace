@@ -1,0 +1,12 @@
+<ul>
+  <app-sub-category
+    *ngFor="let link of itemDetailTypeValues | slice:0:10"
+    [itemDetailTypeValue]="link"
+    [parentDescription]="parentDescription"
+    (closeNavMenu$)="closeNavMenu()"
+  ></app-sub-category>
+
+  <li [hidden]="parentIdx === 0" class="type-value-bottom">
+      <span class="description">All {{ parentDescription | titlecase }}</span>
+  </li>
+</ul>

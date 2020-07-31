@@ -1,0 +1,253 @@
+<app-checkout-order-summary-mobile [cartSummary]="cartSummary$ | async"
+  [deliveryAddress]="checkoutDeliveryAddress$ | async" [isComplete]="true"></app-checkout-order-summary-mobile>
+<div class="wrapper"
+     *ngIf="(orderSummary$ | async) as orderSummary"
+     fxLayout="row"
+     fxLayout.lt-md="column"
+>
+  <div class="list">
+    <div class="card">
+      <div class="header">
+
+        <div class="item"
+          *ngIf="orderSummary?.orderPayment[0]?.paymentGatewayMethodNumber === paymentGatewayMethodNumber.ManualEFT">
+          <div class="left">
+            <div class="heading">Your order <span
+                class="good-regular-font highlight">{{ orderSummary.orderReference }}</span> has been placed successfully.
+            </div>
+            <div class="sub-heading">
+              <span>Thanks for shopping with Port2Port. We will start preparing your order as soon as we have
+                confirmation of payment.
+              </span>
+            </div>
+          </div>
+          <div class="right">
+            <div>
+              <button (click)="onContinueShoppingClick()">Continue Shopping</button>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="item"
+          *ngIf="orderSummary?.orderPayment[0]?.paymentGatewayMethodNumber !== paymentGatewayMethodNumber.ManualEFT">
+          <div class="left">
+            <div class="heading">Your order <span
+                class="good-regular-font highlight">{{ orderSummary.orderReference }}</span> is complete</div>
+            <div class="sub-heading">
+              <span>Thanks for shopping with Port2Port. We are now preparing your order. You can view the status of your
+                order
+                <a [routerLink]="['/user/order-history']" class="highlight">here</a>.
+              </span>
+            </div>
+          </div>
+          <div class="right">
+            <div>
+              <button (click)="onContinueShoppingClick()">Continue Shopping</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="body">
+        <div class="divider"></div>
+
+        <div class="order-info-rating-reason">
+          <div class="info">
+            <div class="order-info">
+
+              <ng-container
+                *ngIf="orderSummary?.orderPayment[0]?.paymentGatewayMethodNumber === paymentGatewayMethodNumber.ManualEFT">
+                <div class="heading">EFT Payment Instructions</div>
+                <div class="row">
+                  <span>Use reference</span>: {{ orderSummary.orderReference }}
+                </div>
+                <div class="row">
+                  <span>Bank</span>: FNB
+                </div>
+                <div class="row">
+                  <span>Account Holder</span>: 	P2 Group
+                </div>
+                <div class="row">
+                  <span>Account Number</span>: 62716338571
+                </div>
+                <div class="row">
+                  <span>Branch Code</span>: 202709
+                </div>
+                <div class="row">
+                  <span>Swift</span>: FIRNZAJJ
+                </div>
+                <div class="row">
+                  <span>Amount</span>: <span class="good-regular-font highlight">{{ orderSummary?.outstandingAmount | formatCurrency }}</span>
+                </div>
+                <div class="row">
+                  &nbsp;
+                </div>
+              </ng-container>
+
+              <div class="heading">Order Info</div>
+
+              <div class="row"><span>Order number</span>: {{ orderSummary.orderReference }}</div>
+              <div class="row"><span>Order date</span>: {{ orderSummary?.dateCreated | formatDate }}</div>
+              <div class="row" *ngIf="orderSummary.estimatedDeliveryDateFrom"><span>Estimated delivery date</span>:
+                {{ orderSummary.estimatedDeliveryDateFrom | formatDate }}</div>
+              <div class="row"><span>Payment method</span>: {{ orderSummary?.orderPayment[0]?.paymentGatewayMethod[0]?.description }}</div>
+              <div class="row"><span>Payment status</span>: {{ orderSummary?.orderPayment[0]?.paymentStatus[0]?.description }}</div>
+
+            </div>
+
+          </div>
+          <div class="rating-reason">
+            <div class="rating-section">
+              <div class="heading">Rate your experience</div>
+              <div class="sub-heading">How would you rate your experience on Port2Port?</div>
+              <div class="rating">
+                <div class="rating-items">
+                  <div class="item">1</div>
+                  <div class="item active">2</div>
+                  <div class="item">3</div>
+                  <div class="item">4</div>
+                  <div class="item">5</div>
+                </div>
+                <div class="rating-items">
+                  <div class="item">6</div>
+                  <div class="item">7</div>
+                  <div class="item">8</div>
+                  <div class="item">9</div>
+                  <div class="item">10</div>
+                </div>
+              </div>
+            </div>
+            <div class="reason-section">
+              <div class="heading">Reason why</div>
+              <div class="sub-heading">Please selection a option below, this will help us better understand your score.
+              </div>
+              <div class="reason">
+                <div class="select">
+                  <p-dropdown [styleClass]="'ui-dropdown'" [options]="reasons" [(ngModel)]="selectedReason"
+                    [ngModelOptions]="{standalone: true}" [appendTo]="'body'">
+                  </p-dropdown>
+                </div>
+                <div class="button"><button disabled>Submit</button></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="order-summary-section">
+
+          <div class="order-summary">
+            <div class="heading">Order Summary</div>
+
+            <div class="summary-info">
+
+              <div class="row">
+                <div>Sub Total</div>
+                <div class="dark">{{ orderSummary?.subTotalAmount | formatCurrency }}</div>
+              </div>
+
+              <div class="row" *ngFor="let shipment of orderSummary.shipments; let idx = index;">
+                <div>Delivery: Shipment {{ idx + 1 }}</div>
+                <div class="dark">{{ shipment?.courierDeliveryCharge | formatCurrency }}</div>
+              </div>
+              <div class="divider"></div>
+              <div class="row">
+                <div>Delivery Total</div>
+                <div>{{ orderSummary?.deliveryTotalAmount | formatCurrency }}</div>
+              </div>
+              <!--
+              <div class="row">
+                <div>Consolidated Gift</div>
+                <div>R0</div>
+              </div>
+              -->
+              <div class="divider"></div>
+              <div class="row">
+                <div>Order Total</div>
+                <div>{{ orderSummary?.orderTotalAmount | formatCurrency }}</div>
+              </div>
+              <div class="divider"></div>
+
+            </div>
+
+            <div class="info">
+
+              <div class="shipping-info">
+                <div class="heading">Shipping Info</div>
+
+                <div class="row"><span>{{ orderSummary.shippingAddress?.firstName }}
+                    {{ orderSummary.shippingAddress?.lastName }}</span></div>
+                <div class="row"><span>Street Address</span>: {{ orderSummary.shippingAddress?.streetAddress }},
+                  {{ orderSummary.shippingAddress?.suburb?.name }}, {{ orderSummary.shippingAddress?.city?.name }},
+                  {{ orderSummary.shippingAddress?.state?.name }},
+                  {{ orderSummary.shippingAddress?.postalCode }}
+                </div>
+                <div class="row"><span>Contact</span>: {{ orderSummary.shippingAddress?.cellNumber }}</div>
+                <div class="row">
+                  <span
+                    class="address-type">{{ orderSummary.shippingAddress?.isResidential ? 'Residential' : 'Business' }}</span>
+                </div>
+              </div>
+              <div class="billing-info">
+                <div class="heading">Bılling Info</div>
+
+                <div class="row"><span>{{ orderSummary.billingAddress?.firstName }}
+                    {{ orderSummary.billingAddress?.lastName }}</span></div>
+                <div class="row"><span>Street Address</span>: {{ orderSummary.billingAddress?.streetAddress }},
+                  {{ orderSummary.billingAddress?.suburb?.name }}, {{ orderSummary.billingAddress?.city?.name }},
+                  {{ orderSummary.shippingAddress?.state?.name }},
+                  {{ orderSummary.billingAddress?.postalCode }}
+                </div>
+                <div class="row"><span>Contact</span>: {{ orderSummary.billingAddress?.cellNumber }}</div>
+                <div class="row" *ngIf="orderSummary.billingAddress?.VATnumber"><span>VAT number</span>: {{ orderSummary.billingAddress?.VATnumber }}</div>
+              </div>
+
+              <!--
+              <div class="shipment-info">
+                <div class="heading">Shipment</div>
+                <div class="row">
+                  You chose to consolidate your shipment, for a gift. You can track the full order <a
+                    [routerLink]="['/user/order-history']" class="highlight">here</a>
+                </div>
+              </div>
+
+              <div class="gift-info">
+                <div class="heading">Your gift message:</div>
+                <div class="row">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                  dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                  aliquip ex ea commodo consequat.
+                </div>
+              </div>
+              -->
+            </div>
+          </div>
+
+
+          <div class="items-delivery">
+            <div class="heading">Shipments</div>
+            <div class="shipments">
+              <div class="shipment" *ngFor="let shipment of orderSummary.shipments; let idx = index;">
+                <app-checkout-confirmation-shipment [shipmentNumber]="idx + 1" [shipment]="shipment">
+                </app-checkout-confirmation-shipment>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="help-section">
+          <div class="heading">We're here to help!</div>
+          <div class="sub-heading">
+            For any order-related, product-listing or general enquiries, please feel free to contact us at
+            <strong>021-422-1872</strong>,
+            e-mail <strong>help@port2port.wine</strong> or select the live chat tab in the bottom-right corner of your
+            screen to speak
+            directly to one of our consultants.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

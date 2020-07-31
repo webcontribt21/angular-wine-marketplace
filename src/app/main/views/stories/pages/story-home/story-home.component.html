@@ -1,0 +1,272 @@
+<div class="story-home-container" ngClass.lt-md="mobile" (window:scroll)="onScroll($event)" #containerEle>
+  <div class="default-margin" fxShow fxHide.gt-sm="true">
+    <div class="spinner"
+         *ngIf="(isLatestArticle$ | async); else mobileLatestStoryEle"
+         fxLayout="row"
+         fxLayoutAlign="center"
+    >
+      <app-spinner [width]="50" [height]="50"></app-spinner>
+    </div>
+
+    <ng-template #mobileLatestStoryEle>
+      <app-article-card [article]="latestArticle$ | async" type="mobile_feature" imgHeightPercent="h-70p"></app-article-card>
+    </ng-template>
+  </div>
+
+  <div class="default-margin"
+       fxLayout="row"
+       fxLayout.md="column"
+       fxShow.gt-sm="true"
+       fxHide
+  >
+    <div fxFlex="50%" fxFlex.md="100%" class="block">
+      <div class="spinner"
+           *ngIf="(isLatestArticle$ | async); else desktopLatestStoryEle"
+           fxLayout="row"
+           fxLayoutAlign="center"
+      >
+        <app-spinner [width]="50" [height]="50"></app-spinner>
+      </div>
+
+      <ng-template #desktopLatestStoryEle>
+        <app-article-card class="tester" [article]="latestArticle$ | async" type="feature" [styles]="articleStyles"></app-article-card>
+      </ng-template>
+    </div>
+
+    <div fxFlex="50%" fxFlex.md="100%" class="block">
+      <div fxLayout="row" class="block-container full-height ">
+        <div fxFlex="50%"
+             fxFlex.lt-md="100%"
+             class="featured-stories-container"
+        >
+          <div class="spinner"
+               *ngIf="(isFeaturedStories$ | async); else desktopFeaturedStoriesEle"
+               fxLayout="row"
+               fxLayoutAlign="center"
+          >
+            <app-spinner [width]="50" [height]="50"></app-spinner>
+          </div>
+
+          <ng-template #desktopFeaturedStoriesEle>
+            <div class="distinguish-line" fxLayout="column" fxLayoutAlign="space-between">
+              <h3 class="block-title gray-dark-color">Featured Stories</h3>
+
+              <app-featured-stories type="featured_stories" [featuredStories]="featuredStories$ | async" fxFlex="1 1 auto"></app-featured-stories>
+
+              <div class="view-more-action-wrapper" fxLayout="row" fxLayoutAlign="center center">
+                <a [routerLink]="['/stories/all']" class="btn uppercase text-center">View More</a>
+              </div>
+            </div>
+          </ng-template>
+        </div>
+
+        <div fxFlex="50%"
+             fxFlex.lt-md="100%"
+             class="most-popular-container"
+        >
+          <div class="spinner"
+               *ngIf="(isMostPopularStories$ | async); else desktopMostPopularStoriesEle"
+               fxLayout="row"
+               fxLayoutAlign="center"
+          >
+            <app-spinner [width]="50" [height]="50"></app-spinner>
+          </div>
+
+          <ng-template #desktopMostPopularStoriesEle>
+            <div class="distinguish-line" fxLayout="column" fxLayoutAlign="space-between">
+              <h3 class="block-title gray-dark-color">Most Popular</h3>
+
+              <app-most-popular  fxFlex="1 1 auto" [mostPopularStories]="mostPopularStories$ | async"></app-most-popular>
+
+              <div class="view-more-action-wrapper" fxLayout="row" fxLayoutAlign="center center">
+                <a [routerLink]="['/stories/all']" class="btn uppercase text-center">View More</a>
+              </div>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div fxShow fxHide.gt-sm="true">
+    <div class="story-menu-carousel-container"
+         [ngClass]="{'fixed-menu': isTopStoryMenu}"
+         #storyMenuEle
+         [style.top]="storyMenuTop + 'px'"
+    >
+      <app-story-menu-carousel [targetContentLink]="targetContentLink"></app-story-menu-carousel>
+    </div>
+
+    <div class="menu-contents" #menuContentsEle>
+      <div class="block-container">
+        <!-- featured stories start -->
+        <div fxLayout="column"
+             fxLayoutAlign="space-between"
+             class="featured-stories-container"
+             id="featured-stories"
+             *ngIf="targetContentLink === 'featured-stories'"
+        >
+          <div class="spinner"
+                *ngIf="(isFeaturedStories$ | async); else mobileFeaturedStoriesEle"
+                fxLayout="row"
+                fxLayoutAlign="center"
+          >
+            <app-spinner [width]="50" [height]="50"></app-spinner>
+          </div>
+
+          <ng-template #mobileFeaturedStoriesEle>
+            <app-featured-stories [featuredStories]="featuredStories$ | async"></app-featured-stories>
+
+            <div class="view-more-action-wrapper" fxLayout="row" fxLayoutAlign="center center">
+              <a [routerLink]="['/stories/all']" class="btn uppercase text-center">View More</a>
+            </div>
+          </ng-template>
+        </div>
+        <!-- featured stories end -->
+
+        <!-- most popular start -->
+        <div *ngIf="targetContentLink === 'most-popular'"
+             fxLayout="column"
+             fxLayoutAlign="space-between"
+             class="most-popular-container"
+             id="most-popular"
+        >
+          <div class="spinner"
+               *ngIf="(isMostPopularStories$ | async); else mobileMostPopularStoriesEle"
+               fxLayout="row"
+               fxLayoutAlign="center"
+          >
+            <app-spinner [width]="50" [height]="50"></app-spinner>
+          </div>
+
+          <ng-template #mobileMostPopularStoriesEle>
+            <app-most-popular [mostPopularStories]="mostPopularStories$ | async" isMobileView="true"></app-most-popular>
+
+            <div class="view-more-action-wrapper" fxLayout="row" fxLayoutAlign="center center">
+              <a [routerLink]="['/stories/all']" class="btn uppercase text-center">View More</a>
+            </div>
+          </ng-template>
+        </div>
+        <!-- most popular end -->
+
+        <!-- top contributors start -->
+        <div *ngIf="targetContentLink === 'top-contributors'"
+             fxLayout="column"
+             fxLayoutAlign="space-between"
+             class="top-contributors-container"
+        >
+          <div class="spinner"
+               *ngIf="(isTopContributors$ | async); else mobileTopAuthorsEle"
+               fxLayout="row"
+               fxLayoutAlign="center"
+          >
+            <app-spinner [width]="50" [height]="50"></app-spinner>
+          </div>
+
+          <ng-template #mobileTopAuthorsEle>
+            <app-top-contributors [topContributors]="topContributors$ | async" isMobileView="true"></app-top-contributors>
+
+            <div class="view-more-action-wrapper" fxLayout="row" fxLayoutAlign="center center">
+              <a [routerLink]="['/stories/contributors']" class="btn uppercase text-center">View More</a>
+            </div>
+          </ng-template>
+        </div>
+        <!-- top contributors end -->
+
+        <!-- videos start -->
+        <div *ngIf="targetContentLink === 'videos'"
+             fxLayout="column"
+             fxLayoutAlign="space-between"
+             class="videos-container"
+        >
+          <div class="spinner"
+                *ngIf="(isVideoStories$ | async); else mobileVideosEle"
+                fxLayout="row"
+                fxLayoutAlign="center"
+          >
+            <app-spinner [width]="50" [height]="50"></app-spinner>
+          </div>
+
+          <ng-template #mobileVideosEle>
+            <app-story-home-videos [videos]="videoStories$ | async"></app-story-home-videos>
+
+            <div class="view-more-action-wrapper" fxLayout="row" fxLayoutAlign="center center">
+              <a [routerLink]="['/stories/all']" class="btn uppercase text-center">View More</a>
+            </div>
+          </ng-template>
+        </div>
+        <!-- videos end -->
+      </div>
+    </div>
+  </div>
+
+  <div ngClass.gt-sm="default-margin">
+    <div class="sign-up-container background-gray-light1" fxLayout="column" fxLayoutAlign="center center">
+      <h2 class="content black-color text-center">
+        Excepteur sint occaecat cupidatat non proident
+      </h2>
+
+      <div>
+        <app-subscribe-form></app-subscribe-form>
+      </div>
+    </div>
+  </div>
+
+  <div class="default-margin full-height"
+       fxLayout="row"
+       fxShow.gt-sm="true"
+       fxHide
+  >
+    <div fxLayout="column"
+         fxLayoutAlign="space-between"
+         fxFlex="50%"
+         class="top-contributors-container"
+    >
+      <div class="spinner"
+           *ngIf="(isTopContributors$ | async); else desktopTopAuthorsEle"
+           fxLayout="row"
+           fxLayoutAlign="center"
+      >
+        <app-spinner [width]="50" [height]="50"></app-spinner>
+      </div>
+
+      <ng-template #desktopTopAuthorsEle>
+        <div class="distinguish-line" fxLayout="column" fxFlex="1 1 auto">
+          <h3 class="block-title gray-dark-color">Top Contributors</h3>
+
+          <app-top-contributors [topContributors]="topContributors$ | async" fxFlex="1 1 auto"></app-top-contributors>
+        </div>
+
+        <div class="view-more-action-wrapper" fxLayout="row" fxLayoutAlign="center center">
+          <a [routerLink]="['/stories/contributors']" class="btn uppercase text-center">View More</a>
+        </div>
+      </ng-template>
+    </div>
+
+    <div fxLayout="column"
+         fxLayoutAlign="space-between"
+         fxFlex="50%"
+         class="videos-container"
+    >
+      <div class="spinner"
+           *ngIf="(isVideoStories$ | async); else desktopVideosEle"
+           fxLayout="row"
+           fxLayoutAlign="center"
+      >
+        <app-spinner [width]="50" [height]="50"></app-spinner>
+      </div>
+
+      <ng-template #desktopVideosEle>
+        <div class="distinguish-line">
+          <h3 class="block-title gray-dark-color">Videos</h3>
+
+          <app-story-home-videos [videos]="videoStories$ | async"></app-story-home-videos>
+        </div>
+
+        <div class="view-more-action-wrapper" fxLayout="row" fxLayoutAlign="center center">
+          <a [routerLink]="['/stories/all']" class="btn uppercase text-center">View More</a>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>

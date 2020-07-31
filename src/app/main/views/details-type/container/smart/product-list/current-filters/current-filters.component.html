@@ -1,0 +1,40 @@
+<div>
+  <div class="current-filter" *ngIf="currentFilters.length || priceRangeValues || ratingRangeValues">
+
+    <div class="wrapper-title">
+      <span class="title">Current Filters</span>
+
+      <div class="icon-block" (click)="clearCurrentFilters()">
+        <span class="clear">clear all</span>
+      </div>
+    </div>
+
+    <app-current-filter
+      *ngIf="priceRangeValues"
+      [description]="'Price ' + priceRangeFilterDescription(priceRangeValues[0], priceRangeValues[1], priceRangeFilter.min, priceRangeFilter.max)"
+      (removeCurrentFilter$)="removePriceRangeFilter()"
+      [icons]="icons">
+    </app-current-filter>
+
+    <app-current-filter
+      *ngIf="ratingRangeValues"
+      [description]="'Rating ' + ratingRangeFilterDescription(ratingRangeValues[0], ratingRangeValues[1], ratingRangeFilter.min, ratingRangeFilter.max)"
+      (removeCurrentFilter$)="removeRatingRangeFilter()"
+      [icons]="icons">
+    </app-current-filter>
+
+    <app-current-filter
+      *ngFor="let filter of currentFilters"
+      [description]="filter.description"
+      (removeCurrentFilter$)="removeCurrentFilter(filter)"
+      [icons]="icons"
+    ></app-current-filter>
+
+    <div class="button-group">
+      <button class="btn clear" (click)="clearCurrentFilters()">{{'clear' | uppercase}}</button>
+      <button class="btn apply-filters active" (click)="hideFiltersSidebar()">{{'apply filters' | uppercase}}</button>
+    </div>
+
+  </div>
+</div>
+

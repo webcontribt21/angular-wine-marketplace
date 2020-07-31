@@ -1,0 +1,41 @@
+.contributor-card-wrapper {
+  min-height: 117px;
+
+  .image-container {
+    width: 110px;
+    height: 110px;
+    margin-right: 27px;
+    margin-bottom: 10px;
+  }
+
+  .description-container {
+    width: calc( 100% - 137px );
+  }
+
+  .name {
+    font-size: 16px;
+  }
+
+  .description {
+    font-size: 20px;
+    // font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* number of lines to show */
+    -webkit-box-orient: vertical;
+    font-family: goodBold;
+    margin-top: 6px;
+  }
+
+  .description-area {
+    margin-right: 10px;
+    width: calc( 100% - 64px );
+  }
+
+  .action {
+    font-size: 12px;
+    padding-top: 10px;
+    width: 54px;
+  }
+}

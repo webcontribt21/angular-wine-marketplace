@@ -1,0 +1,50 @@
+<ng-container>
+  <header class="header">
+
+    <div class="desktop">
+      <div class="left">
+        <div class="logo-wrapper">
+          <a [routerLink]="['/']"><img alt="logo" src="/assets/img/icons/header/logo.svg"></a>
+        </div>
+        <div class="progress">
+          <div class="bar"></div>
+          <div class="steps">
+            <div class="step" [routerLink]="['/checkout/summary']" routerLinkActive="active">
+              <div class="marker"></div>
+              <div class="label">Summary</div>
+            </div>
+            <div class="step" [routerLink]="['/checkout/shipping']" routerLinkActive="active">
+              <div class="marker"></div>
+              <div class="label">Shipping</div>
+            </div>
+            <div class="step" [routerLink]="['/checkout/payment']" routerLinkActive="active">
+              <div class="marker"></div>
+              <div class="label">Payment</div>
+            </div>
+            <div class="step" [routerLink]="['/checkout/confirmation']" routerLinkActive="active">
+              <div class="marker"></div>
+              <div class="label">Confirmation</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="right">
+        <div class="help-info">Need help? Call 087 362 8000</div>
+      </div>
+
+    </div>
+
+    <div class="mobile">
+      <div class="logo-wrapper">
+        <a [routerLink]="['/']"><img alt="logo" src="/assets/img/icons/header/logo.svg"></a>
+      </div>
+      <div class="nav-wrapper">
+        <div class="nav-item" [routerLink]="['/checkout/summary']" routerLinkActive="active">Summary</div>
+        <div class="nav-item" [routerLink]="['/checkout/shipping']" routerLinkActive="active">Shipping</div>
+        <div class="nav-item" [routerLink]="['/checkout/payment']" routerLinkActive="active">Payment</div>
+        <div class="nav-item" [routerLink]="['/checkout/confirmation']" routerLinkActive="active">Confirmation</div>
+      </div>
+    </div>
+
+  </header>
+</ng-container>

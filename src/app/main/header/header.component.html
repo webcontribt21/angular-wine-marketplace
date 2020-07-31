@@ -1,0 +1,172 @@
+<ng-container *ngIf="{
+  itemDetailTypes: itemDetailTypes$ | async,
+  selectNavSection: selectNavSection$ | async,
+  clickedNavSection: clickedNavSection$ | async,
+  isOpenAuthModal: isOpen$ | async,
+  name: name$ | async
+ } as data">
+  <ng-container *ngIf="data.itemDetailTypes as itemDetailTypes">
+    <header class="header-container">
+      <!-- Desktop Start -->
+      <div class="header-desktop" *ngIf="windowWidth > mobileWidth; else mobileEle">
+        <div class="first-wrapper background-white" fxLayout="row">
+          <div class="logo-wrapper">
+            <app-logo></app-logo>
+          </div>
+
+          <div class="search-wrapper" fxFlex="1 1 0px">
+            <app-search-items [search]="icons.SEARCH_DESKTOP" [isOpenSearchItemsModal]="false"></app-search-items>
+          </div>
+
+          <div class="drop-down-city-wrapper">
+            <app-shipping></app-shipping>
+          </div>
+
+          <div class="auth-container" fxLayout="row">
+            <div class="cart-wrapper">
+              <app-cart [cartSummary]="cartSummary$ | async"
+                        [cartQuantity]="cartQuantity$ | async"
+                        [isAuth]="isAuth$ | async"
+                        [isLoading]="cartIsLoading$ | async"
+                        [images]="icons.CART"
+                        (toggleCartModal$)="toggleCartModel($event)"
+                        (removeItemFromCart)="removeItemFromCart($event)"
+              ></app-cart>
+            </div>
+
+            <div class="auth-wrapper">
+              <app-auth-nav [downArrow]="icons.DOWN_ARROW_SMALL"
+                            [upArrow]="icons.UP_ARROW"
+                            [isOpenAuthModal]="data.isOpenAuthModal"
+                            [isMobile]="false"
+                            [name]="data.name"
+                            (toggleAuthModal$)="toggleAuthModal()"
+                            (closeAuthModal$)="closeAuthModal()"
+              ></app-auth-nav>
+            </div>
+
+            <app-auth-modal
+              *ngIf="data.isOpenAuthModal"
+              [isAuth]="!!data.name"
+              (signOut)="logout()"
+              (close)="toggleAuthModal()"
+            ></app-auth-modal>
+          </div>
+        </div>
+
+        <app-nav [itemDetailTypes]="itemDetailTypes"
+                 [selectedCategory]="data.selectNavSection"
+                 [clickedCategory]="data.clickedNavSection"
+                 [items]="items$ | async"
+                 [questionIcon]="icons.QUESTION"
+                 [selectRule]="selectRule"
+                 [isSelectNavSection]="isSelectNavSection$ | async"
+                 [isMobile]="false"
+                 (toggleCategory$)="toggleCategory($event)"
+                 (closeNavMenu$)="closeNavMenu()"
+        ></app-nav>
+      </div>
+      <!-- Desktop End -->
+
+      <!-- Mobile Start -->
+      <ng-template #mobileEle>
+        <div class="header-mobile">
+          <ul class="first-wrapper">
+            <li class="nav-wrapper">
+              <span class="drop-down-menu" (click)="toggleNavMenu()" fxLayout="row" fxLayoutAlign="center center">
+                <!-- <i class="menu">
+                  <img src="{{icons.MENU}}" alt="drop-down-menu">
+                </i> -->
+                <div class="wrap"
+                     [ngClass]="{'change': isShow$ | async}"
+                     fxLayout="column"
+                     fxLayoutAlign="space-between"
+                >
+                  <div class="bar1"></div>
+                  <div class="bar2"></div>
+                  <div class="bar3"></div>
+                </div>
+              </span>
+
+              <span class="logo">
+                <app-logo></app-logo>
+              </span>
+
+              <span class="search">
+                <app-search-items [search]="icons.SEARCH_MOBILE"></app-search-items>
+              </span>
+
+              <!-- <span class="favourites-wrapper">
+                <app-favourites [favouriteItems]="[]"
+                                [isAuth]="isAuth$ | async"
+                                [images]="icons.HEART"
+                                [isOpenFavouriteModal]="false"
+                ></app-favourites>
+              </span> -->
+
+              <span class="cart-wrapper">
+                <app-cart [cartSummary]="cartSummary$ | async"
+                          [cartQuantity]="cartQuantity$ | async"
+                          [isAuth]="isAuth$ | async"
+                          [isLoading]="cartIsLoading$ | async"
+                          [images]="icons.CART"
+                          (toggleCartModal$)="toggleCartModel($event)"
+                          (removeItemFromCart)="removeItemFromCart($event)"
+                ></app-cart>
+              </span>
+
+              <!-- <ng-container *ngIf="cartQuantity$ | async as cartQuantity">
+                <span class="cart-wrapper" *ngIf="cartQuantity">
+                  <app-cart [cartSummary]="cartSummary$ | async"
+                            [cartQuantity]="cartQuantity"
+                            [isAuth]="isAuth$ | async"
+                            [isLoading]="cartIsLoading$ | async"
+                            [images]="icons.CART"
+                            (toggleCartModal$)="toggleCartModel($event)"
+                            (removeItemFromCart)="removeItemFromCart($event)"
+                  ></app-cart>
+                </span>
+              </ng-container> -->
+            </li>
+          </ul>
+
+          <div class="nav holder" *ngIf="isShow$ | async">
+            <app-nav [itemDetailTypes]="itemDetailTypes"
+                     [selectedCategory]="data.selectNavSection"
+                     [clickedCategory]="data.clickedNavSection"
+                     [selectRule]="selectRule"
+                     [isSelectNavSection]="isSelectNavSection$ | async"
+                     [isMobile]="true"
+                     (toggleCategory$)="toggleCategory($event)"
+                     (closeNavMenu$)="closeNavMenu()"
+            ></app-nav>
+
+            <div>
+              <div>
+                <app-auth-nav [downArrow]="icons.DOWN_ARROW_SMALL"
+                              [upArrow]="icons.UP_ARROW"
+                              [isOpenAuthModal]="data.isOpenAuthModal"
+                              [isMobile]="true"
+                              [name]="data.name"
+                              (toggleAuthModal$)="toggleAuthModal()"
+                              (closeAuthModal$)="closeAuthModal()"
+                              (logout$)="logout()"
+                ></app-auth-nav>
+
+                <app-auth-modal
+                  *ngIf="data.isOpenAuthModal"
+                  [isAuth]="!!data.name"
+                  (signOut)="logout()"
+                  (close)="toggleAuthModal()"
+                ></app-auth-modal>
+              </div>
+
+              <app-shipping [downArrow]="icons.DOWN_ARROW_SMALL"></app-shipping>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+      <!-- Mobile End -->
+    </header>
+  </ng-container>
+</ng-container>

@@ -1,0 +1,11 @@
+export const AUTH__LOGIN_REQUEST_SUCCESS = '[AUTH/API] Login request Success';
+export const AUTH__LOGIN_REQUEST = '[AUTH/API] Login request';
+export const AUTH__LOGIN_REQUEST_FAILURE = '[AUTH/API] Login request failure';
+export const AUTH__LOGOUT = '[AUTH] Logout';
+export const AUTH__UI_SET = '[AUTH/UI] Auth ui set data';
+export const AUTH__UI_OPEN_MODAL = '[AUTH/UI] Auth ui open modal';
+export const AUTH__UI_CLOSE_MODAL = '[AUTH/UI] Auth ui close modal';
+export const AUTH__UI_CLOSE_OPENED_MODAL = '[AUTH/UI] AUTH__UI_CLOSE_OPENED_MODAL';
+export const AUTH__UI_TOGGLE_MODAL = '[AUTH/UI] Auth ui toggle modal';
+export const AUTH__REGISTRATION = '[AUTH/API] Auth registration';
+export const AUTH__REGISTRATION_SUCCESS = '[AUTH/API] Auth registration success';

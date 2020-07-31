@@ -1,0 +1,176 @@
+<div class="item" [ngClass]="{'isOnlyPopup': isOnlyPopup, 'showPriceWrapper': isShowPriceWrapper}"
+itemscope
+itemtype="http://schema.org/Product">
+
+  <div class="desktop">
+
+    <a class="image" [ngClass]="{'unavailable': !item.supplier.stockQty}" [routerLink]="['/wines/item/' + item._id + '/' + item.name]" > <!--(click)="viewFullDetails()"-->
+      <img src="{{item.itemImages[0]?.remotePath ? item.itemImages[0]?.remotePath : images.BOTTLE}}" alt="bottle"
+        [ngClass]="{'noImage' :!item.itemImages[0]?.remotePath}"
+        itemprop="image">
+    </a>
+
+    <div class="info-list">
+      <a class="describe" [routerLink]="['/wines/item/' + item._id + '/' + item.name]">
+
+        <div class="names">
+          <span class="year">{{(item.itemDetails | valueDescription: '9') || 'NV'}}</span>
+          <span class="description brand-name" itemprop="brand">{{ item.brand?.name || '' | titlecase }}</span>
+          <span class="title wine-name" itemprop="name">{{ item.name || '' | titlecase }}</span>
+        </div>
+
+        <div class="second-info">
+          <span class="type">{{(item.itemDetails | valueDescription: '3') || 'Wine'}}</span>
+          <span class="from">from</span>
+          <span class="region">{{(item.itemDetails | valueDescription: '6')}},</span>
+          <span class="description country-name">{{ item.country?.name || '' | titlecase }}</span>
+        </div>
+
+        <div class="ratings">
+
+          <ul>
+            <app-rating-info *ngFor="let rating of ratings; index as i" [rating]="rating" (showDetails$)="showDetails()"
+              class="{{'rating' + (i + 1)}} rating">
+            </app-rating-info>
+          </ul>
+
+          <app-rating-modal [hidden]="!isOpenRatingModal" [ratings]="ratings" [item]="item"
+            (closeRatingModal$)="closeRatingModal()"></app-rating-modal>
+
+        </div>
+
+      </a>
+
+    </div>
+
+    <a class="price-wrapper" [ngClass]="{'list': !isSquareStyle}" [routerLink]="['/wines/item/' + item._id + '/' + item.name]"
+      itemprop="offers"
+      itemscope
+      itemtype="http://schema.org/Offer">
+
+      <div class="price-info" *ngIf="(item?.supplier?.soldInMultiplesOf ? item.supplier.soldInMultiplesOf : 0) > 1">
+        Sold only in multiples of
+        {{item?.supplier?.soldInMultiplesOf}} bottles
+      </div>
+
+      <span class="info-to-price" [ngClass]="{'unavailable': !item.supplier.stockQty}">
+        {{item.supplier.stockQty ? ' ' : 'Last sold at'}}
+      </span>
+
+      <span class="price" [ngClass]="{'unavailable': !item.supplier.stockQty}">
+        {{ "R" | uppercase }}
+        {{item.price | number}}
+        <meta itemprop="url" content="https://port2port.wine/wines/item/{{item._id}}/{{item.name}}" />
+        <meta itemprop="priceCurrency" content="ZAR" />
+        <meta itemprop="price" content="{{ item.price }}" />
+      </span>
+
+    </a>
+
+    <div class="control">
+
+      <ng-container *ngTemplateOutlet="item.supplier.stockQty ? stockWrapper : unavailableWrapperInfoStock">
+      </ng-container>
+
+      <app-pay-item-control class="pay-item-control" [item]="item" [isAdded]="isAdded" [isSquareStyle]="isSquareStyle"
+        (addItemToCart$)="addItemToCart($event)" (showAvailableVintages$)="showAvailableVintages()">
+      </app-pay-item-control>
+
+      <!-- <a class="add-to-my-wine">Add to 'My Wine'</a> -->
+
+    </div>
+
+  </div>
+
+  <div class="mobile">
+
+    <div class="info">
+
+      <div class="image" [ngClass]="{'unavailable': !item.supplier.stockQty}" (click)="viewFullDetails()">
+        <img src="{{item.itemImages[0]?.remotePath ? item.itemImages[0]?.remotePath : images.BOTTLE}}" alt="bottle"
+          [ngClass]="{'noImage' :!item.itemImages[0]?.remotePath}">
+      </div>
+
+      <div class="info-list">
+
+        <div class="describe">
+
+          <div class="names">
+            <span class="description brand-name">{{ item.brand?.name + ',' | titlecase }}</span>
+            <span class="title wine-name">{{ item.name + ',' | titlecase }}</span>
+            <span class="year">{{item.schedule_date | date}}</span>
+          </div>
+
+          <div class="second-info">
+            <span class="type">Type</span>
+            <span class="from">from</span>
+            <span class="appellation">Appellation,</span>
+            <span class="region">Region,</span>
+            <span class="description country-name">{{ item.country?.name | titlecase }}</span>
+          </div>
+
+          <div class="ratings">
+            <ul>
+              <app-rating-info *ngFor="let rating of ratings; index as i" [rating]="rating"
+                (showDetails$)="showDetails()" class="{{'rating' + (i + 1)}} rating">
+              </app-rating-info>
+            </ul>
+
+            <app-rating-modal [hidden]="!isOpenRatingModal" [ratings]="ratings" [item]="item"
+              (closeRatingModal$)="closeRatingModal()"></app-rating-modal>
+          </div>
+
+        </div>
+
+        <div class="control">
+          <ng-container *ngTemplateOutlet="item.supplier.stockQty ? stockWrapper : unavailableWrapperInfoStock">
+          </ng-container>
+        </div>
+
+        <div class="price-wrapper" [ngClass]="{'list': !isSquareStyle}">
+
+          <span class="info-to-price" [ngClass]="{'unavailable': !item.supplier.stockQty}">
+            {{item.supplier.stockQty ? 'From' : 'Last sold at'}}
+          </span>
+
+          <span class="price" [ngClass]="{'unavailable': !item.supplier.stockQty}">
+            {{ "R" | uppercase }}
+            {{item.price | number : '2.2-2'}}
+          </span>
+
+          <div class="price-info" *ngIf="(item?.supplier?.soldInMultiplesOf ? item.supplier.soldInMultiplesOf : 0) > 1">
+            Sold only in multiples of
+            {{item?.supplier?.soldInMultiplesOf}} bottles
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="control">
+
+      <app-pay-item-control class="pay-item-control" [item]="item" [isAdded]="isAdded" [isSquareStyle]="isSquareStyle"
+        (addItemToCart$)="addItemToCart($event)" (showAvailableVintages$)="showAvailableVintages()">
+      </app-pay-item-control>
+
+    </div>
+
+  </div>
+
+</div>
+
+<ng-template #stockWrapper>
+  <a class="inStock" [routerLink]="['/wines/item/' + item._id + '/' + item.name]">
+    <img src="{{images.LITTLE_BOTTLE}}" alt="little_bottle">
+    <span class="count">{{item.supplier.stockQty}}</span>
+    <span class="text">{{' in stock' | uppercase}}</span>
+  </a>
+</ng-template>
+
+<ng-template #unavailableWrapperInfoStock>
+  <!-- <div class="unavailableWrapper">
+    <span>{{'currently unavailable' | uppercase}}</span>
+  </div> -->
+</ng-template>

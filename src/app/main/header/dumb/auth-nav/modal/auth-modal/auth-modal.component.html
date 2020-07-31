@@ -1,0 +1,31 @@
+<div class="auth-modal dark2-color">
+  <div *ngIf="isAuth; else authModal"
+      class="auth-navigations"
+      fxLayout="column"
+      fxLayoutAlign="start"
+  >
+    <a (click)="navigate('/dashboard')">Dashboard</a>
+    <a (click)="navigate('/user/profile')">Profile</a>
+    <a (click)="navigate('/user/address-book')">Address Book</a>
+    <a (click)="navigate('/user/order-history')">Order History</a>
+    <a (click)="navigate('/user/email-preferences')">Email Preferences</a>
+    <a (click)="navigate('/help')">Help Center</a>
+    <hr class="brown-light1-color" />
+    <a (click)="logout()">Logout</a>
+  </div>
+
+  <ng-template #authModal>
+    <div class="sign-navigations"
+        fxLayout="column"
+        fxLayoutAlign="start"
+    >
+      <button [routerLink]='["/auth/sign_in"]'>
+        <span>sign in</span>
+      </button>
+      <span class="info">
+      <span class="pb-2">New customer?</span>
+        <a [routerLink]='["/auth/sign_up"]' class="link">Sign up</a>
+      </span>
+    </div>
+  </ng-template>
+</div>

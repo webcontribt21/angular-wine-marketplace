@@ -1,0 +1,19 @@
+<div class="cart" (click)="toggleCartMenu()" [ngClass]="{open: isOpenCartModal}">
+  <div class="wrapper">
+    <div class="cart-icon">
+      <img src="{{images.CART}}" alt="cart">
+    </div>
+
+    <div class="cart-circle-icon">
+      <!-- <img src="{{isAuth ? images.CIRCLE : images.CIRCLE_UN_AUTH}}" alt="circle"> -->
+      <img src="{{isAuth ? images.CIRCLE_UN_AUTH : images.CIRCLE_UN_AUTH}}" alt="circle">
+      <div class="count-items">
+        {{ cartQuantity ? cartQuantity : 0 }}
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-cart-modal *ngIf="isOpenCartModal" [cartSummary]="cartSummary" [isAuth]="isAuth" [isLoading]="isLoading"
+  (removeItemFromCart)="modalRemoveItemFromCart($event)">
+</app-cart-modal>

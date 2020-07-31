@@ -1,0 +1,327 @@
+@import "variables";
+
+$button-background: #292F33;
+$button-text-color: #fff;
+$button-font-size: 12px;
+$gold-drop-down: '/assets/img/icons/form/goldDownArrow.png';
+$wrong: '/assets/img/icons/form/wrong.svg';
+
+@-webkit-keyframes autofill {
+  to {
+    background-image:url($gold-drop-down);
+  }
+}
+
+.form {
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  padding: 51px 65px 40px 65px;
+  display: flex;
+  flex-direction: column;
+
+  span {
+    letter-spacing: 0;
+
+    &.title {
+      font-size: 22px;
+      font-weight: bold;
+      color: #292F33;
+      margin-bottom: 12px;
+    }
+
+    &.description {
+      color: #919191;
+      font-size: 12px;
+
+      .network {
+        font-weight: bold;
+      }
+
+      .network, .docs {
+        margin: 0 3px;
+      }
+    }
+
+    .information {
+      color: #919191;
+      font-size: 12px;
+      text-align: left;
+      padding: 0 0 17px 0;
+
+      .docs {
+        margin: 0 3px;
+
+        a {
+          color: #919191;
+          text-decoration: underline;
+        }
+      }
+    }
+
+  }
+
+  .group-wrapper-name, .group-wrapper-password {
+    display: flex;
+    flex-direction: row;
+
+    .form-group:first-child {
+      margin-right: 10px;
+    }
+
+    input {
+      max-width: 270px;
+    }
+  }
+
+  .form-group, .button-group {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    padding: 13px 0 0;
+    position: relative;
+
+    label {
+      color: #30363A;
+      font-size: 15px;
+      margin-bottom: 12px;
+    }
+
+    input {
+      background-repeat: no-repeat;
+      background-position: center right 22px;
+      border: 1px solid #30363A;
+      padding: 17px 20px;
+      font-size: 14px;
+      font-family: Arial, sans-serif;
+      letter-spacing: 0;
+      color: #919191;
+      outline: none;
+
+      &.ng-invalid {
+        border: 1px solid #753d3c;
+        background-image: url($wrong);
+      }
+
+      &.ng-valid {
+        background-image: url($gold-drop-down);
+        border: 1px solid #B98754;
+      }
+
+      &.ng-untouched {
+        background-image: none;
+        border: 1px solid #30363A;
+      }
+
+      &:focus {
+        border: 1px solid #a3a6a7;
+      }
+
+      &:-webkit-autofill,
+      &:-webkit-autofill:hover,
+      &:-webkit-autofill:focus,
+      &:-webkit-autofill:active {
+        -webkit-text-fill-color: #919191 !important;
+        -webkit-box-shadow: 0 0 0 30px white inset !important;
+        background-color: white !important;
+        background-image: url($gold-drop-down) !important;
+        background-position: center right 22px !important;
+        background-repeat: no-repeat !important;
+        color: #919191 !important;
+        -webkit-animation-name: autofill;
+        -webkit-animation-fill-mode: both;
+      }
+
+    }
+
+    &.form-check {
+      flex-direction: row;
+      align-items: center;
+      padding-bottom: 20px;
+      padding-top: 20px;
+
+      input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        min-width: 15px;
+      }
+
+      .checkmark {
+        top: 0;
+        left: 0;
+        width: 15px;
+        height: 15px;
+        border: 1px solid #919191;
+        border-radius: 20px;
+        margin: 0 7px 0 0;
+        background-color: #eee;
+
+        &:after {
+          content: "";
+          top: 4px;
+          left: 4px;
+          width: 5px;
+          height: 5px;
+          background: #000000 0% 0% no-repeat padding-box;
+          border-radius: 20px;
+          position: relative;
+        }
+      }
+
+      input:checked ~ .checkmark {
+        background: #ffffff;
+      }
+
+      input:checked ~ .checkmark:after {
+        display: block;
+      }
+
+      .form-radio-label {
+        font-size: 12px;
+        margin: 0;
+      }
+    }
+
+    label.form-radio-label {
+      color: #919191;
+      letter-spacing: 0;
+      font-size: 12px;
+      text-align: left;
+    }
+  }
+
+  .switcher-type-password, .error {
+    position: absolute;
+    right: 0;
+    font-size: 14px;
+  }
+
+  .switcher-type-password {
+    color: #B98754;
+    cursor: pointer;
+  }
+
+  .error {
+    top: 16px;
+    font-size: 12px;
+    color: #753d3c;
+  }
+
+  .group-wrapper-password {
+    .error {
+      position: relative;
+      top: 0;
+      max-width: 170px;
+      margin-top: 12px;
+    }
+  }
+
+  .button-group {
+    padding-top: 20px;
+  }
+
+  hr {
+    display: block;
+    border: 0;
+    height: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .bottom-info {
+    text-align: center;
+    color: #919191;
+    font-size: 12px;
+    padding-top: 10px;
+
+    a {
+      padding-left: 5px;
+      color: #919191;
+      text-decoration: underline;
+    }
+  }
+
+  .btn {
+    background: $button-background 0% 0% no-repeat padding-box;
+    padding: 15px 27px;
+    border: none;
+    cursor: pointer;
+    outline: 0;
+    width: 100%;
+    max-width: 100%;
+
+    &:disabled {
+      background-color: #e0e0e0;
+      cursor: not-allowed;
+    }
+
+    span {
+      color: $button-text-color;
+      font-size: $button-font-size;
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 0.9px;
+    }
+  }
+
+  @media all and (max-width: $mobile) {
+    padding: 51px 29px 0;
+    display: block;
+
+    hr {
+      display: none;
+    }
+
+    span {
+      &.title {
+        display: block;
+      }
+    }
+
+    .wrapper-info {
+      padding-bottom: 20px;
+
+      div.information {
+        font-size: 14px;
+        opacity: 0.8;
+      }
+    }
+
+    .group-wrapper-name {
+      display: block;
+
+      .form-group {
+
+        &:first-child {
+          margin: 0;
+        }
+
+        input {
+          max-width: 100%;
+        }
+      }
+    }
+
+    .group-wrapper-password {
+      display: block;
+
+      .form-group {
+        &:first-child {
+          margin: 0;
+        }
+
+        input {
+          max-width: 100%;
+        }
+      }
+    }
+
+
+    .btn {
+      padding: 18px 27px;
+    }
+
+    .bottom-info {
+      display: none;
+    }
+  }
+}

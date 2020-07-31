@@ -1,0 +1,29 @@
+<div class="story-contributor-wrapper">
+  <div class="spinner"
+       *ngIf="(isAllAuthors$ | async); else authorsEle"
+       fxLayout="row"
+       fxLayoutAlign="center"
+  >
+    <app-spinner [width]="50" [height]="50"></app-spinner>
+  </div>
+
+  <ng-template #authorsEle>
+    <div class="header-wrapper">
+      <app-story-category-header [title]="'Contributors'"
+                                 [subTitle]="'Every Port2Port post.'"
+                                 [sortValue]="sort$ | async"
+                                 (sort)="onSort($event)"
+      ></app-story-category-header>
+    </div>
+
+    <div class="body-wrapper" *ngIf="(allAuthors$ | async)?.length > 0; else noDataEle">
+      <app-authors [authors]="allAuthors$ | async"></app-authors>
+    </div>
+
+    <ng-template #noDataEle>
+      <div fxLayout="row" fxLayoutAlign="center center">
+        No Article
+      </div>
+    </ng-template>
+  </ng-template>
+</div>

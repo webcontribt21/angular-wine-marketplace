@@ -1,0 +1,18 @@
+.user-container {
+  &.mobile {
+    .page-container {
+      padding-top: 177px;
+    }
+  }
+
+  .second-nav-wrapper {
+    position: fixed;
+    width: 100%;
+    background: white;
+    z-index: 200;
+  }
+
+  .page-container {
+    padding-top: 62px;
+  }
+}

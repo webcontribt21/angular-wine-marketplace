@@ -1,0 +1,15 @@
+<div class="user-order-list-wrapper">
+  <div class="item" *ngFor="let item of orderSummaries$ | async">
+    <div class="spinner"
+         *ngIf="item.isLoadingOrderSummary; else orderSummaryEle"
+         fxLayout="row"
+         fxLayoutAlign="center"
+    >
+      <app-spinner [width]="50" [height]="50"></app-spinner>
+    </div>
+
+    <ng-template #orderSummaryEle>
+      <app-order-details [orderSummary]="item.orderSummary"></app-order-details>
+    </ng-template>
+  </div>
+</div>

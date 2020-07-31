@@ -1,0 +1,17 @@
+<ng-container *ngIf="!noContentWithCount">
+  <div
+    class="wrapper-description"
+    (click)="toggle()"
+    [ngClass]="{active: isPanelOpen}"
+  >
+    <span class="description">{{title}}</span>
+    <div class="icon-block">
+      <i class="arrow-icon">
+        <img src="{{ isPanelOpen ? icons.MINUS : icons.PLUS }}" alt="cancel">
+      </i>
+    </div>
+  </div>
+  <div [hidden]="!isPanelOpen" class="content-wrapper">
+    <ng-content></ng-content>
+  </div>
+</ng-container>

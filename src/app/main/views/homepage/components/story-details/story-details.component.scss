@@ -1,0 +1,25 @@
+.story-details {
+  display: block;
+  height: 440px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  > .p-grid {
+    height: 100%;  
+  }
+
+  .details-title {
+    letter-spacing: 1.76px;
+    margin-bottom: 20px;
+    font-size: 40px;
+  }
+
+  .details-subtitle {
+    font-size: 15px;
+    letter-spacing: 0;
+    max-width: 300px;
+    margin: 0 auto;
+    font-family: goodProLight, sans-serif;;
+  }
+}

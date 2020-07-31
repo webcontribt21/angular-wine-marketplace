@@ -1,0 +1,102 @@
+<div class="story-article-container gray-dark-color"
+  itemscope
+  itemtype="http://schema.org/Article">
+  <div class="spinner"
+       *ngIf="(isArticle$ | async); else articleEle"
+       fxLayout="row"
+       fxLayoutAlign="center"
+  >
+    <app-spinner [width]="50" [height]="50"></app-spinner>
+  </div>
+
+  <ng-template #articleEle>
+    <div class="breadscrumbs-container">
+      <app-breadscrumbs [breadscrumbs]="breadscrumbs"></app-breadscrumbs>
+    </div>
+
+    <div class="article-description-container" fxLayout="row" fxLayoutAlign="center">
+      <div class="content-wrapper">
+        <div class="item">
+          <app-article-description [title]="(article$ | async)?.title"
+                                   [titleShort]="(article$ | async)?.titleShort"
+                                   [tagline]="(article$ | async)?.tagline"
+                                   [authorName]="(article$ | async)?.author?.name"
+                                   [date]="(article$ | async)?.dateCreated"
+          ></app-article-description>
+        </div>
+      </div>
+    </div>
+
+    <div class="descriptor-container">
+      <app-image-descriptor [desktopImageUrl]="(article$ | async)?.desktopImageUrl"
+                            [mobileImageUrl]="(article$ | async)?.mobileImageUrl"
+                            [description]=""
+                            [category]=""
+      ></app-image-descriptor>
+    </div>
+
+    <div class="content-area" fxLayout="row" fxLayoutAlign="center">
+      <div class="content-wrapper">
+        <app-article-content [content]="(article$ | async)?.body"></app-article-content>
+      </div>
+    </div>
+
+    <div class="spinner"
+        *ngIf="(isRelatedWines$ | async); else winesEle"
+        fxLayout="row"
+        fxLayoutAlign="center"
+    >
+      <app-spinner [width]="50" [height]="50"></app-spinner>
+    </div>
+
+    <ng-template #winesEle>
+      <div class="wines-carousel-container" fxLayout="row" fxLayoutAlign="center">
+        <div>
+          <app-wines-carousel [defaultSlidesToShow]="5"
+            [wines]="relatedWines$ | async"
+            [asRelatedItems]="true"
+          ></app-wines-carousel>
+        </div>
+      </div>
+    </ng-template>
+
+    <div
+      class="spinner"
+      *ngIf="(isRelatedArticles$ | async); else relatedStoriesEle"
+      fxLayout="row"
+      fxLayoutAlign="center"
+    >
+      <app-spinner [width]="50" [height]="50"></app-spinner>
+    </div>
+
+    <ng-template #relatedStoriesEle>
+      <div class="related-stories-container">
+        <div
+          class="story-item"
+          fxFlex="25%"
+          fxFlex.lt-xl="33.33%"
+          fxFlex.lt-lg="50%"
+          fxFlex.lt-md="100%"
+          *ngFor="let article of relatedArticles$ | async"
+        >
+          <app-article-card
+            [article]="article"
+            imgHeightPercent="h-article"
+          ></app-article-card>
+        </div>
+      </div>
+    </ng-template>
+
+    <div class="img-carousel-container"
+      *ngIf="(article$ | async)?.articleMedia && (article$ | async)?.articleMedia.length > 0"
+    >
+      <app-article-image-carousel [medias]="(article$ | async)?.articleMedia"></app-article-image-carousel>
+    </div>
+
+    <!--
+    <div class="next-story" fxLayout="row" fxLayoutAlign="center">
+      <button class="btn gray-dark-color">Next Story: Lorem Ipsum Dolor Sit Amet <strong><i class="pi pi-chevron-right"></i></strong></button>
+    </div>
+    -->
+  </ng-template>
+</div>

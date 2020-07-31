@@ -1,0 +1,46 @@
+.otherWines .wines-carousel-wrapper {
+  margin-left: 25px;
+  margin-right: 25px;
+}
+
+.wines-carousel-wrapper {
+  margin-left: 50px;
+  margin-right: 50px;
+
+  @media all and (max-width: 640px) {
+    margin: 0px;
+  }
+
+  .slick-arrow {
+    width: 18px;
+    height: 18px;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .next {
+    right: -30px !important;
+  }
+
+  .previous {
+    left: -30px !important;
+  }
+
+  .slide.slick-slide {
+    &.slick-active {
+      .wine-details-wrapper {
+        opacity: 1;
+        background-color: transparent;
+      }
+    }
+
+    .wine-details-wrapper {
+      opacity: 0.33;
+      background-color: var(--dark2-third-opacity-color);
+      transition: all 1s ease;
+      -webkit-transform: all 1s ease;
+    }
+  }
+}

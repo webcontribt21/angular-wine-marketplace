@@ -1,0 +1,51 @@
+@import "variables";
+
+.paginator-wrapper {
+  .pagination {
+    margin: 0;
+
+    &.ui-paginator {
+      display: inline-block;
+    }
+
+    .ui-paginator-first,
+    .ui-paginator-last {
+      display: none;
+    }
+
+    .ui-paginator-icon {
+      font-size: 2em;
+      color: $grayLight;
+    }
+
+    .ui-paginator-prev {
+      .pi-caret-left:before {
+        content: "\e931";
+      }
+    }
+
+    .ui-paginator-next {
+      .pi-caret-right:before {
+        content: "\e932";
+      }
+    }
+
+    .ui-paginator-pages {
+      .ui-paginator-page {
+        color: $buttonDisabled;
+        background-color: transparent;
+        margin: 0 12px;
+        min-width: unset;
+
+        &:hover {
+          background-color: transparent;
+        }
+
+        &.ui-state-active {
+          color: $grayLight;
+          background-color: transparent;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,52 @@
+@import "variables";
+
+.switcher-unavailable-wines {
+  display: flex;
+  align-items: center;
+
+  .count {
+    color: #3F3A39;
+    opacity: 0.5;
+    font-size: 12px;
+    font-weight: bold;
+    margin-right: 20px;
+    height: 20px;
+  }
+
+  .info {
+    width: 140px;
+    font-size: 13px;
+    font-weight: 600;
+    margin-right: 7px;
+    opacity: 0.7;
+    height: 20px;
+    letter-spacing: normal;
+  }
+
+  &.mobile {
+    display: none;
+  }
+
+  @media all and (max-width: $table) {
+    &.desktop {
+      display: none;
+    }
+
+    &.mobile {
+      display: flex;
+
+      .btn.active {
+        border: 0px;
+      }
+
+      .btn {
+        &:first-child {
+          border-right: none;
+        }
+
+        max-width: none;
+        font-size: 14px;
+      }
+    }
+  }
+}

@@ -1,0 +1,164 @@
+@import "variables";
+
+.homepage-container {
+  margin-left: 60px;
+  margin-right: 60px;
+
+  &.mobile {
+    margin-left: 30px;
+    margin-right: 30px;
+
+    .top-banner-container {
+      margin-left: -30px;
+      margin-right: -30px;
+      min-height: 355px;
+    }
+
+    .story-details {
+      height: 340px;
+
+      .details-title {
+        font-size: 22px;
+        margin-bottom: 15px;
+      }
+    }
+
+    .carousel-wrapper {
+      .next {
+        right: 10px;
+      }
+
+      .previous {
+        left: 10px;
+      }
+    }
+
+    .wines-carousel-container {
+      margin: 30px -30px 0;
+
+      .wines-carousel-wrapper {
+        margin-left: 30px;
+        margin-right: 30px;
+      }
+    }
+
+    .adverts-wrapper {
+      .slick-slide {
+        opacity: 0.5;
+
+        &:last-child {
+          .slider-wrapper {
+            margin-right: 0;
+          }
+        }
+
+        &.slick-current {
+          .slider-wrapper {
+            margin-left: 0;
+          }
+        }
+      }
+
+      .slick-current {
+        opacity: 1;
+      }
+    }
+
+    .top-banner-wrapper {
+      height: 380px;
+
+      .title {
+        font-size: 27px;
+      }
+
+      .description-wrapper {
+        padding: 10px 30px 10px !important;
+
+        .information {
+          max-width: unset !important;
+
+          @media all and (max-width: $mobile) {
+            align-items: center !important;
+          }
+        }
+      }
+    }
+
+    .hompage-area {
+      .title {
+        font-size: 17px;
+        margin-right: 1em;
+
+        @media all and (max-width: $mobile) {
+        letter-spacing: -1px;
+        }
+      }
+
+      .view-more {
+        font-size: 11px;
+      }
+    }
+  }
+
+  .spinner {
+    margin: 145px auto 0 auto;
+  }
+
+  .top-banner-container {
+    margin-left: -60px;
+    margin-right: -60px;
+    min-height: 455px;
+  }
+
+  .adverts-container {
+    margin-top: 40px;
+    margin-bottom: 50px;
+    min-height: 135px;
+  }
+
+  .title {
+    font-size: 22px;
+    margin: 0;
+  }
+
+  .view-more {
+    font-size: 12px;
+    color: inherit;
+  }
+
+  .wines-carousel-container {
+    margin: 30px -60px 0;
+  }
+
+  .mid-articles-container,
+  .story-block-container {
+    margin-top: 50px;
+    margin-bottom: 50px;
+
+    @media all and (max-width: $mobile) {
+      margin-bottom: 30px;
+      margin-top: 30px;
+    }
+
+  }
+
+  .mid-articles-container {
+    .title-wrapper {
+      margin-bottom: 35px;
+    }
+  }
+
+  .latest-stories-wrapper {
+    .slick-slide {
+      &:last-child {
+        .slider-wrapper {
+          margin-right: 0;
+        }
+      }
+    }
+
+    .slider-wrapper {
+      margin-right: 20px;
+    }
+  }
+}

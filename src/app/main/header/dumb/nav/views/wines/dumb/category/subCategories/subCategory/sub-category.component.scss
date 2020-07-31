@@ -1,0 +1,26 @@
+$brown: #3F3A39;
+
+li.type-value {
+
+  a {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 0 0;
+    cursor: pointer;
+    width: 100%;
+  }
+
+  a, .count {
+    text-decoration: none;
+    outline: 0;
+    font-weight: normal;
+    font-size: 14px;
+    color: $brown;
+    vertical-align: top;
+    opacity: 0.9;
+  }
+
+  .count {
+    font-size: 12px;
+  }
+}

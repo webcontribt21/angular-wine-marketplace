@@ -1,0 +1,22 @@
+.breadscrumbs-wrapper {
+  font-size: 12px;
+
+  ul {
+    margin: 0;
+  }
+
+  .split {
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+
+  a {
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .color-gray-light2 {
+    opacity: 0.5;
+  }
+}

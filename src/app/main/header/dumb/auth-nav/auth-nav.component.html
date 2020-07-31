@@ -1,0 +1,16 @@
+<ng-container>
+  <div class="full-height" (appClickOutside)="clickOutside()">
+    <div
+      class="auth-wrapper"
+      (click)="toggleAuthMenu()"
+      [ngClass]="{open: isOpenAuthModal}"
+    >
+      <span>{{ !!name ? name : 'Sign in' }}</span>
+      <div class="icon-block">
+        <i class="arrow-icon">
+          <img src="{{ isOpenAuthModal ? upArrow : downArrow}}" alt="arrow">
+        </i>
+      </div>
+    </div>
+  </div>
+</ng-container>

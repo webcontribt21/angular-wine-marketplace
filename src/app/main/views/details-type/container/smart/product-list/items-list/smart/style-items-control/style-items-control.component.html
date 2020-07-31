@@ -1,0 +1,28 @@
+<div class="switch-style-list">
+
+  <span
+    class="toSquare"
+    [ngClass]="{'active' : isSquareStyle }"
+    (click)="toggleStyle()"
+  >
+    <i class="pi pi-th-large" style="font-size: 1.2em"></i>
+  </span>
+
+  <span
+    class="toList"
+    [ngClass]="{'active' : !isSquareStyle }"
+    (click)="toggleStyle()"
+  >
+    <i class="pi pi-bars" style="font-size: 1.2em"></i>
+  </span>
+
+  <span class="multi" (click)="toggleStyle()">
+    <i
+      class="pi"
+      style="font-size: 1.2em"
+      [ngClass]="{'pi-th-large': !isSquareStyle, 'pi-bars': isSquareStyle}"
+    >
+    </i>
+  </span>
+
+</div>

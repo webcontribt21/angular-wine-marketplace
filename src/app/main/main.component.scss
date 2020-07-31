@@ -1,0 +1,49 @@
+@import "variables";
+
+@supports (-moz-appearance:none) {
+  .container {
+    flex-direction: column !important;
+  }
+}
+
+.sub_holder {
+  width: 100%;
+}
+
+.container {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  margin: 0 auto;
+  max-width: 1920px;
+
+  &>* {
+    flex: 1 100%;
+  }
+
+  main {
+    // min-height: 884px;
+    padding-top: 110px;
+    width: 100%;
+    ;
+  }
+
+  .header {
+    position: fixed;
+    top: 0;
+    z-index: 900;
+    width: 100%;
+    max-width: 1920px;
+  }
+
+  @media all and (max-width: $mobile) {
+    .header {
+      position: relative;
+    }
+
+    main {
+      padding-top: 0px;
+    }
+  }
+
+}

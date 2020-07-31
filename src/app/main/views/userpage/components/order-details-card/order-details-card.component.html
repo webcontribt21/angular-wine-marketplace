@@ -1,0 +1,52 @@
+<div class="order-details-card-wrapper">
+  <h2 class="number gray-dark-color">Your Order</h2>
+
+  <div class="sub-total" fxLayout="row" fxLayoutAlign="space-between">
+    <div class="label gray-light-color">Sub Total</div>
+    <div class="value black-color" *ngIf="data.subTotalAmount">R{{ data?.subTotalAmount }}</div>
+  </div>
+
+  <div class="deliver-shipment1" fxLayout="row" fxLayoutAlign="space-between">
+    <div class="label">Deliver: Shipment1</div>
+    <div class="value black-color" *ngIf="data.shipments[0]">
+      {{ !data.shipments[0].courierDeliveryCharge ? 'Free' : 'R' + data.shipments[0].courierDeliveryCharge }}
+    </div>
+  </div>
+
+  <hr class="brown-lighter-border-color" />
+
+  <div class="" fxLayout="row" fxLayoutAlign="space-between">
+    <div class="label">Deliver Total</div>
+    <!-- <div class="value">R{{ data?.deliverTotal }}</div> -->
+  </div>
+
+  <!--
+  <div class="consolidated-gift" fxLayout="row" fxLayoutAlign="space-between">
+    <div class="label">Consolidated Gift</div>
+    <div class="value">R{{ data?.gift }}</div>
+  </div>
+  -->
+
+  <div class="discount-color" fxLayout="row" fxLayoutAlign="space-between">
+    <div class="label">Discount </div>
+    <!-- <div class="value">-R{{ data?.discount }}</div> -->
+  </div>
+
+  <hr class="brown-lighter-border-color" />
+
+  <div class="order-total" fxLayout="row" fxLayoutAlign="space-between">
+    <div class="label">Order Total</div>
+    <div class="value black-color" *ngIf="data.orderTotalAmount">R{{ data?.orderTotalAmount }}</div>
+  </div>
+
+  <hr class="brown-lighter-border-color" />
+
+  <div class="amount-outstanding black-color" fxLayout="row" fxLayoutAlign="space-between">
+    <div class="label">Amount outstanding</div>
+    <div class="value" *ngIf="data.outstandingAmount">R{{ data?.outstandingAmount }}</div>
+  </div>
+
+  <hr class="brown-lighter-border-color" />
+
+  <div class="download-invoice-action brown-color">Download invoice</div>
+</div>

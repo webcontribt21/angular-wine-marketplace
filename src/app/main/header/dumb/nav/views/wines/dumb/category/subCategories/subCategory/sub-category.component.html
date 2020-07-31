@@ -1,0 +1,7 @@
+<li class="type-value">
+  <a [routerLink]="['/' + RootRouter.WINES, itemDetailTypeValue.description | urlfriendly]"
+    (click)="close()">
+    <span>{{itemDetailTypeValue.description}}</span>
+    <span class="count">{{itemDetailTypeValue.count}}</span>
+  </a>
+</li>

@@ -1,0 +1,123 @@
+<div class="homepage-container dark2-color" ngClass.lt-md="mobile">
+  <!-- <div class="stories-carousel-container">
+    <div class="spinner"
+         *ngIf="(isTopArticles$ | async); else topArticleEle"
+         fxLayout="row"
+         fxLayoutAlign="center"
+    >
+      <app-spinner [width]="50"
+                   [height]="50"
+                   [strokeWidth]="4"
+                   [fill]="'#EEEEEE'"
+                   [animationDuration]="'1s'"
+      ></app-spinner>
+    </div>
+    <ng-template #topArticleEle>
+      <app-stories-carousel [articles]="topArticles$ | async"></app-stories-carousel>
+    </ng-template>
+  </div> -->
+
+  <div class="top-banner-container">
+    <div class="spinner"
+         *ngIf="((isBannerDetail$ | async) && (isBannerMobileDetail$ | async)); else topBannerEle"
+         fxLayout="row"
+         fxLayoutAlign="center"
+    >
+      <app-spinner [width]="50" [height]="50"></app-spinner>
+    </div>
+
+    <ng-template #topBannerEle>
+      <app-top-banner [detail]="bannerDetail$ | async" [mobileDetail]="bannerMobileDetail$ | async"></app-top-banner>
+    </ng-template>
+  </div>
+
+  <div class="adverts-container">
+    <div class="spinner"
+         *ngIf="(isTopAdvertsContents$ | async); else topAdvertsEle"
+         fxLayout="row"
+         fxLayoutAlign="center"
+    >
+      <app-spinner [width]="50" [height]="50"></app-spinner>
+    </div>
+
+    <ng-template #topAdvertsEle>
+      <app-adverts [adverts]="topAdvertsContents$ | async"></app-adverts>
+    </ng-template>
+  </div>
+
+  <div class="spinner"
+       *ngIf="(isFeaturedWines$ | async); else topFeaturedWines"
+       fxLayout="row"
+       fxLayoutAlign="center"
+  >
+    <app-spinner [width]="50" [height]="50"></app-spinner>
+  </div>
+
+  <ng-template #topFeaturedWines>
+    <div class="wines-content hompage-area">
+      <div fxLayout="row" fxLayoutAlign="space-between">
+        <h2 class="title">Featured wines of the week</h2>
+      </div>
+    </div>
+
+    <div class="wines-carousel-container">
+      <app-wines-carousel [wines]="featuredWines$ | async"></app-wines-carousel>
+    </div>
+  </ng-template>
+
+  <div class="mid-articles-container">
+    <div class="spinner"
+         *ngIf="(isMidArticles$ | async); else midArticlesEle"
+         fxLayout="row"
+         fxLayoutAlign="center"
+    >
+      <app-spinner [width]="50" [height]="50"></app-spinner>
+    </div>
+
+    <ng-template #midArticlesEle>
+      <div class="title-wrapper hompage-area" fxLayout="row" fxLayoutAlign="space-between">
+        <h2 class="title">Latest Stories</h2>
+        <a style="z-index: 1;" routerLink="/stories/home" class="uppercase view-more" fxLayout="row" fxLayoutAlign="start end">View More</a>
+      </div>
+
+      <app-latest-stories [midArticles]="midArticles$ | async"></app-latest-stories>
+    </ng-template>
+  </div>
+
+  <div class="spinner"
+       *ngIf="(isPopularWines$ | async); else popularWinesEle"
+       fxLayout="row"
+       fxLayoutAlign="center"
+  >
+    <app-spinner [width]="50" [height]="50"></app-spinner>
+  </div>
+
+  <ng-template #popularWinesEle>
+    <div class="wines-content hompage-area">
+      <div fxLayout="row" fxLayoutAlign="space-between">
+        <h2 class="title">Popular wines of the week</h2>
+        <a style="z-index: 1;" routerLink="/wines" class="uppercase view-more" fxLayout="row" fxLayoutAlign="start end">View More</a>
+      </div>
+    </div>
+
+    <div class="wines-carousel-container">
+      <app-wines-carousel [wines]="popularWines$ | async"></app-wines-carousel>
+    </div>
+  </ng-template>
+
+  <div class="story-block-container">
+    <div class="spinner"
+         *ngIf="(isAdvertLeft$ && isStoryRight$ | async); else bottomStoryEle"
+         fxLayout="row"
+         fxLayoutAlign="center"
+    >
+      <app-spinner [width]="50" [height]="50"></app-spinner>
+    </div>
+
+    <ng-template #bottomStoryEle>
+      <app-story-block [advertLeft]="advertLeft$ | async"
+                       [storyRight]="storyRight$ | async"
+      ></app-story-block>
+    </ng-template>
+  </div>
+</div>

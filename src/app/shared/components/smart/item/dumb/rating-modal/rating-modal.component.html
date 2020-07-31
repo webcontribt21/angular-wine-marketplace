@@ -1,0 +1,46 @@
+<div>
+  <div class="modal">
+    <div class="head">
+      <div class="head-title">Professional Rating for</div>
+
+      <div class="close" (click)="close()">
+        <i>
+          <img src="{{icons.CLOSE_MODAL_RATING}}" alt="close">
+        </i>
+      </div>
+
+      <div class="names">
+        <span class="description brand-name">{{ item.brand?.name + ',' | titlecase }}</span>
+        <span class="title wine-name">{{ item.name + ',' | titlecase }}</span>
+        <span class="year">{{item.schedule_date | date}}</span>
+      </div>
+    </div>
+
+    <ul class="wrapper">
+      <li class="info" *ngFor="let rating of ratings">
+
+        <div class="title">
+          <span class="fullName">{{rating.fullName}}</span>
+
+          <span class="line">
+          <hr>
+        </span>
+
+          <span class="rating">
+          <div class="shortName">{{rating.shortFullName}}</div>
+          <div class="count">{{rating.count}}</div>
+        </span>
+
+        </div>
+
+        <div class="description">
+          <span>{{rating.description}}</span>
+        </div>
+
+      </li>
+    </ul>
+  </div>
+
+  <div class="wrapper-modal" (click)="close()"></div>
+
+</div>

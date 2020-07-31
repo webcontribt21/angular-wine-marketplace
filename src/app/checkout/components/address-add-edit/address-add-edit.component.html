@@ -1,0 +1,146 @@
+<div class="card">
+  <div class="header">
+    <div class="item">
+      <div class="left">
+        <div class="heading" *ngIf="isAddMode">Add New Address</div>
+        <div class="heading" *ngIf="!isAddMode">Edit Address</div>
+        <div class="sub-heading">
+          <span>Please enter your details below.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="body">
+    <form [formGroup]="form" novalidate (keydown.enter)="$event.preventDefault()">
+
+      <div class="ui-g capture-name-number">
+        <div class="ui-g-12 ui-lg-4">
+          <div class="heading">First name</div>
+          <input id="input" type="text" size="30" pInputText formControlName="firstName">
+          <p-message *ngIf="submitted && form.controls['firstName'].errors?.required" severity="error" text="Field is required"></p-message>
+        </div>
+        <div class="ui-g-12 ui-lg-4">
+          <div class="heading">Last name</div>
+          <input id="input" type="text" size="30" pInputText formControlName="lastName">
+          <p-message *ngIf="submitted && form.controls['lastName'].errors?.required" severity="error" text="Field is required"></p-message>
+        </div>
+        <div class="ui-g-12 ui-lg-4">
+          <div class="heading">Cellphone number</div>
+          <input id="input" type="text" size="30" pInputText formControlName="cellNumber">
+          <p-message *ngIf="submitted && form.controls['cellNumber'].errors?.required" severity="error" text="Field is required"></p-message>
+        </div>
+      </div>
+
+      <div class="ui-g capture-delivery-address">
+        <div class="ui-g-12">
+          <div class="heading">Delivery address</div>
+        </div>
+        <div class="ui-g-12 desktop">
+          <div>
+            <p-radioButton name="delivery-addess" [value]="false" label="Residential" formControlName="isBusiness"></p-radioButton>
+          </div>
+          <div>
+            <p-radioButton name="delivery-addess" [value]="true" label="Business" formControlName="isBusiness"></p-radioButton>
+          </div>
+        </div>
+        <div class="ui-g-12 mobile">
+          <p-selectButton [options]="deliveryTypes" formControlName="isBusiness">
+          </p-selectButton>
+        </div>
+      </div>
+
+      <div class="ui-g capture-search-address">
+        <div class="ui-g-12">
+          <div class="heading">Search for address</div>
+          <input id="input" type="text" size="30" pInputText>
+        </div>
+      </div>
+
+      <div class="ui-g capture-street-address">
+        <div class="ui-g-12">
+          <div class="heading">Street address</div>
+          <input id="input" type="text" size="30" pInputText formControlName="streetAddress">
+          <p-message *ngIf="submitted && form.controls['streetAddress'].errors?.required" severity="error" text="Field is required"></p-message>
+        </div>
+      </div>
+
+      <div class="ui-g capture-complex-building" *ngIf="form.get('isBusiness').value === false">
+        <div class="ui-g-12">
+          <div class="heading">Complex/Building (optional)</div>
+          <input id="input" type="text" size="30" pInputText formControlName="complexBuilding">
+        </div>
+      </div>
+
+      <div class="ui-g capture-business" *ngIf="form.get('isBusiness').value === true">
+        <div class="ui-g-12 ui-lg-4">
+          <div class="heading">Business name</div>
+          <input id="input" type="text" size="30" pInputText formControlName="businessName">
+          <p-message *ngIf="submitted && form.controls['businessName'].errors?.required" severity="error" text="Field is required"></p-message>
+        </div>
+        <div class="ui-g-12 ui-lg-4">
+          <div class="heading">VAT number</div>
+          <input id="input" type="text" size="30" pInputText formControlName="vatNumber">
+          <p-message *ngIf="submitted && form.controls['vatNumber'].errors?.required" severity="error" text="Field is required"></p-message>
+        </div>
+        <div class="ui-g-12 ui-lg-4">
+          <div class="heading">Complex/Building (optional)</div>
+          <input id="input" type="text" size="30" pInputText formControlName="complexBuilding">
+        </div>
+      </div>
+
+      <div class="ui-g capture-province-city">
+        <div class="ui-g-12 ui-lg-6">
+          <div class="heading">Province</div>
+          <p-autoComplete [autocomplete]="'new-password'"
+            field="name"
+            dropdown="true"
+            [suggestions]="states" 
+            (completeMethod)="searchStates($event)" 
+            [forceSelection]="true"
+            formControlName="state"></p-autoComplete>
+            <p-message *ngIf="submitted && form.controls['state'].errors?.required" severity="error" text="Field is required"></p-message>
+        </div>
+        <div class="ui-g-12 ui-lg-6">
+          <div class="heading">City/Town</div>
+          <p-autoComplete [autocomplete]="'new-password'"
+            field="name"
+            dropdown="true"
+            [suggestions]="cities" 
+            (completeMethod)="searchCities($event)" 
+            [forceSelection]="true"
+            formControlName="city"></p-autoComplete>
+            <p-message *ngIf="submitted && form.controls['city'].errors?.required" severity="error" text="Field is required"></p-message>
+        </div>
+      </div>
+
+      <div class="ui-g capture-suburb-postcode">
+        <div class="ui-g-12 ui-lg-6">
+          <div class="heading">Suburb</div>
+          <p-autoComplete [autocomplete]="'new-password'"
+            field="name"
+            dropdown="true"
+            [suggestions]="suburbs" 
+            (completeMethod)="searchSuburbs($event)" 
+            [forceSelection]="true"
+            formControlName="suburb"></p-autoComplete>
+          <p-message *ngIf="submitted && form.controls['suburb'].errors?.required" severity="error" text="Field is required"></p-message>
+        </div>
+        <div class="ui-g-12 ui-lg-6">
+          <div class="heading">Postal Code</div>
+          <input id="input" type="text" size="30" pInputText formControlName="postalCode">
+          <p-message *ngIf="submitted && form.controls['postalCode'].errors?.required" severity="error" text="Field is required"></p-message>
+        </div>
+      </div>
+
+      <div class="action-buttons-desktop">
+        <button type="button" class="cancel" (click)="onCancel()" *ngIf="!isFirstAddress">Cancel</button>
+        <button type="button" class="save" (click)="onSave()">Save Address</button>
+      </div>
+      <div class="action-buttons-mobile">
+        <button type="button" class="cancel" (click)="onCancel()" *ngIf="!isFirstAddress">Cancel</button>
+        <button type="button" class="save" (click)="onSave()">Save</button>
+      </div>
+      <!-- <pre>{{ form.value | json }}</pre> -->
+    </form>
+  </div>
+</div>

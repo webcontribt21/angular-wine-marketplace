@@ -1,0 +1,392 @@
+<div class="wrapper" *ngIf="!(isLoadingItem$ | async) && (item$ | async) as item"
+itemscope
+itemtype="http://schema.org/Product">
+  <!-- <div class="alerts-mobile">
+    <div>
+      <div>
+        <i class="pi pi-heart"></i>
+      </div>
+    </div>
+    <div>
+      <div (click)="showAlert()">
+        <i class="pi pi-bell"></i>
+      </div>
+    </div>
+  </div> -->
+  <div class="img-product-row" *ngIf="getItemSupplier((item$ | async)) as supplierItem">
+    <div class="img">
+      <img [src]="getItemImage(item)"
+        [title]="[(item.itemDetails | valueDescription: '9') + ' ' + item?.brand?.name + ' ' + item?.name]"
+        itemprop="image"/>
+    </div>
+    <div class="product sold-out" [ngClass]="{'sold-out': soldOut}">
+      <div *ngIf="item.brand">
+        <h2 class="sub-title" itemprop="brand">{{ item.brand?.name }}</h2>
+      </div>
+      <div class="product-title">
+        <h1 class="title" itemprop="name">{{ item.name }}</h1>
+        <div>
+          <div class="alerts-desktop">
+            <!--
+            <div>
+              <div>
+                <i class="pi pi-heart"></i>
+              </div>
+            </div>
+            <div>
+              <div (click)="showAlert()">
+                <i class="pi pi-bell"></i>
+              </div>
+            </div>
+            -->
+            <div class="year">
+              <p-dropdown [styleClass]="'ui-dropdown'" [options]="years" [(ngModel)]="selectedYear" [appendTo]="'body'">
+              </p-dropdown>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h3 class="product-type">
+        <span class="faux_bold">{{ getItemCultivarAsSingleDescriptor(item) }}</span> from
+        <span class="faux_bold">{{ getItemDetailValueFromType(item, itemDetailTypes.Region) }}, {{ item.country?.name }}</span>
+      </h3>
+      <div class="product-ratings">
+        <div class="rating" *ngFor="let rating of getItemRatings(item)">
+          <div class="label">{{ rating.text }}</div>
+          <div class="value">{{ rating.value }}</div>
+        </div>
+      </div>
+      <div class="product-price-shipping"
+        itemprop="offers"
+        itemscope
+        itemtype="http://schema.org/Offer">
+        <div class="price">
+          <span>{{ supplierItem.price | formatCurrency }}</span>
+          <meta itemprop="url" content="https://port2port.wine/wines/item/{{item._id}}/{{item.name}}" />
+          <meta itemprop="priceCurrency" content="ZAR" />
+          <meta itemprop="price" content="{{ supplierItem.price }}" />
+        </div>
+        <div class="shipping" *ngIf="(shop$ | async) as shop">
+          Free shipping available on orders over {{ shop.freeShippingPerShipment | formatCurrency }}
+        </div>
+      </div>
+      <div class="year-qty-cart">
+        <div class="year">
+          <p-dropdown [styleClass]="'ui-dropdown'" [options]="years" [(ngModel)]="selectedYear" [appendTo]="'body'">
+          </p-dropdown>
+        </div>
+        <div class="qty">
+          <p-dropdown [styleClass]="'ui-dropdown'" optionLabel="name" [options]="counts" [(ngModel)]="selectedCount"
+            [appendTo]="'body'">
+          </p-dropdown>
+        </div>
+        <div class="cart">
+          <button class="sold-out">Sold out</button>
+          <button appDebounceClick (debounceClick)="addItemToCart(item)">Add To
+            Cart</button>
+        </div>
+      </div>
+      <div class="qty-stock">
+        <div class="qty" *ngIf="(supplierItem?.soldInMultiplesOf ? supplierItem.soldInMultiplesOf : 0) > 1">
+          Sold only in multiples of {{ supplierItem.soldInMultiplesOf }} bottles
+        </div>
+        <div class="stock">
+          <div class="level">
+            <div class="label"><img src="/assets/img/icons/wines/little_bottle.svg"></div>
+            <div class="value">{{ supplierItem.stockQty > 60 ? '60+' : supplierItem.stockQty }} in stock</div>
+          </div>
+        </div>
+      </div>
+      <div class="sold-by">
+        <div class="icon"><img src="/assets/img/icons/cargo-truck.svg" /></div>
+        <div class="title">Sold by:</div>
+        <div class="label">{{ supplierItem.supplier.name }}</div>
+      </div>
+      <div class="sections-wrapper">
+        <p-accordion [multiple]="true" [expandIcon]="'pi pi-plus'" [collapseIcon]="'pi pi-minus'">
+          <!-- <p-accordionTab class="special-offer-tab">
+            <p-header class="header">
+              <span>Special offer</span>
+            </p-header>
+            <div class="content">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+              dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+              ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+              fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+              mollit anim id est laborum. <a href='javascript:;'>Read</a>
+            </div>
+          </p-accordionTab> -->
+          <!-- <p-accordionTab class="nearest-seller-tab">
+            <p-header class="header">
+              <div class="nearest-seller">
+                <div class="icon">[T]</div>
+                <div class="title">Sold by:</div>
+                <div class="label">{{ supplierItem.supplier.name }}</div>
+              </div>
+            </p-header>
+            <div class="content">Body Content</div>
+          </p-accordionTab> -->
+          <p-accordionTab>
+            <p-header class="header">
+              Specifications
+            </p-header>
+            <div class="specifications">
+              <div>
+                <div class="spec">
+                  <div class="label">Cellaring Potential:</div>
+                  <div class="value">{{ getItemCellaringPotential(item) }}
+                  </div>
+                </div>
+                <div class="spec">
+                  <div class="label">Origin:</div>
+                  <div class="value">{{ getItemDetailValueFromType(item, itemDetailTypes.Region) }}</div>
+                </div>
+                <div class="spec">
+                  <div class="label">Appelation:</div>
+                  <div class="value">{{ getItemDetailValueFromType(item, itemDetailTypes.Appellation) }}</div>
+                </div>
+              </div>
+              <div>
+                <div class="spec">
+                  <div class="label">Bottle size:</div>
+                  <div class="value">{{ getItemDetailValueFromType(item, itemDetailTypes.BottleSize) }}</div>
+                </div>
+                <div class="spec">
+                  <div class="label">Alcohol Volume:</div>
+                  <div class="value">{{ getItemAlcohol(item) }}</div>
+                </div>
+                <div class="spec">
+                  <div class="label">Sugar G/L:</div>
+                  <div class="value">{{ getItemSugar(item) }}</div>
+                </div>
+                <div class="spec">
+                  <div class="label">Cultivar:</div>
+                  <div class="value">{{ getItemCultivar(item) }}</div>
+                </div>
+              </div>
+            </div>
+          </p-accordionTab>
+          <p-accordionTab>
+            <p-header class="header">
+              In the cellar
+            </p-header>
+            <div class="content">{{ getItemDetailValue(item, itemDetailTypes.InTheCellar) }}</div>
+          </p-accordionTab>
+          <p-accordionTab>
+            <p-header class="header">
+              In the vineyard
+            </p-header>
+            <div class="content">{{ getItemDetailValue(item, itemDetailTypes.InTheVineyard) }}</div>
+          </p-accordionTab>
+          <p-accordionTab>
+            <p-header class="header">
+              Ageing
+            </p-header>
+            <div class="content">{{ getItemDetailValue(item, itemDetailTypes.Ageing) }}</div>
+          </p-accordionTab>
+          <p-accordionTab [ngClass]="{'mobile': 1 === 1}">
+            <p-header class="header">
+              Tasting Notes
+            </p-header>
+            <div class="tasting-notes">
+              <div class="info">
+                {{ getItemDetailValue(item, itemDetailTypes.TastingNotes) }}
+              </div>
+              <div class="items">
+                <div class="item"
+                  *ngFor="let tag of getItemDetailValuesFromType(item, itemDetailTypes.TastingNoteTags)">
+                  <div class="img">
+                    <img [src]="tag?.valueFromType?.imageUrl || 'https://via.placeholder.com/25x92/A3AAAD/A3AAAD'" />
+                  </div>
+                  <div class="name">{{ tag?.valueFromType?.description }}</div>
+                </div>
+              </div>
+            </div>
+          </p-accordionTab>
+          <p-accordionTab [ngClass]="{'mobile': 1 === 1}">
+            <p-header class="header">
+              Food Pairing
+            </p-header>
+            <div class="food-pairing">
+              <div class="info">
+                {{ getItemDetailValue(item, itemDetailTypes.FoodPairing) }}
+              </div>
+              <div class="items">
+                <div class="item"
+                  *ngFor="let tag of getItemDetailValuesFromType(item, itemDetailTypes.FoodPairingTags)">
+                  <div class="img">
+                    <img [src]="tag?.valueFromType?.imageUrl || 'https://via.placeholder.com/25x92/A3AAAD/A3AAAD'" />
+                  </div>
+                  <div class="name">{{ tag?.valueFromType?.description }}</div>
+                </div>
+              </div>
+            </div>
+          </p-accordionTab>
+        </p-accordion>
+      </div>
+    </div>
+  </div>
+
+  <div class="about-detail-row">
+    <div class="about">
+      <div class="description">
+        <ng-container>
+          <h3 class="heading">{{ item?.brand?.name }}</h3>
+          <p class="info">
+            {{ item?.brand?.description }}
+          </p>
+        </ng-container>
+      </div>
+      <div class="location" *ngIf="item?.brand?.x && item?.brand?.y">
+        <h3 class="heading">Location</h3>
+        <div class="info">
+          <div class="map">
+            <a target="_blank" [href]="getGoogleMapHrefUrl(item)">
+              <img [src]="getGoogleMapUrl(item)"
+                title="Location of {{ item?.brand?.name }} in {{ getItemDetailValueFromType(item, itemDetailTypes.Region) }}">
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="detail">
+      <div class="tasting-notes">
+        <h3 class="heading">
+          Tasting Notes
+        </h3>
+        <p class="info" itemprop="description">
+          {{ getItemDetailValue(item, itemDetailTypes.TastingNotes) }}
+        </p>
+        <ng-container *ngIf="getItemDetailValuesFromType(item, itemDetailTypes.TastingNoteTags) as tags">
+          <div class="items" *ngIf="tags.length > 0">
+            <div class="item" *ngFor="let tag of tags; trackBy: trackTagByFn">
+              <div class="img">
+                <img [src]="tag?.valueFromType?.imageUrl" [title]="tag?.valueFromType?.description" />
+              </div>
+              <div class="name">{{ tag?.valueFromType?.description }}</div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+      <div class="food-paring">
+        <h3 class="heading">
+          Food Pairing
+        </h3>
+        <p class="info">
+          {{ getItemDetailValue(item, itemDetailTypes.FoodPairing) }}
+        </p>
+        <ng-container *ngIf="getItemDetailValuesFromType(item, itemDetailTypes.FoodPairingTags) as tags">
+          <div class="items" *ngIf="tags.length > 0">
+            <div class="item" *ngFor="let tag of tags; trackBy: trackTagByFn">
+              <div class="img">
+                <img [src]="tag?.valueFromType?.imageUrl" [title]="tag?.valueFromType?.description" />
+              </div>
+              <div class="name">{{ tag?.valueFromType?.description }}</div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+
+  <ng-container *ngIf="item.brand?.name">
+    <div class="otherWines" *ngIf="brandItems$ | async as brandItems">
+      <h3 class="heading">Other {{ item.brand?.name }} Wines</h3>
+      <div class="items">
+        <div class="item">
+          <div class="wines-carousel-container">
+            <div class="full_width">
+              <app-wines-carousel [defaultSlidesToShow]="5" [wines]="brandItems$ | async" [asRelatedItems]="true"></app-wines-carousel>
+            </div>
+          </div>
+        </div>
+          <!-- <div class="item" *ngFor="let brandItem of brandItems; trackBy: trackItemByFn"> -->
+          <!-- <div class="img">
+            <img [src]="getItemImage(brandItem)" />
+          </div>
+          <div class="year">{{ getItemDetailValue(brandItem, itemDetailTypes.Vintage) }}</div>
+          <div class="title">{{ brandItem?.name }}</div>
+          <div class="brand">{{ brandItem?.brand?.name }}</div>
+          <div class="country">{{ brandItem?.country?.name }}</div>
+          <div class="price">
+            <div class="label">From</div>
+            <div class="value">{{ brandItem.price | formatCurrency }}</div>
+          </div> -->
+
+          <!-- <app-wine-details [wine]="brandItem"></app-wine-details> -->
+        </div>
+      </div>
+    <!-- </div> -->
+
+    <div class="stories-experiences-row" *ngIf="itemRelatedArticles$ | async as itemRelatedArticles">
+      <div class="stories" *ngIf="itemRelatedArticles && itemRelatedArticles.length > 0">
+        <h3 class="heading">
+          <span>Stories</span> on <span>{{ item.brand?.name }}</span>
+        </h3>
+        <div class="items">
+          <div class="item"
+            *ngFor="let itemRelatedArticle of itemRelatedArticles; trackBy: trackItemRelatedArticleByFn">
+            <!-- <div class="img">
+              <img [src]="itemRelatedArticle.desktopImageUrl" />
+            </div>
+            <div class="title">{{ itemRelatedArticle.titleShort }}</div>
+            <div class="info">{{ itemRelatedArticle.tagline }}</div>
+            <div class="button">
+              <button>Read more</button>
+            </div> -->
+            <app-article-card [article]="itemRelatedArticle"></app-article-card>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="experiences d-none" *ngIf="item.brand?.name">
+      <h3 class="heading">
+        <span>Experiences</span> with <span>{{ item.brand?.name }}</span>
+      </h3>
+      <div class="items">
+        <div class="item">
+          <div class="img">
+            <img src="https://via.placeholder.com/300x280/A3AAAD/A3AAAD" />
+          </div>
+          <div class="title">Experience 1</div>
+          <div class="info">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eget purus enim. In convallis
+            facilisis efficitur. Nulla a laoreet ligula. Mauris vestibulum sodales eleifend.</div>
+          <div class="button">
+            <button>Read more</button>
+          </div>
+        </div>
+        <div class="item">
+          <div class="img">
+            <img src="https://via.placeholder.com/300x280/A3AAAD/A3AAAD" />
+          </div>
+          <div class="title">Experience 2</div>
+          <div class="info">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eget purus enim. In convallis
+            facilisis efficitur. Nulla a laoreet ligula. Mauris vestibulum sodales eleifend.</div>
+          <div class="button">
+            <button>Read more</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <!--  [(visible)]="displayAlert" [modal]="true" [responsive]="true" [style]="{width: '360px', minWidth: '360px'}"
+    [minY]="70" [baseZIndex]="10000" [breakpoint]="370" -->
+  <p-dialog [(visible)]="displayAlert" [modal]="true" [responsive]="true" [style]="{width: '600px', minWidth: '360px'}"
+    [minY]="70" [baseZIndex]="10000">
+    <p-header>
+      <div class="heading">
+        Alert me when vintages are available
+      </div>
+      <div class="sub-heading">
+        Already have a Port2Port account? <a href="javascript:;">Sign in</a>
+      </div>
+
+    </p-header>
+    Content
+    <p-footer></p-footer>
+  </p-dialog>
+
+</div>

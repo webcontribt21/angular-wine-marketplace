@@ -1,0 +1,13 @@
+<div class="form">
+  <div class="logo-wrapper">
+    <app-logo [routerLink]="['/']"></app-logo>
+  </div>
+  <app-sign-up-form (submit$)="createUser($event)"></app-sign-up-form>
+
+  <div class="bottom-info mobile">
+    <span>Already have a Port2Port account?</span>
+    <span class="link">
+      <a [routerLink]="['/auth/sign_in']">Sign in</a>
+    </span>
+  </div>
+</div>

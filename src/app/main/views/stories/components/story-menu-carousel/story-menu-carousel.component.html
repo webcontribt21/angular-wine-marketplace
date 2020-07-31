@@ -1,0 +1,15 @@
+<div
+  fxLayout="row"
+  fxLayoutAlign="space-between center"
+  class="story-menu-carousel-wrapper background-brown-light"
+  [appHorizontalScroll]="true"
+>
+  <div *ngFor="let slider of sliders" class="slider-wrapper gray-dark-color" fxFlex="1 0 auto">
+    <a
+      [routerLink]="'/stories/home#' + slider.link"
+      [ngClass]="{'active black-color': targetContentLink === slider.link}"
+    >
+      {{ slider.label }}
+    </a>
+  </div>
+</div>

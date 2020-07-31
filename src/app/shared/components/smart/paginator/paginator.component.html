@@ -1,0 +1,9 @@
+<div class="paginator-wrapper">
+  <p-paginator [rows]="countRowsPerPage"
+               [totalRecords]="totalRecords"
+               [styleClass]="styleClass"
+               [pageLinkSize]="pageLinkSize"
+               [(first)]="first"
+               (onPageChange)="onPageChange($event)">
+  </p-paginator>
+</div>

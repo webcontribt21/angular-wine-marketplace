@@ -1,0 +1,14 @@
+<div class="stories-carousel-wrapper carousel-wrapper background-dark1">
+  <ngx-slick-carousel class="carousel" 
+    #slickModal="slick-carousel" 
+    [config]="slideConfig"
+  >
+    <div ngxSlickItem *ngFor="let article of articles" class="slide">
+      <div class="slider-wrapper">
+        <app-story-details
+          [article]="article"
+        ></app-story-details>
+      </div>
+    </div>
+  </ngx-slick-carousel>
+</div>

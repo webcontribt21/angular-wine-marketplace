@@ -1,0 +1,19 @@
+@import "variables";
+
+.auth-wrapper {
+  background: #E5E3DE 0% 0% no-repeat padding-box;
+  margin: 0 auto;
+  min-height: 100%;
+  position: relative;
+  height: 100vh;
+
+  .wrapper-bottom {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+
+  @media all and (max-width: $mobile) {
+    background: white;
+  }
+}

@@ -1,0 +1,23 @@
+.stories-categories-container {
+  padding: 30px 60px 50px;
+
+  .header-wrapper {
+    margin-bottom: 50px;
+  }
+
+  .view-more-action-wrapper {
+    .btn {
+      max-width: 270px;
+      height: 50px;
+      font-size: 14px;
+    }
+  }
+
+  .sort-by-action {
+    margin-top: 20px;
+  }
+
+  .spinner {
+    margin: 25px 0 25px;
+  }
+}

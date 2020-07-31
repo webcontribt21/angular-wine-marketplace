@@ -1,0 +1,48 @@
+<ul itemprop="breadcrumb">
+  <li class="nav-item" *ngFor="let filter of filters; let i = index">
+    <a routerLink="{{ filter.description | urlfriendly }}">
+        <div
+        class="info static"
+        routerLinkActive="show"
+      >
+        <span class="route-data">{{filter.description}}</span>
+        <span class="count">({{filter.count}} wines)</span>
+        <span class="separator" *ngIf="i < filters.length - 1">/</span>
+      </div>
+        <!-- <div *ngIf="filter.description === firstSectionName"
+              class="info static"
+              routerLinkActive="show"
+        >
+          <span class="route-data">Wine Shop</span>
+          <span class="count">({{filter.count}} wines)</span>
+          <span class="separator">/</span>
+        </div>
+        <div class="info"
+              routerLinkActive="show"
+              *ngIf="filter.description !== firstSectionName"
+        >
+          <span class="route-data">{{filter.description}}</span>
+          <span class="count">({{filter.count ? filter.count : 0}} wines)</span>
+        </div> -->
+      </a>
+    </li>
+  <!-- <li class="nav-item" *ngFor="let filter of filters">
+    <a routerLink="{{filter.description | lowercase}}">
+      <div *ngIf="filter.description === firstSectionName"
+           class="info static"
+           routerLinkActive="show"
+      >
+        <span class="route-data">Wine Shop</span>
+        <span class="count">({{filter.count}} wines)</span>
+        <span class="separator">/</span>
+      </div>
+      <div class="info"
+           routerLinkActive="show"
+           *ngIf="filter.description !== firstSectionName"
+      >
+        <span class="route-data">{{filter.description}}</span>
+        <span class="count">({{filter.count ? filter.count : 0}} wines)</span>
+      </div>
+    </a>
+  </li> -->
+</ul>

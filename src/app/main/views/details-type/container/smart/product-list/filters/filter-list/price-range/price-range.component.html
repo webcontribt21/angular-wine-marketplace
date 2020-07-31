@@ -1,0 +1,21 @@
+<div class="wrapper-description" (click)="toggle()" [ngClass]="{active: !isHidden}">
+  <span class="description">Price range</span>
+  <div class="icon-block">
+    <i class="arrow-icon">
+      <img src="{{ isHidden ?  icons.PLUS : icons.MINUS }}" alt="cancel">
+    </i>
+  </div>
+</div>
+
+<ul class="wrapper-types" [hidden]="isHidden">
+  <li class="type-value">
+    <span>{{ priceRangeFilterDescription((rangeValuesInternal && rangeValuesInternal[0]) || min, (rangeValuesInternal && rangeValuesInternal[1]) || max, min, max) }}</span>
+    <!-- <span>{{rangeValues[0] | number : '1.0-2'}} ZAR</span>
+    <span>-</span>
+    <span>{{rangeValues[1] | number : '1.0-2'}} ZAR</span> -->
+  </li>
+  <li>
+    <p-slider [min]="min" [max]="max" [(ngModel)]="rangeValuesInternal" [step]="step" [styleClass]="'slider'" [range]="true"
+      (onChange)="rangeChanged($event)" (onSlideEnd)="rangeChanged($event)"></p-slider>
+  </li>
+</ul>

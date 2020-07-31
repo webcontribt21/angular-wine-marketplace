@@ -1,0 +1,9 @@
+<div class="most-popular-wrapper" fxLayout="column" fxLayoutAlign="space-between">
+  <div *ngFor="let article of displayStories" class="story-item">
+    <app-article-card [article]="article"
+                      [styles]="articleStyles"
+                      noImage="true"
+                      type="home_right"
+    ></app-article-card>
+  </div>
+</div>

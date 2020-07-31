@@ -1,0 +1,16 @@
+<div class="article-image-carousel-wrapper carousel-wrapper">
+  <ngx-slick-carousel class="carousel" 
+    #slickModal="slick-carousel" 
+    [config]="slideConfig"
+  >
+    <div ngxSlickItem *ngFor="let media of medias" class="slide">
+      <div class="slider-wrapper">
+        <app-image-wrapper [desktopImageUrl]="media.imageUrl"
+                           [mobileImageUrl]="media.imageUrl"
+                           bgColor="background-gray-light"
+                           heightPercent="h-70p"
+        ></app-image-wrapper>
+      </div>
+    </div>
+  </ngx-slick-carousel>
+</div>

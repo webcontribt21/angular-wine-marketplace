@@ -1,0 +1,83 @@
+<div class="action-bar-wrapper-mobile">
+  <div class="action-bar-mobile">
+    <button *ngIf="!isComplete" class="view-summary" type="text"
+      [ngStyle]="{ 'border-top': display ? 'none' : 'inherit' }" (click)="display = !display">
+      View order: <span>{{ cartSummary?.outstandingAmount | formatCurrency }}</span>
+    </button>
+    <button class="continue" type="text" icon="pi pi-plus" (click)="onContinueClick()"
+      [disabled]="!canContinue || isProcessingOrder">Continue</button>
+  </div>
+</div>
+
+<p-sidebar [(visible)]="display" [styleClass]="'summary-mobile alert'" position="bottom" [showCloseIcon]="false"
+  [blockScroll]="true">
+  <div class="summary" [ngClass]="{'alert': cartSummary?.amountToFreeDisplay}">
+    <div class="spend-target success" *ngIf="cartSummary?.amountToFreeDisplay">Spend another
+      <span>{{ cartSummary.amountToFree | formatCurrency }}</span> on total order for free shipping</div>
+    <div class="content">
+      <div class="header">
+        Your Order
+      </div>
+      <div class="body">
+        <div class="sub-total">
+          <div class="d-flex flex-row justify-content-between">
+            <div class="label">Sub Total</div>
+            <div class="value">{{ cartSummary?.subTotalAmount | formatCurrency }}</div>
+          </div>
+        </div>
+        <div class="items divider">
+          <div class="d-flex flex-row justify-content-between"
+            *ngFor="let shipment of cartSummary?.shipments; let shipmentNo = index">
+            <div class="label">Delivery: Shipment {{ shipmentNo + 1 }}</div>
+            <div class="value" *ngIf="shipment.courierDeliveryCharge === 0">FREE</div>
+            <div class="value" *ngIf="shipment.courierDeliveryCharge > 0">
+              {{ shipment.courierDeliveryCharge | formatCurrency }}</div>
+          </div>
+        </div>
+        <div class="delivery-total-gift divider">
+          <div class="d-flex flex-row justify-content-between">
+            <div class="label">Delivery Total</div>
+            <div class="value">{{ cartSummary?.deliveryTotalAmount | formatCurrency }}</div>
+          </div>
+          <!--
+          <div class="d-flex flex-row justify-content-between">
+            <div class="label">Consolidated Gift</div>
+            <div class="value">R100</div>
+          </div>
+          -->
+          <div class="d-flex flex-row justify-content-between"
+            *ngIf="(cartSummary?.voucher?.orderDiscountAmount || 0) > 0">
+            <div class="label discount">Discount</div>
+            <div class="value discount">{{ cartSummary?.voucher?.orderDiscountAmount || 0 | formatCurrency }}</div>
+          </div>
+        </div>
+        <div class="order-total divider">
+          <div class="d-flex flex-row justify-content-between">
+            <div class="label">Order Total</div>
+            <div class="value">{{ cartSummary?.orderTotalAmount | formatCurrency }}</div>
+          </div>
+        </div>
+        <div class="outstanding">
+          <div class="d-flex flex-row justify-content-between">
+            <div class="label">Amount outstanding</div>
+            <div class="value">{{ cartSummary?.outstandingAmount | formatCurrency }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="voucher" *ngIf="!isProcessingOrder">
+      <div class="header">
+        Apply Voucher
+        <div class="info">Lorem ipsum dolor sit amet</div>
+      </div>
+      <div class="body">
+        <div>
+          <div class="voucher-button">
+            <input type="text" placeholder="" />
+            <button type="button" [disabled]="!canContinue || isProcessingOrder">Apply / Remove</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</p-sidebar>

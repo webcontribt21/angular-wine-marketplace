@@ -1,0 +1,10 @@
+<div class="breadscrumbs-wrapper">
+  <ul fxLayout="row" fxLayoutAlign="center">
+    <li class="nav-item" *ngFor="let breadscrumb of breadscrumbs; let ind = index">
+      <a [routerLink]="breadscrumb.link" class="color-gray-light2">
+        {{ breadscrumb.label }}
+      </a>
+      <span *ngIf="ind !== breadscrumbs.length - 1" class="split color-gray-light2">/</span>
+    </li>
+  </ul>
+</div>

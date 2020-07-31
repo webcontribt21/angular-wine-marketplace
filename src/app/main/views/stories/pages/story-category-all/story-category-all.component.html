@@ -1,0 +1,47 @@
+<div class="stories-categories-all-container gray-dark-color">
+  <div class="header-wrapper">
+    <app-story-category-header
+      [title]="'All Categories'"
+      [subTitle]="'Every Port2Port post.'"
+      [sortValue]="sort$ | async"
+      [isShowSort]="false"
+      (sort)="onSort($event)"
+    ></app-story-category-header>
+  </div>
+
+  <div class="body-wrapper">
+    <div class="spinner"
+         *ngIf="(isAllArticleCategories$ | async); else categoriesEle"
+         fxLayout="row"
+         fxLayoutAlign="center"
+    >
+      <app-spinner [width]="50" [height]="50"></app-spinner>
+    </div>
+
+    <ng-template #categoriesEle>
+      <div class="category-block brown-light-border-color "
+           *ngFor="let category of allArticleCategories$ | async"
+      >
+        <div fxLayout="row" fxLayoutAlign="space-between center" class="category-block-header-area">
+          <div class="category-name" *ngIf="category.description">
+            {{ category?.description }}
+          </div>
+
+          <div class="category-action">
+            <a class="uppercase brown-color" [routerLink]="['/stories/category/' + category.articleCategoryNo]">View More</a>
+          </div>
+        </div>
+
+        <div class="story-view-container" *ngIf="category.articles && category.articles.length > 0; else noDataEle">
+          <app-story-view [articles]="category.articles"></app-story-view>
+        </div>
+
+        <ng-template #noDataEle>
+          <div fxLayout="row" fxLayoutAlign="center center" class="no-data-wrapper">
+            No Article
+          </div>
+        </ng-template>
+      </div>
+    </ng-template>
+  </div>
+</div>

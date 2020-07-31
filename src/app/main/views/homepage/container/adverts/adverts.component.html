@@ -1,0 +1,25 @@
+<div class="adverts-wrapper">
+  <div fxLayout="row"
+       fxLayoutAlign="space-between"
+       fxShow.gt-sm="true"
+       fxHide
+       class="adverts-area"
+  >
+    <div class="item" *ngFor="let advert of adverts">
+      <app-advert-card [advert]="advert"></app-advert-card>
+    </div>
+  </div>
+
+  <div fxShow fxHide.gt-sm="true">
+    <ngx-slick-carousel class="carousel" 
+      #slickModal="slick-carousel" 
+      [config]="slideConfig"
+    >
+      <div ngxSlickItem *ngFor="let advert of adverts; let ind = index" class="slide">
+        <div class="slider-wrapper">
+          <app-advert-card [advert]="advert"></app-advert-card>
+        </div>
+      </div>
+    </ngx-slick-carousel>
+  </div>
+</div>

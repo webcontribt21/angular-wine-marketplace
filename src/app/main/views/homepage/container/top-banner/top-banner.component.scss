@@ -1,0 +1,47 @@
+
+.top-banner-wrapper {
+  height: 480px;
+
+  .description-wrapper {
+    height: 100%;
+    padding: 30px 60px 30px;
+
+    .information {
+      max-width: 350px;
+    }
+    @media all and (max-width: 640px) {
+     padding-bottom: 30px !important;
+    }
+  }
+
+  .title {
+    font-size: 50px;
+    margin: 0;
+    max-width: 350px;
+    line-height: 1;
+
+    @media all and (max-width: 640px) {
+      text-align: center;
+      margin-top: auto;
+    }
+  }
+
+  .tagline {
+    font-size: 14px;
+    margin-top: 22px;
+    margin-bottom: 22px;
+
+    @media all and (max-width: 640px) {
+      text-align: center;
+    }
+  }
+
+  .action-link {
+    font-size: 14px;
+
+    a {
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+}

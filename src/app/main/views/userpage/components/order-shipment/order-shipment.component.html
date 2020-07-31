@@ -1,0 +1,66 @@
+<div class="shipment-details-wrapper"
+     fxLayout="row wrap"
+     fxLayout.lt-md="column"
+     fxLayoutAlign="space-between"
+>
+  <div class="details" fxFlex="60%" fxFlex.lt-md="100%">
+    <div class="information black-color">
+      <div fxLayout="row wrap" fxLayoutAlign="space-between">
+        <div fxLayout="row" fxFlex="50%">
+          <div class="label">Shipment Total:</div>
+          <div class="value">R{{ data?.value }}</div>
+        </div>
+
+        <div fxLayout="row" fxFlex="50%">
+          <div class="label">Shipment from:</div>
+          <div class="value gray-light-color">{{ data?.shippingFrom }}</div>
+        </div>
+      </div>
+
+      <div fxLayout="row wrap" fxLayoutAlign="space-between" class="deliver">
+        <div fxLayout="row" fxFlex="50%">
+          <div class="label">Deliver:</div>
+          <div class="value">
+            {{ !data?.courierDeliveryCharge ? 'Free' : 'R' + data?.courierDeliveryCharge }}
+          </div>
+        </div>
+
+        <div fxLayout="row" fxFlex="50%">
+          <div class="label">Region:</div>
+          <!-- <div class="value gray-light-color">{{ data?.region }}</div> -->
+        </div>
+      </div>
+
+      <div fxLayout="row wrap" fxLayoutAlign="space-between">
+        <div fxLayout="row" fxFlex="50%">
+          <div class="label">Tracking Number:</div>
+          <div class="value brown-color">{{ data?.trackingNumber }}</div>
+        </div>
+
+        <div fxLayout="row" fxFlex="50%" class="status">
+          <div class="label">Status:</div>
+          <div class="value brown-color"><strong>{{ data?.orderShipmentStatusDescription }}</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-list" *ngIf="data.shipmentItems && data.shipmentItems.length > 0">
+      <div class="product-item brown-light-border-color" *ngFor="let shipmentItem of data.shipmentItems">
+        <app-order-product [shipmentItem]="shipmentItem" ></app-order-product>
+      </div>
+    </div>
+  </div>
+
+  <div class="tracking gray-light-color" fxFlex="40%" fxFlex.lt-md="100%">
+    <hr class="order-tracking-divider brown-light-border-color" fxShow fxHide.gt-sm="true"/>
+
+    <h4 class="uppercase gray-dark-color">Order Tracking</h4>
+
+    <div class="tracking-list" *ngIf="data.trackingNumber && trackings.length > 0">
+      <div class="tracking-item" *ngFor="let track of trackings">
+        <span class="date">{{ track?.UpdateDateTime | date: 'hh:mm EEE d MMM y' }}</span>
+        <strong>{{ track?.UpdateDescription }}</strong>
+      </div>
+    </div>
+  </div>
+</div>

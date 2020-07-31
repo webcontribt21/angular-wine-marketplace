@@ -1,0 +1,423 @@
+@import "variables";
+
+:host {
+  display: flex;
+  min-width: 300px;
+  width: 100%;
+}
+
+.highlight {
+  color: $brown;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.justify-content-between {
+  justify-content: space-between;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.summary-desktop {
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+  margin-bottom: 27px;
+  width: 100%;
+  height: auto;
+  background: #FFFFFF;
+
+  &.alert {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    overflow: hidden;
+
+    .content {
+      padding-top: 23px !important;
+    }
+  }
+
+  .spend-target {
+    font-size: 12px;
+    background: $blueDark;
+    color: #FFF;
+    text-align: center;
+    padding: 15px;
+    font-family: $goodRegularFont;
+
+    &.success {
+      background: $greenDark;
+    }
+  }
+
+  .content {
+    flex-grow: 1;
+    padding: 34px 25px 27px 25px;
+
+    .header {
+      font-size: 22px;
+      margin-bottom: 23px;
+    }
+
+    .body {
+
+      .divider {
+        border-bottom: solid 0.5px $brownLight;
+        margin-bottom: 16px;
+      }
+
+      .sub-total {
+        margin-bottom: 12px;
+
+        >div {
+          align-items: center;
+        }
+
+        .label {
+          font-size: 12px;
+          color: $grayLight;
+        }
+
+        .value {
+          font-size: 14px;
+        }
+      }
+
+      .items {
+        >div {
+          margin-top: 8px;
+          align-items: center;
+
+          &:last-child {
+            padding-bottom: 16px;
+          }
+        }
+
+        .label {
+          font-size: 12px;
+          color: $grayLight;
+        }
+
+        .value {
+          font-size: 14px;
+        }
+      }
+
+      .delivery-total-gift {
+        >div {
+          margin-top: 8px;
+          align-items: center;
+
+          &:last-child {
+            padding-bottom: 16px;
+          }
+        }
+
+        .label {
+          font-size: 12px;
+          color: $grayLight;
+
+          &.discount {
+            color: $discountValue;
+          }
+        }
+
+        .value {
+          font-size: 14px;
+          color: $grayLight;
+
+          &.discount {
+            color: $discountValue;
+          }
+        }
+      }
+
+      .order-total {
+        >div {
+          align-items: center;
+
+          &:last-child {
+            padding-bottom: 16px;
+          }
+        }
+
+        .label {
+          font-size: 12px;
+          color: $grayLight
+        }
+
+        .value {
+          font-size: 14px;
+          color: $grayLight
+        }
+      }
+
+      .outstanding {
+        >div {
+          align-items: center;
+        }
+
+        .label {
+          font-size: 12px;
+        }
+
+        .value {
+          font-size: 18px;
+        }
+      }
+
+      .checkout-button {
+
+        margin-top: 18px;
+
+        button,
+        button:focus,
+        button:hover {
+          display: block;
+          width: 100%;
+          background: $brown;
+          border-color: $brown;
+          height: 48px;
+          color: #FFF;
+          font-size: 13px;
+          text-transform: uppercase;
+          cursor: pointer;
+
+          &:disabled {
+            background: $buttonDisabled;
+            border-color: $buttonDisabled;
+            pointer-events: auto !important;
+            cursor: not-allowed;
+          }
+        }
+      }
+    }
+  }
+
+  .voucher {
+    border-top: solid 0.5px $brownLight;
+    padding: 24px 25px;
+
+    .header {
+      font-size: 22px;
+      margin-bottom: 20px;
+
+      .info {
+        font-size: 12px;
+        color: $grayLight;
+        margin-top: 7px;
+      }
+
+    }
+
+    .body {
+      .voucher-button {
+
+        margin-top: 18px;
+
+        input {
+          border: solid 0.5px $brownLight;
+          width: 100%;
+          padding: 15px;
+          height: 48px;
+          font-size: 13px;
+          color: $brown;
+          text-align: center;
+          text-transform: uppercase;
+        }
+
+        .error {
+          color: red;
+          margin: 1em 0;
+          text-align: center;
+        }
+
+        button,
+        button:focus,
+        button:hover {
+          display: block;
+          width: 100%;
+          background: $black;
+          border-color: $black;
+          height: 48px;
+          color: #FFF;
+          font-size: 13px;
+          letter-spacing: 0.39px;
+          text-transform: uppercase;
+          cursor: pointer;
+
+          &:disabled {
+            background: $buttonDisabled;
+            border-color: $buttonDisabled;
+            pointer-events: auto !important;
+            cursor: not-allowed;
+          }
+        }
+      }
+    }
+
+  }
+
+}
+
+
+
+
+.summary-detail-desktop {
+
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+  margin-left: 20px;
+  margin-bottom: 27px;
+  width: 300px;
+  min-height: 500px;
+  height: auto;
+  background: #FFFFFF;
+
+  @media all and (max-width: $mobile) {
+    display: none;
+  }
+
+  .content {
+    flex-grow: 1;
+    padding: 23px 25px 27px 25px;
+
+    .header {
+      font-size: 22px;
+      margin-bottom: 23px;
+    }
+
+    .body {
+
+      i.pi {
+        font-size: 22px;
+        font-weight: 100;
+
+        &.edit {
+          color: $brown;
+        }
+      }
+
+      .divider {
+        border-bottom: solid 0.5px $brownLight;
+        margin-bottom: 20px;
+
+        &>div:last-child {
+          padding-bottom: 25px;
+        }
+      }
+
+
+
+      .address {
+
+        .sub-heading {
+          font-size: 14px;
+          margin-bottom: 22px;
+        }
+
+        .info {
+          font-size: 12px;
+          color: $grayLight;
+          line-height: 19px;
+
+          .name {}
+
+          .detail {}
+
+          .type {
+            margin-top: 12px;
+
+            span {
+              background: $brownLighter;
+              color: #fff;
+              display: inline-flex;
+              text-transform: uppercase;
+              font-size: 9px;
+              // padding: 4px 8px;
+              width: 57px;
+              height: 20px;
+              align-items: center;
+              justify-content: center;
+            }
+          }
+        }
+
+      }
+
+      .items {
+        .sub-heading {
+          font-size: 14px;
+        }
+
+        .item-row {
+          margin-top: 22px;
+          font-size: 12px;
+
+          .title {
+            .name {
+              text-transform: uppercase;
+            }
+          }
+
+          .shipping-from {
+            margin-top: 15px;
+            color: $grayLight;
+            font-family: $goodRegularFont;
+          }
+
+          .delivery-date {
+            margin-top: 7px;
+            color: $grayLight;
+            font-family: $goodRegularFont;
+          }
+
+          .item {
+            margin-top: 20px;
+
+            .image {
+              margin-right: 15px;
+
+              img {
+                max-height: 50px;
+              }
+            }
+
+            .detail {
+              color: $grayLight;
+
+              .qty {
+                font-family: $goodRegularFont;
+                margin-top: 6px;
+              }
+            }
+          }
+
+        }
+      }
+
+      .gifting {
+        font-size: 12px;
+
+        .info {
+          margin-top: 17px;
+          color: $grayLight;
+          font-family: $goodRegularFont;
+        }
+      }
+    }
+  }
+}

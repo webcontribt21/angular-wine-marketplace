@@ -1,0 +1,65 @@
+<div class="contributor-detail-wrapper">
+  <div class="spinner"
+      *ngIf="(isAuthor$ | async); else contributorEle"
+      fxLayout="row"
+      fxLayoutAlign="center"
+  >
+    <app-spinner [width]="50" [height]="50"></app-spinner>
+  </div>
+
+  <ng-template #contributorEle>
+    <div class="contributor-information" fxLayout="row wrap">
+      <div fxFlex="25%" class="img-container" fxFlex.lt-md="100%">
+        <app-image-wrapper [desktopImageUrl]="(author$ | async)?.imageUrl"
+                           [mobileImageUrl]="(author$ | async)?.imageUrl"
+                           bgColor="background-gray-light"
+                           heightPercent="h-100p"
+        ></app-image-wrapper>
+      </div>
+
+      <div class="description-area"
+           fxFlex="75%"
+           fxFlex.lt-md="100%"
+           fxLayout="column"
+           fxLayoutAlign="space-between"
+      >
+        <h2 class="author-title">
+          {{ (author$ | async)?.name }}
+        </h2>
+
+        <div class="author-about" [innerHTML]="(author$ | async)?.about"></div>
+        <div class="action-area" fxLayout="row" fxLayoutAlign="space-between">
+          <div class="social-links">
+            <div *ngIf="(author$ | async).facebook">Facebook: <span><a class="gray-dark-color" href="https://facebook.com/{{ (author$ | async)?.facebook }}" target="_blank">@{{ (author$ | async)?.facebook }}</a></span></div>
+            <div *ngIf="(author$ | async).twitter">Twitter: <span><a class="gray-dark-color" href="https://twitter.com/{{ (author$ | async)?.twitter }}" target="_blank">@{{ (author$ | async)?.twitter }}</a></span></div>
+            <div *ngIf="(author$ | async).instagram">Instagram: <span><a class="gray-dark-color" href="https://instagram.com/{{ (author$ | async)?.instagram }}" target="_blank">@{{ (author$ | async)?.instagram }}</a></span></div>
+          </div>
+
+          <div class="sortby-action" fxLayout="row" fxLayoutAlign="start end">
+            <app-dropdown
+              [styleClass]="'sortable'"
+              [showClear]="true"
+              [options]="sortList"
+              [placeholder]="'Sort By'"
+              [optionLabel]="'label'"
+              [sortModel]="sortModel"
+              (valueChange)="onSortBy($event)"
+            ></app-dropdown>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="article-list" fxLayout="row wrap">
+      <div *ngFor="let article of (author$ | async).articles"
+           class="article-item"
+           fxFlex="25%"
+           fxFlex.lt-xl="33.33%"
+           fxFlex.lt-lg="50%"
+           fxFlex.lt-md="100%"
+      >
+        <app-article-card [article]="article" type="category"></app-article-card>
+      </div>
+    </div>
+  </ng-template>
+</div>

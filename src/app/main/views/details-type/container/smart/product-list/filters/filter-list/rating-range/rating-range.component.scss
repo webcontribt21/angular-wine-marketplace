@@ -1,0 +1,35 @@
+$border-color-desktop: #E5E3DE;
+$brown: #3F3A39;
+
+ul.wrapper-types {
+  margin: 0;
+  padding: 20px 25px;
+  border-bottom: none;
+
+
+  li.type-value {
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 18px;
+
+    span, .count {
+      text-decoration: none;
+      outline: 0;
+      font-weight: 500;
+      font-size: 16px;
+      color: black;
+      vertical-align: top;
+      opacity: 0.9;
+    }
+
+    .count {
+      font-size: 12px;
+    }
+  }
+
+}
+
+
+

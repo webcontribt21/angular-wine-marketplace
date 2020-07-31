@@ -1,0 +1,71 @@
+.story-article-container {
+  padding: 30px 60px 60px;
+
+  .breadscrumbs-container {
+    margin-bottom: 30px;
+
+    @media all and (max-width: 640px) {
+      display: none;
+    }
+  }
+
+  .article-description-container {
+    margin-bottom: 45px;
+  }
+
+  .content-area {
+    margin: 50px 0 0;
+  }
+
+  .content-wrapper {
+    max-width: 780px;
+    width: 100%;
+  }
+
+  .wines-carousel-container {
+    margin-top: 40px;
+
+    >div {
+      // max-width: 992px;
+      width: 100%;
+    }
+  }
+
+  .related-stories-container {
+    margin-top: 60px;
+    overflow-x: auto;
+
+    .story-item {
+      padding: 0 20px 0;
+      min-width: 300px;
+      margin-bottom: 63px;
+  
+      &:first-child {
+        padding-left: 0;
+      }
+  
+      &:last-child {
+        padding-right: 0;
+      }
+    }
+  }
+
+  .img-carousel-container {
+    margin: 60px -60px 0;
+  }
+
+  .next-story {
+    margin-top: 35px;
+
+    .btn {
+      max-width: fit-content;
+      border: 0;
+      font-size: 12px;
+      opacity: 0.5;
+
+      i {
+        font-size: 12px;
+      }
+    }
+  }
+}

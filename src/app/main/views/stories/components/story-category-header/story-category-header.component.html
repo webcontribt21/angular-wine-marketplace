@@ -1,0 +1,18 @@
+<div class="category-header-wrapper" fxLayout="row wrap" fxLayoutAlign="space-between">
+  <div class="title-area gray-dark-color">
+    <h2 class="title">{{ title }}</h2>
+    <div class="sub-title">{{ subTitle }}</div>
+  </div>
+
+  <div class="sort-by-action" fxLayout="row" fxLayoutAlign="start end" *ngIf="isShowSort">
+    <app-dropdown
+      [styleClass]="'sortable'"
+      [showClear]="true"
+      [options]="sortList"
+      [placeholder]="'Sort By'"
+      [optionLabel]="'label'"
+      [sortModel]="sortModel"
+      (valueChange)="onSortBy($event)"
+    ></app-dropdown>
+  </div>
+</div>

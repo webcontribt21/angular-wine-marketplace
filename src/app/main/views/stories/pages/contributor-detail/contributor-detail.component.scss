@@ -1,0 +1,34 @@
+.contributor-detail-wrapper {
+  margin: 40px 60px 60px;
+  font-size: 14px;
+
+  .contributor-information {
+    margin-bottom: 56px;
+  }
+
+  .article-item {
+    margin-bottom: 37px;
+  }
+
+  .article-list,
+  .contributor-information {
+    margin-left: -20px;
+    margin-right: -20px;
+  }
+
+  .img-container,
+  .description-area,
+  .article-item {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .author-title {
+    font-size: 50px;
+    margin: 0 0 22px;
+  }
+
+  .action-area {
+    margin-top: 57px;
+  }
+}

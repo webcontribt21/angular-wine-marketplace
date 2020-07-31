@@ -1,0 +1,12 @@
+<form [formGroup]="form" (change)="submit()">
+
+  <select formControlName="subFilters" id="subFilters">
+    <ng-container *ngFor="let filter of data; let i = index; trackBy: trackFilterDataByFn">
+        <option *ngIf="filter.count !== 0" [ngValue]="filter">
+          {{filter.description}}
+          {{filter.count}}
+        </option>
+    </ng-container>
+  </select>
+
+</form>

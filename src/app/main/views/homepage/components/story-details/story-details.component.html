@@ -1,0 +1,13 @@
+<a class="story-details" [routerLink]="['/stories/article/' + article['_id']]">
+  <app-image-wrapper [desktopImageUrl]="article.desktopImageUrl" [mobileImageUrl]="article.mobileImageUrl">
+    <div class="full-height" fxLayout="row wrap" fxLayoutAlign="center center">
+      <div class="text-center">
+        <div class="gray-white-color uppercase">
+          <app-title-wrapper [title]="article.title" [titleShort]="article.titleShort"></app-title-wrapper>
+        </div>
+
+        <div class="gray-lightest-color" *ngIf="article.tagline">{{ article?.tagline }}</div>
+      </div>
+    </div>
+  </app-image-wrapper>
+</a>

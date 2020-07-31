@@ -1,0 +1,79 @@
+<div class="item" [ngClass]="{ 'isOnlyPopup': isOnlyPopup, 'showPriceWrapper': isShowPriceWrapper}"
+  (mouseenter)="showPriceWrapper()" (mouseleave)="hidePriceWrapper()"
+  itemscope
+  itemtype="http://schema.org/Product">
+
+  <div class="image" [ngClass]="{'unavailable': !item.supplier.stockQty}">
+    <img src="{{item.itemImages[0]?.imageUrl ? item.itemImages[0]?.imageUrl : images.BOTTLE}}" alt="bottle"
+      [ngClass]="{'noImage' :!item.itemImages[0]?.imageUrl}"
+      itemprop="image">
+  </div>
+
+  <a class="info" [routerLink]="['/wines/item/' + item._id + '/' + item.name]">
+    <span class="year">{{(item.itemDetails | valueDescription: '9') || 'NV'}}</span>
+    <h3 class="title wine-name" itemprop="name">{{ item.name || '' | titlecase }}</h3>
+    <h4 class="description brand-name" itemprop="brand">{{ item.brand?.name || '' | titlecase }}</h4>
+    <span class="description country-name">{{ item.country?.name || '' | titlecase }}</span>
+    <span class="info-to-price" [ngClass]="{'unavailable': !item.supplier.stockQty}">
+      {{item.supplier.stockQty ? ' ' : 'Last sold at'}}
+    </span>
+    <span class="price" [ngClass]="{'unavailable': !item.supplier.stockQty}"
+      itemprop="offers"
+      itemscope
+      itemtype="http://schema.org/Offer">
+      {{ "R" | uppercase }}
+      {{item.price | number}}
+      <meta itemprop="url" content="https://port2port.wine/wines/item/{{item._id}}/{{item.name}}" />
+      <meta itemprop="priceCurrency" content="ZAR" />
+      <meta itemprop="price" content="{{ item.price }}" />
+    </span>
+  </a>
+
+  <div class="cardPrice" [ngClass]="{'showPriceWrapper': isShowPriceWrapper}">
+    <!-- [ngClass]="{'showPriceWrapper': isShowPriceWrapper}" -->
+
+    <a class="wrapper" [routerLink]="['/wines/item/' + item._id + '/' + item.name]"> <!--(click)="viewFullDetails()"-->
+
+      <div class="control">
+        <ng-container *ngTemplateOutlet="item.supplier.stockQty ? stockWrapper : unavailableWrapperInfoStock">
+        </ng-container>
+      </div>
+
+      <div class="price-wrapper" *ngIf="(item?.supplier?.soldInMultiplesOf ? item.supplier.soldInMultiplesOf : 0) > 1">
+
+        <div class="price-info">
+          Sold only in multiples of
+        </div>
+
+        <span>
+          {{item?.supplier?.soldInMultiplesOf}} bottles
+        </span>
+
+      </div>
+
+      <a class="add-to-my-wine">View Full Details</a>
+
+    </a>
+
+    <app-pay-item-control class="pay-item-control" [item]="item" [isSquareStyle]="isSquareStyle"
+      [isShowPriceWrapper]="isShowPriceWrapper" [isAdded]="isAdded" (addItemToCart$)="addItemToCart($event)"
+      (showAvailableVintages$)="showAvailableVintages()">
+    </app-pay-item-control>
+
+  </div>
+
+</div>
+
+<ng-template #stockWrapper>
+  <div class="inStock">
+    <img src="{{images.LITTLE_BOTTLE}}" alt="little_bottle">
+    <span class="count">{{item.supplier.stockQty > 60 ? '60+' : item.supplier.stockQty}}</span>
+    <span class="text">{{' in stock' | uppercase}}</span>
+  </div>
+</ng-template>
+
+<ng-template #unavailableWrapperInfoStock>
+  <div class="unavailableWrapper">
+    <span>{{'currently unavailable' | uppercase}}</span>
+  </div>
+</ng-template>

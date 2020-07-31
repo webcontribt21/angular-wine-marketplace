@@ -1,0 +1,44 @@
+@import 'variables';
+
+$border-color: #E5E3DE;
+
+.details-type-container {
+  .second-nav-wrapper {
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: $border-color;
+
+    @media all and (max-width: $mobile) {
+      display: none;
+    }
+  }
+
+  .details-type-container {
+    .second-nav-wrapper {
+      border-bottom-style: solid;
+      border-bottom-width: 1px;
+      border-bottom-color: $border-color;
+
+      @media all and (max-width: $mobile) {
+        display: none;
+      }
+    }
+
+    .breadcrumbs-wrapper,
+    .items-wrapper {
+      padding: 16px 28px;
+    }
+  }
+
+  .breadcrumbs-wrapper,
+  .items-wrapper {
+    padding: 16px 28px;
+    // padding: 38px 28px;
+  }
+}
+
+.error-modal-wrapper {
+  .alert {
+    margin-bottom: 1em;
+  }
+}

@@ -1,0 +1,18 @@
+<div class="subscribe-wrapper background-gray-dark white-color">
+  <!-- <i class="letter-icon">
+    <img [src]="letter" alt="letter">
+  </i> -->
+
+  <span class="description">
+    <span>Port2Port Wine News</span>
+    <br>
+    <span>Sign-up receive our Newsletter and join te great wine debate</span>
+  </span>
+
+  <div class="subscribe-form">
+    <input type="text" placeholder="Your Name" #name>
+    <input type="text" placeholder="Your Email Address" #email>
+
+    <button (click)="addSubscribe(name.value, email.value)" class="btn background-black uppercase">Sign up</button>
+  </div>
+</div>

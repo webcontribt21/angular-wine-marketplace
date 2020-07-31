@@ -1,0 +1,12 @@
+<div class="stories-container" ngClass.lt-md="mobile">
+  <div class="second-nav-wrapper"
+       #navEle
+       (appResizedEvent)="onResized($event)"
+  >
+    <app-story-second-nav [categories]="allCategories$ | async"></app-story-second-nav>
+  </div>
+
+  <div class="page-container gray-dark-color" [style.paddingTop.px]="navHeight">
+    <router-outlet></router-outlet>
+  </div>
+</div>

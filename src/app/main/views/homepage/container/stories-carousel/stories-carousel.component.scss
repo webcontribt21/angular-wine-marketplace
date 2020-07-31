@@ -1,0 +1,28 @@
+.stories-carousel-wrapper {
+  .ui-carousel-content {
+    .ui-button.ui-widget {
+      background-color: transparent;
+      border: none;
+      color: #fff;
+
+      &:hover {
+        background-color: transparent !important;
+        color: #fff !important;
+      }
+  
+      .pi {
+        font-size: 1.7em;
+      }
+
+      .ui-carousel-dot-icon {
+        background-color: #fff !important;
+        width: 16px;
+        height: 4px;
+
+        &.pi-circle-off {
+          opacity: 0.2;
+        }
+      }
+    }
+  }
+}

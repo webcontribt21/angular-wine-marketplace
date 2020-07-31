@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="header" #headEle (resized)="onResized()">
+    <app-header></app-header>
+  </div>
+
+  <main [ngStyle]="{minHeight: mainMinHeight + 'px'}">
+    <router-outlet></router-outlet>
+  </main>
+
+  <div class="sub_holder" #subscriptionEle>
+    <app-subscription></app-subscription>
+  </div>
+
+  <div #footerEle (resized)="onResized()">
+    <app-footer></app-footer>
+  </div>
+</div>

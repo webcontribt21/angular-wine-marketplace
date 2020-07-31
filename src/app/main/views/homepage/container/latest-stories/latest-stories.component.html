@@ -1,0 +1,22 @@
+<div class="latest-stories-wrapper">
+  <div class="row" fxLayout="row" fxShow.gt-sm="true" fxHide>
+    <div class="latest-story" fxFlex *ngFor="let article of midArticles;">
+      <app-article-card [article]="article" imgHeightPercent="h-article"></app-article-card>
+    </div>
+  </div>
+
+  <div fxShow fxHide.gt-sm="true">
+    <ngx-slick-carousel class="carousel" 
+      #slickModal="slick-carousel" 
+      [config]="slideConfig"
+      (beforeChange)="beforeChange($event)"
+      (afterChange)="afterChange($event)"
+    >
+      <div ngxSlickItem *ngFor="let article of midArticles; let ind = index" class="slide">
+        <div class="slider-wrapper">
+          <app-article-card [article]="article" imgHeightPercent="h-article" [linked]="!isDraggingCarousel"></app-article-card>
+        </div>
+      </div>
+    </ngx-slick-carousel>
+  </div>
+</div>

@@ -1,0 +1,6 @@
+<div class="good-regular-font">
+    <router-outlet></router-outlet>
+    <div *ngIf="isAuth$ | async">
+        <div *ngIf="refT$ | async"></div>
+    </div>
+</div>

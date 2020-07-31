@@ -1,0 +1,210 @@
+<form
+  [formGroup]="form"
+  (ngSubmit)="onSubmit()"
+  class="form"
+>
+  <span class="title">Sign up</span>
+
+  <span class="description">
+    <span>Sign in with</span>
+    <span class="network">Facebook</span>
+    <span>or</span>
+    <span class="network">Google</span>
+  </span>
+
+  <div class="group-wrapper">
+
+    <div class="form-group">
+      <label for="email">Email</label>
+
+      <input
+        id="email"
+        type="text"
+        formControlName="email"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+      />
+
+      <span
+        *ngIf="f.email.errors?.email"
+        class="error"
+      >
+        Email is invalid
+      </span>
+
+      <span
+        *ngIf="f.email.errors?.required && f.email.touched"
+        class="error"
+      >
+        Email is required
+      </span>
+
+    </div>
+
+    <div class="group-wrapper-name">
+      <div class="form-group">
+        <label for="firstName">First name</label>
+
+        <input
+          id="firstName"
+          type="text"
+          formControlName="firstName"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }"
+        />
+
+        <span
+          *ngIf="f.firstName.errors?.minlength"
+          class="error"
+        >
+          Needs to be at least {{minLengthForPassword}} characters long
+        </span>
+
+        <span
+          *ngIf="f.firstName.errors?.required && f.firstName.touched"
+          class="error"
+        >
+          First name is required
+        </span>
+
+      </div>
+
+      <div class="form-group">
+        <label for="lastName">Last name</label>
+
+        <input
+          id="lastName"
+          type="text"
+          formControlName="lastName"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }"
+        />
+
+        <span
+          *ngIf="f.lastName.errors?.minlength"
+          class="error"
+        >
+          Needs to be at least {{minLengthForPassword}} characters long
+        </span>
+
+        <span
+          *ngIf="f.lastName.errors?.required && f.lastName.touched"
+          class="error"
+        >
+          Last name is required
+        </span>
+
+      </div>
+    </div>
+
+    <div class="group-wrapper-password">
+
+      <div class="form-group">
+        <label for="password">Password</label>
+
+        <span
+          *ngIf="!f.password.errors"
+          class="switcher-type-password"
+          (click)="switchTypePassword()"
+        >
+        {{isShow ? 'Hide' : 'Show'}}
+      </span>
+
+        <input
+          id="password"
+          [type]="isShow ? 'text' : 'password'"
+          formControlName="password"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+        />
+
+        <span
+          *ngIf="f.password.errors?.minlength"
+          class="error"
+        >
+        Needs to be at least {{minLengthForPassword}} characters long
+      </span>
+
+        <span
+          *ngIf="f.password.errors?.required && f.password.touched"
+          class="error"
+        >
+        Password is required
+      </span>
+      </div>
+
+      <div class="form-group">
+        <label for="confirmPassword">Confirm password</label>
+
+        <input
+          id="confirmPassword"
+          [type]="isShow ? 'text' : 'password'"
+          formControlName="confirmPassword"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }"
+        />
+
+        <span
+          *ngIf="f.confirmPassword.errors?.minlength"
+          class="error"
+        >
+        Needs to be at least {{minLengthForPassword}} characters long
+      </span>
+
+        <span
+          *ngIf="f.confirmPassword.errors?.required && f.confirmPassword.touched"
+          class="error"
+        >
+        Confirm password is required
+      </span>
+
+        <span
+          *ngIf="f.confirmPassword.errors?.mustMatch && f.confirmPassword.touched"
+          class="error"
+        >
+        Passwords must match
+      </span>
+      </div>
+
+    </div>
+
+
+
+    <div class="button-group">
+      <button class="btn" [disabled]="form.invalid">
+        <span>Sign up</span>
+      </button>
+    </div>
+
+    <div class="form-group form-check">
+
+      <input
+        type="radio"
+        formControlName="remember"
+        id="remember"
+        class="form-check-input"
+        [ngClass]="{ 'is-invalid': submitted && f.remember.errors }"
+      />
+      <span class="checkmark"></span>
+
+      <label for="remember" class="form-radio-label">
+        <span>I don`t want to receive marketing messages from Port2Port.</span>
+      </label>
+
+    </div>
+
+    <hr>
+
+  </div>
+
+
+
+
+  <div class="bottom-info mobile">
+    <span>Already have a Port2Port account?</span>
+    <span class="link">
+      <a [routerLink]="['/auth/sign_in']">Sign in</a>
+    </span>
+  </div>
+
+</form>

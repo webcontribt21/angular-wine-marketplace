@@ -1,0 +1,1371 @@
+@import 'variables';
+
+
+.d-none {
+  display: none;
+}
+
+.full_width { width: 100%; margin-top: 36px;}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+
+  .alerts-mobile {
+    display: none;
+    position: absolute;
+    right: 20px;
+    top: 80px;
+
+    @media all and (max-width: $mobile) {
+      display: flex;
+    }
+
+    &>div {
+      .pi {
+        cursor: pointer;
+        font-size: 24px;
+      }
+
+      &:first-child {
+        margin-right: 15px;
+      }
+    }
+  }
+
+  .img-product-row {
+    // height: 900px;
+
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 30px;
+
+    @media all and (max-width: $mobile) {
+      //   height: auto;
+      flex-direction: column;
+      margin-bottom: 24px;
+    }
+
+    .img {
+      max-width: 610px;
+      margin-right: 45px;
+      display: flex;
+      flex: 1;
+      justify-content: center;
+
+      @media all and (max-width: $mobile) {
+        max-width: 100%;
+        min-width: auto;
+        height: 390px;
+        margin-right: 0;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+      }
+
+      img {
+        height: 600px;
+        width: auto;
+
+        @media all and (max-width: $mobile) {
+          height: 380px;
+          width: auto;
+        }
+      }
+    }
+
+
+    .product {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+
+
+      &.sold-out {
+
+        .product-price-shipping {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+          margin-top: 21px;
+          // max-width: 550px;
+
+          @media all and (max-width: $mobile) {
+            margin-top: 20px;
+          }
+
+          .price {
+            span {
+              color: $grayLight !important;
+            }
+          }
+        }
+
+        .cart {
+
+          button {
+            display: none !important;
+          }
+
+          button.sold-out,
+          button.sold-out:focus,
+          button.sold-out:hover {
+            display: block !important;
+            background: $black !important;
+            border-color: $black !important;
+          }
+        }
+
+        .sections-wrapper {
+          margin-top: 23px;
+
+          ::ng-deep p-accordion {
+            p-accordiontab {
+
+
+              &.special-offer-tab {
+                display: inline !important;
+
+                .header {
+                  span {
+                    color: $brown;
+                  }
+                }
+
+                .content {
+
+                  font-size: 12px;
+                  color: $grayLighter;
+                  font-family: $goodRegularFont;
+
+                  a,
+                  a:hover {
+                    color: $grayLighter;
+                    font-family: $goodRegularFont;
+                  }
+                }
+              }
+
+              &.nearest-seller-tab {
+                display: none !important;
+              }
+            }
+          }
+        }
+      }
+
+
+      .sub-title {
+        text-transform: uppercase;
+        font-size: 13px;
+        font-weight: normal;
+        color: $grayDark;
+        margin-bottom: 5px;
+        font-family: $goodRegularFont;
+        margin: 0;
+
+        @media all and (max-width: $mobile) {
+          margin-bottom: 10px;
+        }
+      }
+
+      .product-title {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+        .title {
+          font-size: 28px;
+          font-weight: normal;
+          text-transform: uppercase;
+          color: $grayDark;
+          margin: 0;
+
+          @media all and (max-width: $mobile) {
+            font-size: 20px;
+          }
+        }
+
+        .alerts-desktop {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+
+          &>div {
+
+            .pi {
+              font-size: 20px;
+              cursor: pointer;
+            }
+
+            &:not(:first-child) {
+              margin-left: 20px;
+            }
+          }
+
+          @media all and (max-width: $mobile) {
+            display: none;
+          }
+
+          .year {
+            ::ng-deep p-dropdown .ui-dropdown {
+              width: 95px;
+              min-width: 95px;
+              max-width: 95px;
+              height: 48px;
+              display: flex;
+              align-items: center;
+              padding-left: 15px;
+              border: 1px solid #e5e3de;
+
+              .ui-dropdown-label {
+                color: $grayDark;
+                font-size: 12px;
+              }
+
+              .ui-dropdown-trigger {
+                .ui-dropdown-trigger-icon {
+                  color: $grayDark;
+                  font-size: 12px;
+                  margin-left: -10px;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      h3.product-type {
+        font-size: 12px;
+        font-family: $goodRegularFont;
+        margin: 0;
+        font-weight: normal;
+        margin-top: 10px;
+
+        @media all and (max-width: $mobile) {
+          font-size: 14px;
+        }
+      }
+
+      .product-ratings {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        margin-top: 16px;
+
+        @media all and (max-width: $mobile) {
+          margin-top: 24px;
+        }
+
+        .rating {
+          display: flex;
+          flex-direction: row;
+          font-size: 9px;
+          font-family: $goodRegularFont;
+
+          // &:first-child {
+          //   margin-right: 10px;
+          // }
+          margin-right: 10px;
+
+          div {
+            border: solid 0.5px $grayLight;
+            padding: 5px 10px;
+
+            &:first-child {
+              border-right: 0;
+            }
+          }
+
+          .label {
+            color: $brown;
+          }
+
+          .value {
+            background: $brownLight;
+          }
+        }
+      }
+
+      .product-price-shipping {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 21px;
+        // max-width: 550px;
+
+        @media all and (max-width: $mobile) {
+          margin-top: 20px;
+        }
+
+        .price {
+          span {
+            font-size: 30px;
+            color: $brown;
+            font-family: $fontGoodBoldFont;
+
+            @media all and (max-width: $mobile) {
+              font-size: 25px;
+            }
+          }
+        }
+
+        .shipping {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-end;
+          font-size: 12px;
+          font-family: $goodRegularFont;
+          color: $grayDark;
+        }
+      }
+
+      .year-qty-cart {
+        display: flex;
+        flex-direction: row;
+        margin-top: 25px;
+        max-width: 450px;
+
+        @media all and (max-width: $mobile) {
+          margin-top: 22px;
+        }
+
+        .year {
+          display: none;
+
+          @media all and (max-width: $mobile) {
+            display: block;
+
+            ::ng-deep p-dropdown .ui-dropdown {
+              width: 95px;
+              min-width: 95px;
+              max-width: 95px;
+              height: 48px;
+              display: flex;
+              align-items: center;
+              padding-left: 15px;
+              border: 1px solid #e5e3de;
+
+              .ui-dropdown-label {
+                color: $grayDark;
+                font-size: 12px;
+              }
+
+              .ui-dropdown-trigger {
+                .ui-dropdown-trigger-icon {
+                  color: $grayDark;
+                  font-size: 12px;
+                  margin-left: -10px;
+                }
+              }
+            }
+          }
+        }
+
+        .qty {
+          margin-left: 0;
+
+          @media all and (max-width: $mobile) {
+            margin-left: 7px;
+          }
+
+          ::ng-deep p-dropdown .ui-dropdown {
+            width: 75px;
+            min-width: 75px;
+            max-width: 75px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            padding-left: 15px;
+            border: 1px solid #e5e3de;
+
+            .ui-dropdown-label {
+              color: $grayDark;
+              font-size: 12px;
+            }
+
+            .ui-dropdown-trigger {
+              .ui-dropdown-trigger-icon {
+                color: $grayDark;
+                font-size: 12px;
+                margin-left: -10px;
+              }
+            }
+          }
+        }
+
+        .cart {
+          flex: 1;
+          margin-left: 15px;
+
+          @media all and (max-width: $mobile) {
+            margin-left: 0;
+          }
+
+          button.sold-out {
+            display: none;
+          }
+
+          button,
+          button:focus,
+          button:hover {
+            display: block;
+            width: 100%;
+            background: $brown;
+            border-color: $brown;
+            height: 48px;
+            color: #fff;
+            font-size: 13px;
+            letter-spacing: 0.39px;
+            text-transform: uppercase;
+            cursor: pointer;
+
+            &:disabled {
+              background: $buttonDisabled;
+              border-color: $buttonDisabled;
+              pointer-events: auto !important;
+              cursor: not-allowed;
+            }
+          }
+        }
+      }
+
+      .qty-stock {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 30px;
+
+        @media all and (max-width: $mobile) {
+          margin-top: 24px;
+        }
+
+        .qty {
+          font-size: 12px;
+          font-family: $goodRegularFont;
+          color: $grayDark;
+        }
+
+        .stock {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-end;
+
+          .level {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            .label {
+              font-size: 12px;
+              text-transform: uppercase;
+
+              img {
+                height: 16px;
+                width: 6px;
+                margin-right: 2px;
+              }
+            }
+
+            .value {
+              font-size: 12px;
+              text-transform: uppercase;
+            }
+          }
+
+          .info {
+            font-family: $goodRegularFont;
+            color: $grayLight;
+            font-size: 12px;
+            margin-top: 8px;
+          }
+        }
+      }
+
+      .sold-by {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        font-family: $goodRegularFont;
+        font-size: 12px;
+        margin-top: 15px;
+        padding-top: 23px;
+        border-top: solid 1px #E0E0E0;
+
+        @media all and (max-width: $mobile) {
+          font-size: 12px;
+        }
+
+        div {
+          margin-right: 4px;
+        }
+
+        .icon { margin-right: 15px;}
+
+        .title {}
+
+        .label {
+          color: $brown;
+        }
+
+        .value {
+          font-family: $goodRegularFont;
+          color: $grayLight;
+        }
+      }
+
+      .sections-wrapper {
+        margin-top: 23px;
+
+        ::ng-deep p-accordion {
+          p-accordiontab {
+
+
+            &.special-offer-tab {
+              display: none;
+            }
+
+            &.nearest-seller-tab {
+              display: inline;
+            }
+
+
+            &.mobile {
+              display: none;
+
+              @media all and (max-width: $mobile) {
+                display: inline;
+              }
+            }
+
+            .ui-accordion-header {
+              margin: 0;
+
+              &.ui-state-active {
+                color: $grayDarkAlt;
+              }
+
+              a {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                border: 0 !important;
+                border-top: solid 1px $buttonDisabled !important;
+                font-size: 12px;
+                color: $grayDarkAlt;
+                background-color: #fff;
+                padding: 20px 0;
+                font-weight: 100;
+
+                @media all and (max-width: $mobile) {
+                  font-size: 14px;
+                  padding: 18px 0;
+                }
+
+                .ui-accordion-toggle-icon {
+                  color: $grayLight;
+                }
+
+                .header {
+                  .nearest-seller {
+                    display: flex;
+
+                    @media all and (max-width: $mobile) {
+                      font-size: 12px;
+                    }
+
+                    div {
+                      margin-right: 4px;
+                    }
+
+                    .icon {}
+
+                    .title {}
+
+                    .label {
+                      color: $brown;
+                    }
+
+                    .value {
+                      font-family: $goodRegularFont;
+                      color: $grayLight;
+                    }
+                  }
+                }
+
+
+              }
+            }
+
+            .ui-accordion-content-wrapper {
+
+
+
+              .ui-accordion-content {
+                border: 0;
+                padding-left: 0;
+                padding-right: 0;
+                // margin-top: -10px;
+                margin-bottom: 20px;
+
+
+
+                .content {
+
+                  font-size: 12px;
+                  color: $gray;
+                  font-family: $goodRegularFont;
+
+                  a,
+                  a:hover {
+                    color: $gray;
+                    font-family: $goodRegularFont;
+                    text-decoration: underline;
+                  }
+                }
+
+
+
+                .specifications {
+                  display: flex;
+                  flex-direction: row-reverse;
+                  font-size: 12px;
+                  color: $grayLight;
+                  line-height: 20px;
+
+                  @media all and (max-width: $mobile) {
+                    flex-direction: column;
+                  }
+
+                  &>div {
+                    flex: 1;
+
+                  }
+
+
+                  .spec {
+                    display: flex;
+                    flex-direction: row;
+
+                    .label {
+                      margin-right: 4px;
+                      min-width: auto;
+                    }
+
+                    .value {
+                      font-family: $goodRegularFont;
+                    }
+                  }
+
+                }
+
+                .tasting-notes,
+                .food-pairing {
+                  .info {
+                    font-size: 12px;
+                    font-family: $goodRegularFont;
+                    color: $grayLight;
+                    line-height: 20px;
+                  }
+
+                  .items {
+                    display: flex;
+                    flex-direction: row;
+                    margin-top: 22px;
+
+                    @media all and (max-width: $mobile) {
+                      margin-top: 15px;
+                      justify-content: space-between;
+                    }
+
+                    .item {
+                      display: flex;
+                      flex-direction: column;
+                      align-items: center;
+
+                      &:not(:last-child) {
+                        margin-right: 37px;
+
+                        @media all and (max-width: $mobile) {
+                          margin-right: 14px;
+                        }
+                      }
+
+                      @media all and (max-width: $mobile) {
+                        flex: 1;
+                      }
+
+                      .img {
+                        img {
+                          height: 125px;
+                          width: 125px;
+
+                          @media all and (max-width: $mobile) {
+                            height: 80px;
+                            width: 100%;
+                          }
+                        }
+                      }
+
+                      .name {
+                        font-size: 12px;
+                        font-family: $goodRegularFont;
+                        color: $grayLight;
+                        margin-top: 12px;
+
+                        @media all and (max-width: $mobile) {
+                          font-size: 10px;
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .about-detail-row {
+    display: flex;
+    flex-direction: row;
+
+    // justify-content: space-between;
+    @media all and (max-width: $mobile) {
+      flex-direction: column-reverse;
+    }
+
+    .about {
+      flex: 1;
+
+      max-width: 610px;
+      margin-right: 45px;
+
+      @media all and (max-width: $mobile) {
+        max-width: auto;
+        margin-right: 0;
+      }
+
+      .description {
+        .heading {
+          font-size: 15px;
+          font-weight: normal;
+          margin: 0;
+          margin-bottom: 18px;
+
+          @media all and (max-width: $mobile) {
+            font-size: 14px;
+          }
+        }
+
+        .info {
+          font-size: 12px;
+          font-family: $goodRegularFont;
+          color: $grayLight;
+          line-height: 20px;
+        }
+
+        .info-about {
+          margin-bottom: 18px;
+        }
+      }
+
+      .location {
+        margin-top: 26px;
+
+        @media all and (max-width: $mobile) {
+          margin-top: 18px;
+        }
+
+        .heading {
+          font-size: 15px;
+          font-weight: normal;
+          margin: 0;
+          margin-bottom: 18px;
+
+          @media all and (max-width: $mobile) {
+            font-size: 14px;
+          }
+        }
+
+        .info {
+          .map {
+            // background: $grayDark;
+            // width: auto;
+            // height: 305px;
+
+            img {
+              // width: auto;
+              // height: 305px;
+              width: 100%;
+              height: auto;
+              max-height: 360px;
+              max-width: 610px;
+            }
+
+            @media all and (max-width: $mobile) {
+              // height: 340px;
+
+              img {
+                width: 100%;
+                height: auto;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .detail {
+      flex: 1;
+      display: block;
+
+      @media all and (max-width: $mobile) {
+        display: none;
+      }
+
+      .tasting-notes {
+        .heading {
+          font-size: 15px;
+          font-weight: normal;
+          margin: 0;
+          margin-bottom: 18px;
+
+          @media all and (max-width: $mobile) {
+            font-size: 14px;
+          }
+        }
+
+        .info {
+          font-size: 12px;
+          font-family: $goodRegularFont;
+          color: $grayLight;
+          line-height: 20px;
+        }
+
+        .items {
+          display: flex;
+          flex-direction: row;
+          margin-top: 22px;
+
+          @media all and (max-width: $mobile) {
+            margin-top: 15px;
+          }
+
+          .item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            &:not(:last-child) {
+              margin-right: 37px;
+
+              @media all and (max-width: $mobile) {
+                margin-right: 14px;
+              }
+            }
+
+            .img {
+              img {
+                height: 125px;
+                width: 125px;
+
+                @media all and (max-width: $mobile) {
+                  height: 81px;
+                  width: 81px;
+                }
+              }
+            }
+
+            .name {
+              font-size: 12px;
+              font-family: $goodRegularFont;
+              color: $grayLight;
+              margin-top: 12px;
+
+              @media all and (max-width: $mobile) {
+                font-size: 10px;
+              }
+            }
+          }
+        }
+      }
+
+      .food-paring {
+        margin-top: 26px;
+
+        @media all and (max-width: $mobile) {
+          margin-top: 18px;
+        }
+
+        .heading {
+          font-size: 15px;
+          font-weight: normal;
+          margin: 0;
+          margin-bottom: 18px;
+
+          @media all and (max-width: $mobile) {
+            font-size: 14px;
+          }
+        }
+
+        .info {
+          font-size: 12px;
+          font-family: $goodRegularFont;
+          color: $grayLight;
+          line-height: 20px;
+        }
+
+        .items {
+          display: flex;
+          flex-direction: row;
+          margin-top: 22px;
+
+          @media all and (max-width: $mobile) {
+            margin-top: 15px;
+          }
+
+          .item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            &:not(:last-child) {
+              margin-right: 37px;
+
+              @media all and (max-width: $mobile) {
+                margin-right: 14px;
+              }
+            }
+
+            .img {
+              img {
+                height: 125px;
+                width: 125px;
+
+                @media all and (max-width: $mobile) {
+                  height: 81px;
+                  width: 81px;
+                }
+              }
+            }
+
+            .name {
+              font-size: 12px;
+              font-family: $goodRegularFont;
+              color: $grayLight;
+              margin-top: 12px;
+
+              @media all and (max-width: $mobile) {
+                font-size: 10px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .otherWines {
+
+    margin-top: 36px;
+
+    .heading {
+      font-size: 15px;
+      font-weight: normal;
+      margin: 0;
+      margin-bottom: 18px;
+
+      @media all and (max-width: $mobile) {
+        font-size: 14px;
+      }
+    }
+  }
+
+  .more-row {
+    display: flex;
+    flex-direction: column;
+    margin-top: 36px;
+
+    @media all and (max-width: $mobile) {
+      margin-top: 28px;
+    }
+
+    .heading {
+      font-size: 15px;
+
+      @media all and (max-width: $mobile) {
+        font-size: 14px;
+      }
+    }
+
+    .items {
+      display: flex;
+      flex-direction: row;
+      margin-top: 26px;
+      width: 100%;
+      overflow-x: auto;
+      max-width: calc(100vw - 72px);
+      padding-bottom: 10px;
+
+      @media all and (max-width: $mobile) {
+        margin-top: 26px;
+        padding-bottom: 20px;
+        max-width: calc(100vw - 56px);
+      }
+
+      .item {
+        // display: flex;
+        // flex-direction: column;
+        // justify-content: center;
+        // align-items: center;
+        // height: 400px;
+        // width: 200px;
+        // min-width: 200px;
+        // // max-width: 200px;
+        // border: solid 1px $grayLighter;
+
+        // &:not(:last-child) {
+        //   margin-right: 20px;
+        // }
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 400px;
+        min-width: calc((100vw / 4) - 18px);
+
+
+        @media all and (max-width: $mobile) {
+          min-width: calc((100vw) - 68px);
+        }
+
+        .img {
+          margin-bottom: 33px;
+
+          img {
+            width: 52px;
+            height: 190px;
+          }
+        }
+
+        .year {
+          font-size: 11px;
+          font-family: $goodRegularFont;
+          color: $grayLight;
+        }
+
+        .title {
+          font-size: 15px;
+          margin-top: 7px;
+        }
+
+        .brand {
+          font-size: 13px;
+          margin-top: 5px;
+          font-family: $goodRegularFont;
+        }
+
+        .country {
+          font-size: 12px;
+          margin-top: 6px;
+        }
+
+        .price {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          margin-top: 10px;
+
+          .label {
+            font-size: 12px;
+            color: $brown;
+          }
+
+          .value {
+            font-size: 18px;
+            margin-top: 3px;
+            color: $brown;
+            font-family: $fontGoodBoldFont;
+          }
+        }
+      }
+    }
+  }
+
+  .stories-experiences-row {
+    display: flex;
+    flex-direction: row;
+
+    @media all and (max-width: $mobile) {
+      flex-direction: column;
+    }
+
+
+    .stories {
+      flex: 0 1 50%;
+      margin-top: 36px;
+      margin-right: 5px;
+
+      @media all and (max-width: $mobile) {
+        margin-right: 0;
+        margin-top: 10px;
+      }
+
+      .heading {
+        font-size: 15px;
+        font-weight: normal;
+        margin: 0;
+        margin-bottom: 18px;
+
+        @media all and (max-width: $mobile) {
+          font-size: 14px;
+        }
+      }
+
+      .items {
+        display: flex;
+        flex-direction: row;
+        padding-bottom: 5px;
+
+        @media all and (max-width: $mobile) {
+          width: 100%;
+          overflow-x: auto;
+          max-width: calc(100vw - 56px);
+          padding-bottom: 20px;
+        }
+
+        .item {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          border: solid 1px $brownLight;
+
+          @media all and (max-width: $mobile) {
+            min-width: 300px;
+          }
+
+          &:first-child {
+            margin-right: 5px;
+
+            @media all and (max-width: $mobile) {
+              margin-right: 5px;
+            }
+          }
+
+          &:last-child {
+            margin-left: 5px;
+
+            @media all and (max-width: $mobile) {
+              margin-left: 5px;
+            }
+          }
+
+          .img {
+            img {
+              width: 100%;
+              height: auto;
+            }
+          }
+
+          .title {
+            margin-top: 30px;
+            font-size: 15px;
+            text-transform: uppercase;
+          }
+
+          .info {
+            font-size: 13px;
+            font-family: $goodRegularFont;
+            padding: 20px;
+            text-align: center;
+          }
+
+          .button {
+
+            margin-top: 10px;
+            margin-bottom: 30px;
+
+            button,
+            button:focus,
+            button:hover {
+              display: block;
+              padding: 10px 40px;
+              background: #B98754;
+              border-color: #B98754;
+              color: #FFF;
+              font-size: 13px;
+              text-transform: uppercase;
+              cursor: pointer;
+            }
+          }
+        }
+      }
+    }
+
+    .experiences {
+      flex: 0 1 50%;
+      margin-top: 36px;
+      margin-left: 5px;
+
+      @media all and (max-width: $mobile) {
+        margin-left: 0;
+        margin-top: 10px;
+      }
+
+      .heading {
+        font-size: 15px;
+        font-weight: normal;
+        margin: 0;
+        margin-bottom: 18px;
+
+        @media all and (max-width: $mobile) {
+          font-size: 14px;
+        }
+      }
+
+      .items {
+        display: flex;
+        flex-direction: row;
+        padding-bottom: 5px;
+
+        @media all and (max-width: $mobile) {
+          width: 100%;
+          overflow-x: auto;
+          max-width: calc(100vw - 56px);
+          padding-bottom: 20px;
+        }
+
+        .item {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          border: solid 1px $brownLight;
+
+          @media all and (max-width: $mobile) {
+            min-width: 300px;
+          }
+
+          &:first-child {
+            margin-right: 5px;
+
+            @media all and (max-width: $mobile) {
+              margin-right: 5px;
+            }
+          }
+
+          &:last-child {
+            margin-left: 5px;
+
+            @media all and (max-width: $mobile) {
+              margin-left: 5px;
+            }
+          }
+
+          .img {
+            img {
+              width: 100%;
+              height: auto;
+            }
+          }
+
+          .title {
+            margin-top: 30px;
+            font-size: 15px;
+            text-transform: uppercase;
+          }
+
+          .info {
+            font-size: 13px;
+            font-family: $goodRegularFont;
+            padding: 20px;
+            text-align: center;
+          }
+
+          .button {
+
+            margin-top: 10px;
+            margin-bottom: 30px;
+
+            button,
+            button:focus,
+            button:hover {
+              display: block;
+              padding: 10px 40px;
+              background: #B98754;
+              border-color: #B98754;
+              color: #FFF;
+              font-size: 13px;
+              text-transform: uppercase;
+              cursor: pointer;
+            }
+          }
+        }
+      }
+    }
+  }
+
+
+
+
+  ::ng-deep p-dialog {
+    .ui-dialog-titlebar {
+      border: 0;
+      background-color: #FFF;
+      display: flex;
+      justify-content: space-between;
+      padding: 40px 50px 0 50px;
+
+      @media all and (max-width: $mobile) {
+        padding: 28px 26px 0 26px;
+      }
+
+      .ui-dialog-title {
+        width: 100%;
+
+        p-header {
+          .heading {
+            font-size: 22px;
+
+            @media all and (max-width: $mobile) {
+              font-size: 18px;
+            }
+          }
+
+          .sub-heading {
+            margin-top: 14px;
+            font-size: 14px;
+            color: $grayLight;
+          }
+        }
+      }
+    }
+
+    .ui-dialog-content {
+      border: 0;
+      padding: 20px 50px;
+
+      @media all and (max-width: $mobile) {
+        padding: 20px 26px 0 26px;
+      }
+    }
+
+    .ui-dialog-footer {
+      border: 0;
+      background-color: #FFF;
+    }
+  }
+
+
+
+}

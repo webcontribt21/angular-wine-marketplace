@@ -1,0 +1,86 @@
+<div class="order-details-wrapper" fxLayout="row" fxLayout.lt-xl="column">
+  <div class="info-wrapper" fxFlex="290px" fxFlex.lt-xl="100%">
+    <div class="brown-lighter-border-color">
+      <div class="order-wrapper">
+        <h2 class="number">Order: {{ orderSummary?.orderNumber }}</h2>
+
+        <div class="status" fxLayout="row">
+          <div class="label black-color">Status:</div>
+          <div class="value brown-color">[ ORDER STATUS ]</div>
+        </div>
+
+        <div class="estimate black-color" fxLayout="row">
+          <div class="label" fxFlex="50%">Estimated Delivery date:</div>
+          <div class="value"
+               fxFlex="50%"
+               *ngIf="orderSummary.estimatedDeliveryDateFrom && orderSummary?.estimatedDeliveryDateTo"
+          >
+            {{ orderSummary?.estimatedDeliveryDateFrom | date: 'd MMMM y' }} - {{ orderSummary?.estimatedDeliveryDateTo | date: 'd MMMM y' }}
+          </div>
+        </div>
+
+        <div class="address-area gray-light-color">
+          <h4 class="black-color"><strong>Address</strong></h4>
+
+          <div class="name">
+            <strong>
+              {{ orderSummary?.shippingAddress?.firstName }} {{ orderSummary?.shippingAddress?.lastName }}
+            </strong>
+          </div>
+
+          <div class="address">
+            <strong>Street Address: </strong>{{ orderSummary?.shippingAddress?.streetAddress }}
+          </div>
+
+          <div class="contact" fxLayout="row">
+            <div class="label">Contact:</div>
+            <div class="value">{{ orderSummary?.cellNumber }}</div>
+          </div>
+
+          <div class="type">
+            <div class="item uppercase background-brown-lighter white-color">
+              {{ orderSummary.shippingAddress.isBusiness ? 'Business' : 'Residential' }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr class="brown-lighter-border-color" fxShow.gt-sm="true" fxHide />
+
+      <div class="order-details-container gray-light-color" fxShow.gt-sm="true" fxHide>
+        <app-order-details-card [data]="orderSummary"></app-order-details-card>
+      </div>
+
+      <div fxShow fxHide.gt-sm="true">
+        <p-accordion>
+          <p-accordionTab header="Order Details" [selected]="true">
+            <div class="order-details-container">
+              <app-order-details-card [data]="orderSummary"></app-order-details-card>
+            </div>
+          </p-accordionTab>
+          <p-accordionTab *ngFor="let shipment of orderSummary.shipments; let ind = index"
+                          [header]="'Shipment' + (ind + 1)"
+          >
+            <app-order-shipment [data]="shipment"></app-order-shipment>
+          </p-accordionTab>
+        </p-accordion>
+      </div>
+    </div>
+  </div>
+
+  <div class="shipment-container"
+       fxFlex="1 1 0"
+       fxFlex.lt-xl="100%"
+       fxShow.gt-sm="true"
+       fxHide
+  >
+    <p-tabView *ngIf="orderSummary.shipments && orderSummary.shipments.length > 0">
+      <p-tabPanel *ngFor="let shipment of orderSummary.shipments; let ind = index"
+                  [header]="'Shipment' + (ind + 1)"
+                  [selected]="ind === 0"
+      >
+        <app-order-shipment [data]="shipment"></app-order-shipment>
+      </p-tabPanel>
+    </p-tabView>
+  </div>
+</div>

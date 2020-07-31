@@ -1,0 +1,44 @@
+<div class="table">
+  <table class="table disabled">
+    <tr class="header">
+      <td class="selector">Delivery</td>
+      <td class="selector">Billing</td>
+      <td class="detail">Addresses</td>
+    </tr>
+
+    <tr class="rows" *ngFor="let userAddress of userAddresses">
+      <td class="selector">
+        <input type="radio" name="delivery-d" id="" [checked]="checkoutDeliveryAddressId == userAddress._id" (click)="onSelectCheckoutDeliveryAddress(userAddress)">
+      </td>
+      <td class="selector">
+        <input type="radio" name="billing-d" id="" [checked]="checkoutBillingAddressId == userAddress._id" (click)="onSelectCheckoutBillingAddress(userAddress)">
+      </td>
+      <td class="detail">
+        <div class="info">
+          <div><span class="title">{{ userAddress | formatAddressRecipient }}</span></div>
+          <div class="address-line">
+            <div class="address">
+              <span class="label">Street Address:</span>
+              <span>{{ userAddress | formatAddress }}</span>
+            </div>
+          </div>
+          <div class="contact-line">
+            <span class="label">Contact:</span><span>{{ userAddress.cellNumber }}</span>
+          </div>
+          <div>
+            <div class="address-type" *ngIf="userAddress.isBusiness">Business</div>
+            <div class="address-type" *ngIf="userAddress.isResidential">Residential</div>
+          </div>
+        </div>
+        <div class="actions">
+          <div class="action pointer"><i class="pi pi-pencil edit" (click)="onEditUserAddress(userAddress)"></i></div>
+          <div class="action pointer"><i class="pi pi-trash" (click)="onDeleteUserAddress(userAddress)"></i></div>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div class="add-button">
+  <button type="button" (click)="onAddUserAddress()">Add New Address</button>
+</div>

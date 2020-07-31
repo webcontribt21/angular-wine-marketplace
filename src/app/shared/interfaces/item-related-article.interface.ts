@@ -1,0 +1,29 @@
+export interface ItemRelatedArticle {
+    _id: string;
+    articleCategoryNo: number;
+    articleCategory_id: string;
+    timeToRead?: any;
+    title: string;
+    titleShort: string;
+    tagline: string;
+    body: string;
+    user_id: string;
+    author_id: string;
+    brand_id: string;
+    country_id: string;
+    region_id: string;
+    isPublished: boolean;
+    publishDate: Date;
+    activeStatus: boolean;
+    dateCreated: Date;
+    desktopImageName: string;
+    desktopImageUrl: string;
+    desktopImageEtag: string;
+    desktopImageKey: string;
+    mobileImageName: string;
+    mobileImageUrl: string;
+    mobileImageEtag: string;
+    mobileImageKey: string;
+    cultivar_ids: string[];
+    keywords: string[];
+}

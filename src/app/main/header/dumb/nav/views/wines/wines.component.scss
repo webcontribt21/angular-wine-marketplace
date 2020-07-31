@@ -1,0 +1,64 @@
+@import "variables";
+
+$border-color-mobile: #E0E0E0;
+$brown: #3F3A39;
+
+
+ul.types-wrapper {
+  background-color: #ffffff;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+
+  .category {
+    width: 100%;
+    padding: 29px;
+    border: 0.5px solid #E5E3DE;
+
+    @media all and (max-width: $mobile) {
+      padding: 0;
+      border: none;
+    }
+  }
+
+  li.types {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    opacity: 1;
+    padding: 29px;
+    border: 0.5px solid #E5E3DE;
+    align-items: center;
+
+    &:nth-child(2n) {
+      border-left: none;
+      border-right: none;
+    }
+
+
+    span {
+      text-align: center;
+      color: $brown;
+
+      &.item-type {
+        font-size: 14px;
+        color: $brown;
+        font-weight: bold;
+        opacity: 0.9;
+      }
+    }
+
+    @media all and (max-width: $mobile) {
+      border-top: none;
+      border-bottom: 0.5pt solid $border-color-mobile;
+      padding: 21px 29px;
+    }
+
+  }
+
+  @media all and (max-width: $mobile) {
+    flex-direction: column;
+  }
+
+}
+

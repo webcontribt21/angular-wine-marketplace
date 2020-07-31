@@ -1,0 +1,41 @@
+.order-product-wrapper {
+  padding: 20px 0 20px 20px;
+
+  .brand {
+    margin: 4px 0 18px;
+  }
+
+  .sold-by {
+    font-size: 10px;
+    margin-bottom: 7px;
+
+    .label {
+      margin-right: 2px;
+    }
+
+    .quantity {
+      .label {
+        margin-right: 8px;
+      }
+    }
+  }
+
+  .img-wrapper {
+    width: 30px;
+    margin-right: 30px;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .price-wrapper {
+    .total {
+      margin-top: 5px;
+    }
+
+    .label {
+      margin-right: 9px;
+    }
+  }
+}

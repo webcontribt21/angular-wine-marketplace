@@ -1,0 +1,44 @@
+@import "variables";
+
+.switch-style-list {
+  display: flex;
+  margin-left: 20px;
+  align-items: center;
+
+  .toSquare, .toList {
+    cursor: pointer;
+    opacity: 0.3;
+
+    &.active {
+      opacity: 1;
+    }
+  }
+
+  .toSquare {
+    margin-right: 8px;
+  }
+
+  .multi {
+    display: none;
+  }
+
+
+  @media all and (max-width: $listWidthTransform) {
+    margin-left: 0;
+
+    .toSquare, .toList {
+      display: none;
+    }
+
+    .multi {
+      text-align: center;
+      display: flex;
+      align-items: center;
+      border: 1px solid #d8d8d8;
+      padding: 10px 9px;
+      max-height: 40px;
+    }
+
+  }
+
+}

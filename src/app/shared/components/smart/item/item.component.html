@@ -1,0 +1,14 @@
+<app-cards-style [hidden]="!isSquareStyle" [isSquareStyle]="isSquareStyle" [isOnlyPopup]="isOnlyPopup"
+  [isShowPriceWrapper]="isShowPriceWrapper" [isAdded]="isAdded" [item]="item" [images]="images" [ratings]="getItemRatings(item)"
+  (addItemToCart$)="addItemToCart($event)" (viewFullDetails$)="viewFullDetails()"
+  (showPriceWrapper$)="showPriceWrapper()" (hidePriceWrapper$)="hidePriceWrapper()"
+  (showAvailableVintages$)="showAvailableVintages()">
+</app-cards-style>
+
+
+<app-lists-style [hidden]="isSquareStyle" [isSquareStyle]="isSquareStyle" [isOnlyPopup]="isOnlyPopup"
+  [isOpenRatingModal]="isOpenRatingModal" [isShowPriceWrapper]="isShowPriceWrapper" [isAdded]="isAdded" [item]="item"
+  [images]="images" [ratings]="getItemRatings(item)" (addItemToCart$)="addItemToCart($event)" (viewFullDetails$)="viewFullDetails()"
+  (openRatingModal$)="showRatingDetails()" (closeRatingModal$)="closeRatingModal()"
+  (showAvailableVintages$)="showAvailableVintages()">
+</app-lists-style>

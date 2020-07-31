@@ -1,0 +1,151 @@
+@import "variables";
+
+$border-color-desktop: #E5E3DE;
+
+.vendors {
+  border-bottom: 1px solid #E5E3DE
+}
+
+.wrapper-title {
+  border: 1px solid $border-color-desktop;
+  padding: 20px 27px;
+  width: 100%;
+  border-bottom: none;
+
+  .close_filters {
+    display: none;
+  }
+
+  .title {
+    font-weight: 600;
+    opacity: 0.8;
+    font-size: 14px;
+    text-transform: uppercase;
+  }
+
+  @media all and (max-width: $listWidthTransform) {
+    display: flex;
+    background: #43484b;
+    color: white;
+    opacity: 1;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+
+    .title {
+      opacity: 1
+    }
+
+    .close_filters {
+      display: block;
+      margin-left: auto;
+
+      img {
+        width: 15px;
+      }
+    }
+  }
+}
+
+.price-range {
+  border: 1px solid $border-color-desktop;
+  border-bottom: none;
+}
+
+.rating-range {
+  border: 1px solid $border-color-desktop;
+  border-bottom: none;
+}
+
+
+.filters {
+  display: flex;
+  flex-direction: column;
+
+  div:last-child {
+    border-bottom: 1px solid $border-color-desktop;
+  }
+
+  .wrapper-title {
+    order: 0;
+  }
+
+  .type {
+    order: 1;
+  }
+
+  .countries {
+    order: 2;
+  }
+
+  .price-range {
+    order: 3;
+  }
+
+  .ratings {
+    order: 4;
+  }
+
+  .cultivar {
+    order: 5;
+  }
+
+  .region {
+    order: 6;
+  }
+
+  .appellation {
+    order: 7;
+  }
+
+  .vintage {
+    order: 8;
+  }
+
+  .brands {
+    order: 9;
+  }
+
+  .foodpairingtags {
+    order: 10;
+  }
+
+  .bottlesize {
+    order: 11;
+  }
+
+  .vendors {
+    order: 12;
+  }
+
+}
+
+
+.filters-wrapper {
+  .filters {
+    position: relative;
+
+    .mobile-filter {
+      display: none;
+    }
+
+    @media all and (max-width: $listWidthTransform) {
+      .filter-list {
+        position: relative;
+      }
+
+      .desktop-filter {
+        display: none;
+      }
+
+      .mobile-filter {
+        display: block;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        opacity: 0;
+        z-index: 1000;
+      }
+    }
+  }
+}

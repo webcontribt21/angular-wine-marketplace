@@ -1,0 +1,122 @@
+@import "variables";
+
+$button-text-color: #fff;
+$font-size: 14px;
+$link-color: #30363A;
+$button-background: #43484B;
+$border-color: #E5E3DE;
+
+.favourites-modal {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  padding: 0; // 21px;
+  background-color: white;
+  border: 0.5px solid $border-color;
+  z-index: 2;
+  text-align: left;
+  right: 0;
+  min-width: 414px;
+
+
+  .favourites-items {
+    display: flex;
+    flex-direction: column;
+    padding-top: 21px;
+
+
+    .item {
+      display: flex;
+      flex-direction: row;
+      padding-left: 20px;
+      padding-right: 20px;
+      padding-bottom: 20px;
+      margin-bottom: 20px;
+      border-bottom: 0.5px solid $border-color;
+
+      .image {
+        margin-right: 25px;
+
+        img {
+          height: 81px;
+          width: 22px;
+        }
+      }
+
+      .detail {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
+      }
+    }
+
+  }
+
+
+  .favourites-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+
+    .button-view-favourites {
+
+      width: 100%;
+
+      button,
+      button:focus,
+      button:hover {
+        // display: block;
+        width: 100%;
+        background: #fff;
+        border: 2px solid $brown;
+        // padding-left: 50px;
+        // padding-right: 50px;
+        margin-right: 5px;
+        height: 48px;
+        color: $brown;
+        font-size: 13px;
+        letter-spacing: 0.39px;
+        text-transform: uppercase;
+        cursor: pointer;
+
+        &:disabled {
+          background: $buttonDisabled;
+          border-color: $buttonDisabled;
+          pointer-events: auto !important;
+          cursor: not-allowed;
+        }
+      }
+
+    }
+  }
+
+
+  @media all and (max-width: $mobile) {
+    // position: relative;
+    padding: 0px;
+    width: 100%;
+    border: none;
+    border-bottom: 0.5px solid #E0E0E0;
+    min-width: 100%;
+
+    .info {
+      text-align: left;
+      padding-left: 0;
+
+      span {
+        color: #919191;
+      }
+
+      a {
+        color: #000000;
+        text-decoration: none;
+      }
+    }
+  }
+
+
+}
